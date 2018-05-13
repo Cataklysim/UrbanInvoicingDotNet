@@ -54,7 +54,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\clsArticle.cs" />
     <Compile Include="Classes\clsClass.cs" />
+    <Compile Include="Classes\clsCustomer.cs" />
+    <Compile Include="Classes\clsDatabaseObject.cs" />
+    <Compile Include="Classes\clsInvoice.cs" />
+    <Compile Include="Classes\clsInvoicePosition.cs" />
+    <Compile Include="Classes\clsSystemstatus.cs" />
+    <Compile Include="Classes\clsType.cs" />
     <Compile Include="Forms\frmContacts.cs">
       <SubType>Form</SubType>
     </Compile>
