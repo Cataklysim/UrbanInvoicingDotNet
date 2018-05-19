@@ -130,6 +130,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1461, 663);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MinimizeBox = false;
             this.Name = "frmMain";
             this.Text = "UrbanInvoicing [DevBuild]";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
