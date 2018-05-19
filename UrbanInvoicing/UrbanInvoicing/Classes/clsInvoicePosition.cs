@@ -4,37 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UrbanInvoicing.Classes;
-usign MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System.Data.Common;
+using System.Diagnostics;
 
 namespace UrbanInvoicing.Classes
 {
     public class clsInvoicePosition : clsDatabaseObject
     {
 
-        private int Id;
+        private int Id{ get; set; }
 
-        private int InvoiceId;
+        private int InvoiceId{ get; set; }
 
-        public String Bemerkung;
+        public String Bemerkung{ get; set; }
 
-        public double Brutto;
+        public double Brutto{ get; set; }
 
-        public double Netto;
+        public double Netto{ get; set; }
 
-        public double MwSt;
+        public double MwSt{ get; set; }
 
-        public double Rabat;
+        public double Rabatt{ get; set; }
 
-        public int ArtikelId;
+        public int ArtikelId{ get; set; }
 
-        public int TypeId;
+        public int TypeId{ get; set; }
 
-        private clsType Type;
+        private clsType InvoiceType{ get; set; }
 
-        private clsArticel Articel;
+        private clsArticle Articel{ get; set; }
 
-        private clsInvoice Invoice;
+        private clsInvoice Invoice{ get; set; }
 
         public clsInvoicePosition()
         {
@@ -45,14 +46,14 @@ namespace UrbanInvoicing.Classes
         {
             this.Id = pId;
             this.InvoiceId = pInvoiceId;
-            this.Type = pType;
-            this.TypeId = this.Type.id;
+            this.InvoiceType = pType;
+            this.TypeId = this.InvoiceType.id;
             this.ArtikelId = pArtikelId;
             this.Bemerkung = pBemerkung;
             this.Brutto = pBrutto;
             this.Netto = pNetto;
             this.MwSt = pMwst;
-            this.Rabat = pRabat;
+            this.Rabatt = pRabat;
         }
 
         public void SetInvoiceId(int pInvoiceId)
@@ -66,33 +67,30 @@ namespace UrbanInvoicing.Classes
             try
             {
 
-                using (MySql.Data.MySqlClient.MySqlConnection tmpConnection = new MySql.Data.MySqlClient.MySqlConnection(Properties.Settings.Default.ConnectionString))
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    DbCommand tmpCommand = new 
+                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbInvoicePosition(invoice_id, bemerkung, brutto, netto, mwSt, rabatt, artikel_id, type_id" +
+                        ", systemstatus_id) VALUES (@InvoiceId, @Bemerkung, @Brutto, @Netto, @MWST, @Rabatt, @Artikel_Id, @Type_Id)");
+                    tmpCommand.Parameters.AddWithValue("@InvoiceID", this.InvoiceId);
+                    tmpCommand.Parameters.AddWithValue("@Bemerkung", this.Bemerkung);
+                    tmpCommand.Parameters.AddWithValue("@Brutto", this.Brutto);
+                    tmpCommand.Parameters.AddWithValue("@Netto", this.Netto);
+                    tmpCommand.Parameters.AddWithValue("@MWST", this.MwSt);
+                    tmpCommand.Parameters.AddWithValue("@Rabatt", this.Rabatt);
+                    tmpCommand.Parameters.AddWithValue("@Artikel_Id", this.ArtikelId);
+                    tmpCommand.Parameters.AddWithValue("@Type_Id", this.TypeId);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    if (tmpCommand.ExecuteNonQuery() == 1)
+                        return true;
+                    else
+                        return false;
                 }
-
-                    String tmpCommand = ("INSERT INTO tbInvoicePosition (invoice_id, bemerkung, brutto, netto, mwSt, rabatt, artikel_id, type_i" +
-                    "d, systemstatus_id) VALUES ("
-                                + (this.InvoiceId + (", \'"
-                                + (this.Bemerkung + ("\',"
-                                + (this.Brutto + (","
-                                + (this.Netto + (","
-                                + (this.MwSt + (","
-                                + (this.Rabat + (","
-                                + (this.ArtikelId + (","
-                                + (this.TypeId + ",1)"))))))))))))))));
-                    PreparedStatement ps = connection.prepareStatement(tmpCommand);
-                    result = ps.execute();
-                }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-
-                result = false;
-            }
-            finally
-            {
+                Debug.WriteLine("# " + DateTime.Now + "clsInvoicePosition - Failed to execute SQL: " + ex);
+                result = false; 
             }
             return result;
         }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,16 +11,16 @@ namespace UrbanInvoicing.Classes
     public class clsArticle : clsDatabaseObject
     {
 
-        int id;
+        public int id { get; set; }
 
-        public String name;
+        public String name { get; set; }
 
-        public double vatRate;
+        public double vatRate { get; set; }
 
-        public double price;
+        public double price { get; set; }
 
-        public double squareMeter;
-
+        public double squareMeter { get; set; }
+        
         public void clsArticel()
         {
 
@@ -29,23 +31,24 @@ namespace UrbanInvoicing.Classes
             List<String> tmpResult = new List<String>();
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-                String tmpCommand = "SELECT name FROM tbArtikel WHERE systemstatus_id = 1";
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    tmpResult.add(rs.getString("name"));
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT name FROM tbArtikel WHERE systemstatus_id = 1");
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            tmpResult.Add(tmpReader["name"].ToString());
+                        }
+                    }
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-
-            }
-            finally
-            {
-                
+                Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                return null;
             }
             return tmpResult;
         }
@@ -55,20 +58,25 @@ namespace UrbanInvoicing.Classes
             int tmpResult = 1;
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-                String tmpCommand = ("Select id FROM tbArtikel WHERE systemstatus_id = 1 AND name Like \'"
-                            + (pArticleName + "\'"));
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    tmpResult = rs.getInt("id");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT ID FROM tbArtikel WHERE Systemstatus_id = 1 AND name LIKE @Name");
+                    tmpCommand.Parameters.AddWithValue("@Name", pArticleName);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            tmpResult = Convert.ToInt32(tmpReader["Id"]);
+                        }
+                    }
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                
+                Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                return 0;
             }
             finally
             {
@@ -81,46 +89,53 @@ namespace UrbanInvoicing.Classes
             Double tmpResult = 0;
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-                String tmpCommand = ("Select mwstSatz FROM tbArtikel WHERE systemstatus_id = 1 AND name Like \'"
-                            + (pArticleName + "\'"));
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    tmpResult = rs.getDouble("mwstSatz");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT mwstSatz FROM tbArtikel WHERE Systemstatus_id = 1 AND name LIKE @Name");
+                    tmpCommand.Parameters.AddWithValue("@Name", pArticleName);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            tmpResult = Convert.ToInt32(tmpReader["mwstSatz"]);
+                        }
+                    }
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                
+                Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                return 0;
             }
-            finally
-            {
-            }
-                return tmpResult;
-
+            return tmpResult;
         }
 
-        public override bool Save()
+        public override bool Save() 
         {
             bool result = false;
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-                String tmpCommand = ("INSERT INTO tbArtikel (name, mwstSatz, systemstatus_id) VALUES (\'"
-                            + (this.name + ("\', "
-                            + (this.vatRate + ",1)"))));
-                PreparedStatement ps = connection.prepareStatement(tmpCommand);
-                result = ps.execute();
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbArtikel (name, mwstSatz, systemstatus_id) VALUES (@Name, @MWST, @Systemstatus");
+                    tmpCommand.Parameters.AddWithValue("@Name", this.name);
+                    tmpCommand.Parameters.AddWithValue("@MWST", this.vatRate);
+                    tmpCommand.Parameters.AddWithValue("@Systemstatus", 1);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    if (tmpCommand.ExecuteNonQuery() == 1)
+                        result = true;
+                    else
+                        result = false;
+                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
                 result = false;
-            }
-            finally
-            {
             }
             return result;
         }

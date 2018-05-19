@@ -1,6 +1,8 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,19 +12,19 @@ namespace UrbanInvoicing.Classes
     public class clsInvoice : clsDatabaseObject
     {
 
-        public int id;
+        public int id { get; set; }
 
-        public int customerId;
+        public int customerId { get; set; }
 
-        public DateTime date;
+        public DateTime date { get; set; }
 
-        bool printed;
+        bool printed { get; set; }
 
-        public double sumBrutto;
+        public double sumBrutto { get; set; }
 
-        public double sumNetto;
+        public double sumNetto { get; set; }
 
-        public double sumMwst;
+        public double sumMwst { get; set; }
 
         public List<clsInvoicePosition> invoicePositions = new List<clsInvoicePosition>();
 
@@ -39,61 +41,36 @@ namespace UrbanInvoicing.Classes
         override public bool Save()
         {
             bool result = false;
-            String tmpDate = (new SimpleDateFormat("yyyy-MM-dd HH:mm:ss") + format(this.date));
-            String tmpCommand = ("INSERT INTO tbInvoice (customer_id, belegdatum, printed, summeBrutto, summeNetto, summeMwst, systemst" +
-            "atus_id) VALUES ("
-                        + (this.customerId + (", \'"
-                        + (tmpDate + ("\', false, "
-                        + (this.sumBrutto + (","
-                        + (this.sumNetto + (","
-                        + (this.sumMwst + ",1)"))))))))));
 
             try
             {
-                using (var mysqlconnection = new MySqlConnection(m_strMySQLConnectionString))
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    mysqlconnection.Open();
-                    using (MySqlCommand cmd = mysqlconnection.CreateCommand())
-                    {
-                        cmd.CommandType = CommandType.Text;
-                        cmd.CommandTimeout = 300;
-                        cmd.CommandText = strQuery;
-
-                        object objValue = cmd.ExecuteScalar();
-                        if (objValue == null)
-                        {
-                            cmd.Dispose();
-                            return string.Empty;
-                        }
-                        else
-                        {
-                            strData = (string)cmd.ExecuteScalar();
-                            cmd.Dispose();
-                        }
-
-                        mysqlconnection.Close();
-                    }
+                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbInvoice (customer_id, belegdatum, printed, summeBrutto, summeNetto, summeMwst, systemst" +
+                "atus_id) VALUES (@CustomerId, @Belegdatum, @Printed, @Brutto, @Netto, @MWST, @Systemstatus)");
+                    tmpCommand.Parameters.AddWithValue("@CustomerId", this.customerId);
+                    tmpCommand.Parameters.AddWithValue("@Belegdatum", DateTime.Now);
+                    tmpCommand.Parameters.AddWithValue("@Brutto", this.sumBrutto);
+                    tmpCommand.Parameters.AddWithValue("@Netto", this.sumNetto);
+                    tmpCommand.Parameters.AddWithValue("@MWST", this.sumMwst);
+                    tmpCommand.Parameters.AddWithValue("@Systemstatus", 1);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    if (tmpCommand.ExecuteNonQuery() == 1)
+                        result = true;
+                    else
+                        result = false;
                 }
-                PreparedStatement ps = connection.prepareStatement(tmpCommand, Statement.RETURN_GENERATED_KEYS);
-                result = ps.execute();
-                ResultSet rs = ps.getGeneratedKeys();
-                while (rs.next())
-                {
-                    this.id = rs.getInt(1);
-                }
-
-                foreach (clsInvoicePosition pos in this.invoicePositionArrayList)
+                foreach (clsInvoicePosition pos in this.invoicePositions)
                 {
                     pos.SetInvoiceId(this.id);
-                    pos.Save();
+                    if (!pos.Save())
+                        result = false;
                 }
-
-                result = true;
-
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                Debug.WriteLine("# " + DateTime.Now + "clsInvoice - Failed to execute SQL: " + ex);
                 result = false;
             }
             return result;
@@ -101,7 +78,33 @@ namespace UrbanInvoicing.Classes
 
         public static int GetId(clsInvoice pInvoice)
         {
-            return 1;
+            int tmpResult = 1;
+            try
+            {
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT ID FROM tbType WHERE name LIKE @Name");
+                    tmpCommand.Parameters.AddWithValue("@Name", pName);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            tmpResult = Convert.ToInt32(tmpReader["Id"]);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                return 0;
+            }
+            finally
+            {
+            }
+            return tmpResult;
         }
     }
 }

@@ -1,46 +1,51 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace UrbanInvoicing.Classes
 {
-    class clsType
+    public class clsType
     {
-        int id;
-        int multiplier;
-        String name;
-        bool isSquarmeterRelevant;
-        bool isRoomRelevant;
+        public int id { get; set; }
+        public int multiplier { get; set; }
+        public String name { get; set; }
+        public bool isSquarmeterRelevant { get; set; }
+        public bool isRoomRelevant { get; set; }
 
         public clsType()
-        { }
+        {
+
+        }
 
         public static List<String> GetTypesFromDB()
         {
             List<String> tmpResult = new List<String>();
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-
-                String tmpCommand = "Select name FROM tbType WHERE systemstatus_id = 1";
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    tmpResult.Add(rs.getString(1));
+                    MySqlCommand tmpCommand = new MySqlCommand("Select name FROM tbType WHERE systemstatus_id = 1");
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            tmpResult.Add(tmpReader["name"].ToString());
+                        }
+                    }
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                
+                Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                return null;
             }
-            finally
-            {
-            }
-                return tmpResult;
+            return tmpResult;
         }
 
         public static int GetId(String pName)
@@ -48,20 +53,25 @@ namespace UrbanInvoicing.Classes
             int tmpResult = 1;
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-
-                String tmpCommand = "Select id FROM tbType WHERE name like '" + pName + "'";
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    tmpResult = rs.getInt("id");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT ID FROM tbType WHERE name LIKE @Name");
+                    tmpCommand.Parameters.AddWithValue("@Name", pName);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            tmpResult = Convert.ToInt32(tmpReader["Id"]);
+                        }
+                    }
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                
+                Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                return 0;
             }
             finally
             {

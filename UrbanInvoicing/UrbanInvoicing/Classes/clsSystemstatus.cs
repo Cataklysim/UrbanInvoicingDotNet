@@ -2,8 +2,8 @@
 {
     public class clsSystemstatus
     {
-        int Id;
-        string name;
+        public int Id { get; set; }
+        public string name { get; set; }
 
         public clsSystemstatus() { }
 
