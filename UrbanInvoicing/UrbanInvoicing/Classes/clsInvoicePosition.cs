@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UrbanInvoicing.Classes;
+usign MySql.Data.MySqlClient;
+using System.Data.Common;
 
 namespace UrbanInvoicing.Classes
 {
@@ -58,16 +60,17 @@ namespace UrbanInvoicing.Classes
             this.InvoiceId = pInvoiceId;
         }
 
-        public bool Save()
+        public override bool Save()
         {
             bool result = false;
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-                if (!((connection == null)
-                            || (!connection.isValid(2000)
-                            || connection.isClosed())))
+
+                using (MySql.Data.MySqlClient.MySqlConnection tmpConnection = new MySql.Data.MySqlClient.MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
+                    DbCommand tmpCommand = new 
+                }
+
                     String tmpCommand = ("INSERT INTO tbInvoicePosition (invoice_id, bemerkung, brutto, netto, mwSt, rabatt, artikel_id, type_i" +
                     "d, systemstatus_id) VALUES ("
                                 + (this.InvoiceId + (", \'"
@@ -85,17 +88,18 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception e)
             {
-                
+
                 result = false;
             }
             finally
             {
             }
-                return result;
+            return result;
         }
 
-        public void load()
+        public override void Load()
         {
-
+            throw new NotImplementedException();
         }
     }
+}

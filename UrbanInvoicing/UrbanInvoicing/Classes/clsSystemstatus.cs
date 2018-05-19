@@ -1,6 +1,6 @@
 ﻿namespace UrbanInvoicing.Classes
 {
-    internal class clsSystemstatus
+    public class clsSystemstatus
     {
         int Id;
         string name;
