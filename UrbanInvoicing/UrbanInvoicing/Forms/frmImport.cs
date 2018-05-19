@@ -43,17 +43,70 @@ namespace UrbanInvoicing.Forms
 
         private void dataGridViewInvoicePositions_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
+            // Change sum in labels
 
+            //clsInvoicePosition tmpTestInvoicePosition = new clsInvoicePosition();
+            //tmpTestInvoicePosition.Brutto = Convert.ToDouble(e.Row.Cells["bruttoDataGridViewTextBoxColumn"]);
+            //tmpTestInvoicePosition.Netto = Convert.ToDouble(e.Row.Cells["nettoDataGridViewTextBoxColumn"]);
+            //tmpTestInvoicePosition.MwSt = Convert.ToDouble(e.Row.Cells["mwStDataGridViewTextBoxColumn"]);
+            //tmpTestInvoicePosition.Rabatt = Convert.ToDouble(e.Row.Cells["rabattDataGridViewTextBoxColumn"]);
+
+
+
+            ////Put some logical code in here with smart math stuff
+
+            //this.labelSumGross.Text = tmpTestInvoicePosition.Brutto.ToString();
+            //this.labelSumNet.Text = tmpTestInvoicePosition.Netto.ToString();
+            //this.labelVatSum.Text = tmpTestInvoicePosition.MwSt.ToString();
         }
 
         private void dataGridViewInvoicePositions_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-
+            // Change sum in labels 
         }
 
         private void dataGridViewInvoicePositions_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-
+            bool tmpIsValid = true;
+            DataGridViewColumn tmpCurrentColumn = this.dataGridViewInvoicePositions.Columns[e.ColumnIndex];
+            if (tmpCurrentColumn != null)
+            {
+                if (tmpCurrentColumn.Name == "bemerkungDataGridViewTextBoxColumn")
+                {
+                    if (tmpIsValid)
+                        this.dataGridViewInvoicePositions.CancelEdit();
+                }
+                else if (tmpCurrentColumn.Name == "artikelIdDataGridViewTextBoxColumn")
+                {
+                    if (tmpIsValid)
+                        this.dataGridViewInvoicePositions.CancelEdit();
+                }
+                else if (tmpCurrentColumn.Name == "typeIdDataGridViewTextBoxColumn")
+                {
+                    if (tmpIsValid)
+                        this.dataGridViewInvoicePositions.CancelEdit();
+                }
+                else if (tmpCurrentColumn.Name == "bruttoDataGridViewTextBoxColumn")
+                {
+                    if (tmpIsValid)
+                        this.dataGridViewInvoicePositions.CancelEdit();
+                }
+                else if (tmpCurrentColumn.Name == "mwStDataGridViewTextBoxColumn")
+                {
+                    if (tmpIsValid)
+                        this.dataGridViewInvoicePositions.CancelEdit();
+                }
+                else if (tmpCurrentColumn.Name == "rabattDataGridViewTextBoxColumn")
+                {
+                    if (tmpIsValid)
+                        this.dataGridViewInvoicePositions.CancelEdit();
+                }
+                else if (tmpCurrentColumn.Name == "nettoDataGridViewTextBoxColumn")
+                {
+                    if (tmpIsValid)
+                        this.dataGridViewInvoicePositions.CancelEdit();
+                }
+            }
         }
 
         private void frmImport_Load(object sender, EventArgs e)
