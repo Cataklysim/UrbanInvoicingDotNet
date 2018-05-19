@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using MySql.Data.MySqlClient;
 namespace UrbanInvoicing.Classes
 {
     class clsType
@@ -22,25 +22,27 @@ namespace UrbanInvoicing.Classes
             List<String> tmpResult = new List<String>();
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-
-                String tmpCommand = "Select name FROM tbType WHERE systemstatus_id = 1";
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+                String tmpComStr = "Select name FROM tbType WHERE systemstatus_id = 1";
+                using (MySqlConnection tmpCon = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    tmpResult.Add(rs.getString(1));
+                    using (var tmpCmd = new MySqlCommand(tmpComStr, tmpCon))
+                    {
+                        tmpCon.Open();
+                        using (var tmpReader = tmpCmd.ExecuteReader())
+                        {
+                            while (tmpReader.Read())
+                            {
+                                tmpResult.Add(tmpReader["name"].ToString());
+                            }
+                        }
+                    }
                 }
-
             }
             catch (Exception e)
             {
-                
+                System.Windows.Forms.MessageBox.Show(e.Message.ToString(), "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
-            finally
-            {
-            }
-                return tmpResult;
+            return tmpResult;
         }
 
         public static int GetId(String pName)
@@ -48,23 +50,25 @@ namespace UrbanInvoicing.Classes
             int tmpResult = 1;
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-
-                String tmpCommand = "Select id FROM tbType WHERE name like '" + pName + "'";
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+                String tmpComStr = "Select id FROM tbType WHERE name like '" + pName + "'";
+                using (MySqlConnection tmpCon = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    tmpResult = rs.getInt("id");
+                    using (var tmpCmd = new MySqlCommand(tmpComStr, tmpCon))
+                    {
+                        tmpCon.Open();
+                        using (var tmpReader = tmpCmd.ExecuteReader())
+                        {
+                            while (tmpReader.Read())
+                            {
+                                tmpResult = Convert.ToInt32(tmpReader["name"]);
+                            }
+                        }
+                    }
                 }
-
             }
             catch (Exception e)
             {
-                
-            }
-            finally
-            {
+                System.Windows.Forms.MessageBox.Show(e.Message.ToString(), "Error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
             }
             return tmpResult;
         }

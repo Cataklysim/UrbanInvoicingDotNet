@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,80 +28,27 @@ namespace UrbanInvoicing.Classes
         public static List<String> GetArticlesFromDB()
         {
             List<String> tmpResult = new List<String>();
-            try
-            {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-                String tmpCommand = "SELECT name FROM tbArtikel WHERE systemstatus_id = 1";
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
-                {
-                    tmpResult.add(rs.getString("name"));
-                }
 
-            }
-            catch (Exception e)
+            foreach (var item in GetValueList("SELECT name FROM tbArtikel WHERE systemstatus_id = 1", "name"))
             {
+                tmpResult.Add((string)item);
+            }
 
-            }
-            finally
-            {
-                
-            }
             return tmpResult;
         }
 
         public static int GetId(String pArticleName)
         {
-            int tmpResult = 1;
-            try
-            {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-                String tmpCommand = ("Select id FROM tbArtikel WHERE systemstatus_id = 1 AND name Like \'"
-                            + (pArticleName + "\'"));
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
-                {
-                    tmpResult = rs.getInt("id");
-                }
-
-            }
-            catch (Exception e)
-            {
-                
-            }
-            finally
-            {
-            }
+            int tmpResult;
+            tmpResult = Convert.ToInt32(GetValue("Select id FROM tbArtikel WHERE systemstatus_id = 1 AND name Like \'" + pArticleName + "\'", "id"));
             return tmpResult;
         }
 
         public static Double GetMwst(String pArticleName)
         {
             Double tmpResult = 0;
-            try
-            {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-                String tmpCommand = ("Select mwstSatz FROM tbArtikel WHERE systemstatus_id = 1 AND name Like \'"
-                            + (pArticleName + "\'"));
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
-                {
-                    tmpResult = rs.getDouble("mwstSatz");
-                }
-
-            }
-            catch (Exception e)
-            {
-                
-            }
-            finally
-            {
-            }
-                return tmpResult;
-
+            tmpResult = Convert.ToDouble(GetValue("Select mwstSatz FROM tbArtikel WHERE systemstatus_id = 1 AND name Like \'" + pArticleName + "\'", "mwstSatz"));
+            return tmpResult;
         }
 
         public bool save()
@@ -122,7 +70,7 @@ namespace UrbanInvoicing.Classes
             finally
             {
             }
-                return result;
+            return result;
 
         }
 
