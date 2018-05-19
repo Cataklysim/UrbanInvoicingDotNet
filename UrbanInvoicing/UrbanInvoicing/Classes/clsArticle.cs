@@ -103,7 +103,7 @@ namespace UrbanInvoicing.Classes
 
         }
 
-        public bool save()
+        public override bool Save()
         {
             bool result = false;
             try
@@ -122,14 +122,13 @@ namespace UrbanInvoicing.Classes
             finally
             {
             }
-                return result;
-
+            return result;
         }
 
-        void load()
+        public override void Load()
         {
-
+            throw new NotImplementedException();
         }
     }
 }
-}
+

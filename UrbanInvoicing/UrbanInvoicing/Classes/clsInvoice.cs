@@ -74,23 +74,22 @@ namespace UrbanInvoicing.Classes
                         mysqlconnection.Close();
                     }
                 }
-            }
-                    PreparedStatement ps = connection.prepareStatement(tmpCommand, Statement.RETURN_GENERATED_KEYS);
-                    result = ps.execute();
-                    ResultSet rs = ps.getGeneratedKeys();
-                    while (rs.next())
-                    {
-                        this.id = rs.getInt(1);
-                    }
-
-                    foreach (clsInvoicePosition pos in this.invoicePositionArrayList)
-                    {
-                        pos.SetInvoiceId(this.id);
-                        pos.Save();
-                    }
-
-                    result = true;
+                PreparedStatement ps = connection.prepareStatement(tmpCommand, Statement.RETURN_GENERATED_KEYS);
+                result = ps.execute();
+                ResultSet rs = ps.getGeneratedKeys();
+                while (rs.next())
+                {
+                    this.id = rs.getInt(1);
                 }
+
+                foreach (clsInvoicePosition pos in this.invoicePositionArrayList)
+                {
+                    pos.SetInvoiceId(this.id);
+                    pos.Save();
+                }
+
+                result = true;
+
 
             }
             catch (Exception e)
@@ -106,3 +105,4 @@ namespace UrbanInvoicing.Classes
         }
     }
 }
+

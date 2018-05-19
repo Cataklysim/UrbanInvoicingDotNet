@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UrbanInvoicing.Classes
 {
-    abstract class clsDatabaseObject : clsSystemstatus
+    public abstract class clsDatabaseObject : clsSystemstatus
     {
         DateTime addedAt;
         DateTime editedAt;
@@ -23,3 +23,4 @@ namespace UrbanInvoicing.Classes
         }
 
     }
+}

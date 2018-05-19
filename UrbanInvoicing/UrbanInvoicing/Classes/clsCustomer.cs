@@ -50,7 +50,7 @@ namespace UrbanInvoicing.Classes
             finally
             {
             }
-                return tmpResult;
+            return tmpResult;
         }
 
         public static int getId(String pName)
@@ -80,3 +80,4 @@ namespace UrbanInvoicing.Classes
             }
         }
     }
+}
