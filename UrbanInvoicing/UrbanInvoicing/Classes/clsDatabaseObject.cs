@@ -9,8 +9,8 @@ namespace UrbanInvoicing.Classes
 {
     public abstract class clsDatabaseObject : clsSystemstatus
     {
-        DateTime addedAt;
-        DateTime editedAt;
+        DateTime addedAt { get; set; }
+        DateTime editedAt { get; set; }
 
         clsSystemstatus systemstatus;
 

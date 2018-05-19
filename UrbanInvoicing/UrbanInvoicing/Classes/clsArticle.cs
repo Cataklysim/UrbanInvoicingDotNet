@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace UrbanInvoicing.Classes
 {
@@ -20,7 +21,7 @@ namespace UrbanInvoicing.Classes
         public double price { get; set; }
 
         public double squareMeter { get; set; }
-        
+
         public void clsArticel()
         {
 
@@ -47,7 +48,10 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsAticle - GetArticlesFromDB", "Datenbank Fehler", MessageBoxButtons.OK);
                 return null;
             }
             return tmpResult;
@@ -75,7 +79,11 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsAticle - GetId", "Datenbank Fehler", MessageBoxButtons.OK);
+
                 return 0;
             }
             finally
@@ -107,13 +115,16 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsAticle - GetMwst", "Datenbank Fehler", MessageBoxButtons.OK);
                 return 0;
             }
             return tmpResult;
         }
 
-        public override bool Save() 
+        public override bool Save()
         {
             bool result = false;
             try
@@ -134,7 +145,10 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsArticle - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsAticle - Save", "Datenbank Fehler", MessageBoxButtons.OK);
                 result = false;
             }
             return result;

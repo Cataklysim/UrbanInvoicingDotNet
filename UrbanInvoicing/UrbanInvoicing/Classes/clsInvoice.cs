@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace UrbanInvoicing.Classes
 {
@@ -70,7 +71,10 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsInvoice - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsInvoice - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsInvoice - Save", "Datenbank Fehler", MessageBoxButtons.OK);
                 result = false;
             }
             return result;
@@ -103,7 +107,10 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsInvoice - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsInvoice - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsInvoice - GetId", "Datenbank Fehler", MessageBoxButtons.OK);
                 return 0;
             }
             return tmpResult;

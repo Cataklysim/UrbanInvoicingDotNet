@@ -7,35 +7,36 @@ using UrbanInvoicing.Classes;
 using MySql.Data.MySqlClient;
 using System.Data.Common;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace UrbanInvoicing.Classes
 {
     public class clsInvoicePosition : clsDatabaseObject
     {
 
-        private int Id{ get; set; }
+        private int Id { get; set; }
 
-        private int InvoiceId{ get; set; }
+        private int InvoiceId { get; set; }
 
-        public String Bemerkung{ get; set; }
+        public String Bemerkung { get; set; }
 
-        public double Brutto{ get; set; }
+        public double Brutto { get; set; }
 
-        public double Netto{ get; set; }
+        public double Netto { get; set; }
 
-        public double MwSt{ get; set; }
+        public double MwSt { get; set; }
 
-        public double Rabatt{ get; set; }
+        public double Rabatt { get; set; }
 
-        public int ArtikelId{ get; set; }
+        public int ArtikelId { get; set; }
 
-        public int TypeId{ get; set; }
+        public int TypeId { get; set; }
 
-        private clsType InvoiceType{ get; set; }
+        private clsType InvoiceType { get; set; }
 
-        private clsArticle Articel{ get; set; }
+        private clsArticle Articel { get; set; }
 
-        private clsInvoice Invoice{ get; set; }
+        private clsInvoice Invoice { get; set; }
 
         public clsInvoicePosition()
         {
@@ -89,8 +90,11 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsInvoicePosition - Failed to execute SQL: " + ex);
-                result = false; 
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsInvoicePosition - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsInvoicePosition - Save", "Datenbank Fehler", MessageBoxButtons.OK);
+                result = false;
             }
             return result;
         }

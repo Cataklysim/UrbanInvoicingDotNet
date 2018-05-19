@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
+
 namespace UrbanInvoicing.Classes
 {
     public class clsType
@@ -42,7 +44,10 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsType - GetTypesFromDB", "Datenbank Fehler", MessageBoxButtons.OK);
                 return null;
             }
             return tmpResult;
@@ -70,7 +75,10 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsType - GetId", "Datenbank Fehler", MessageBoxButtons.OK);
                 return 0;
             }
             finally

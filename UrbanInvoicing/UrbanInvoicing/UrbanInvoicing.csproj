@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\clsArticle.cs" />
-    <Compile Include="Classes\clsClass.cs" />
     <Compile Include="Classes\clsCustomer.cs" />
     <Compile Include="Classes\clsDatabaseObject.cs" />
     <Compile Include="Classes\clsInvoice.cs" />
@@ -119,6 +118,10 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsArticle.datasource" />
+    <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsCustomer.datasource" />
+    <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsInvoicePosition.datasource" />
+    <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsType.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

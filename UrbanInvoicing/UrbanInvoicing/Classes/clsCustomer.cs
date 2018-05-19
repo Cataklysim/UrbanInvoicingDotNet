@@ -5,24 +5,25 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace UrbanInvoicing.Classes
 {
-    class clsCustomer
+    public class clsCustomer
     {
 
-        public int id;
-        public String name;
-        public String lastName;
-        public String plz;
-        public String street;
-        public String city;
-        public String land;
-        public String telefone;
-        public String telefax;
-        public String email;
-        public String note;
-        private bool isCompany;
+        public int id { get; set; }
+        public String name { get; set; }
+        public String lastName { get; set; }
+        public String plz { get; set; }
+        public String street { get; set; }
+        public String city { get; set; }
+        public String land { get; set; }
+        public String telefone { get; set; }
+        public String telefax { get; set; }
+        public String email { get; set; }
+        public String note { get; set; }
+        private bool isCompany { get; set; }
 
         public clsCustomer()
         { }
@@ -51,7 +52,10 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsCustomer - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsCustomer - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsCustomer - GetCustomerFromDB", "Datenbank Fehler", MessageBoxButtons.OK);
                 return null;
             }
             return tmpResult;
@@ -79,7 +83,10 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsCustomer - Failed to execute SQL: " + ex);
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsCustomer - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsCustomer - GetId", "Datenbank Fehler", MessageBoxButtons.OK);
                 return tmpResult;
             }
             return tmpResult;
