@@ -83,8 +83,13 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("SELECT ID FROM tbType WHERE name LIKE @Name");
-                    tmpCommand.Parameters.AddWithValue("@Name", pName);
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT ID FROM tbInvoice WHERE customerId = @CustomerId AND date = @Date AND printed = @printed AND sumBrutto = @Brutto AND sumNetto = @Netto and sumMwst = @MWST");
+                    tmpCommand.Parameters.AddWithValue("@CustomerId", pInvoice.customerId);
+                    tmpCommand.Parameters.AddWithValue("@Date", pInvoice.date);
+                    tmpCommand.Parameters.AddWithValue("@printed", pInvoice.printed);
+                    tmpCommand.Parameters.AddWithValue("@Brutto", pInvoice.sumBrutto);
+                    tmpCommand.Parameters.AddWithValue("@Netto", pInvoice.sumNetto);
+                    tmpCommand.Parameters.AddWithValue("@MWST", pInvoice.sumMwst);
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
@@ -98,11 +103,8 @@ namespace UrbanInvoicing.Classes
             }
             catch (Exception ex)
             {
-                Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                Debug.WriteLine("# " + DateTime.Now + "clsInvoice - Failed to execute SQL: " + ex);
                 return 0;
-            }
-            finally
-            {
             }
             return tmpResult;
         }

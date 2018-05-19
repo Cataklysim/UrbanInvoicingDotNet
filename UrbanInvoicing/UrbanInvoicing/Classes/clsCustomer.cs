@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,54 +32,57 @@ namespace UrbanInvoicing.Classes
             List<clsCustomer> tmpResult = new List<clsCustomer>();
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-
-                String tmpCommand = "SELECT * FROM tbCustomer WHERE systemstatus_id = 1 AND isCompany = 1";
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    clsCustomer customer = new clsCustomer();
-                    customer.id = rs.getInt("id");
-                    customer.name = rs.getString("name");
-                    tmpResult.add(customer);
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM tbCustomer WHERE systemstatus_id = 1 AND isCompany = 1");
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            clsCustomer customer = new clsCustomer();
+                            customer.id = Convert.ToInt32(tmpReader["id"]);
+                            customer.name = tmpReader["name"].ToString();
+                            tmpResult.Add(customer);
+                        }
+                    }
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-            }
-            finally
-            {
+                Debug.WriteLine("# " + DateTime.Now + "clsCustomer - Failed to execute SQL: " + ex);
+                return null;
             }
             return tmpResult;
         }
 
-        public static int getId(String pName)
+        public static int GetId(String pName)
         {
-            int tmpResult = 1;
+            int tmpResult = 0;
             try
             {
-                Connection connection = DriverManager.getConnection("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInvoicing");
-
-                String tmpCommand = "SELECT id FROM tbCustomer WHERE systemstatus_id = 1 AND isCompany = 1 AND name like '" + pName + "'";
-                Statement stm = connection.createStatement();
-                ResultSet rs = stm.executeQuery(tmpCommand);
-                while (rs.next())
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    tmpResult = rs.getInt("id");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT id FROM tbCustomer WHERE systemstatus_id = 1 AND isCompany = 1 AND name LIKE @Name");
+                    tmpCommand.Parameters.AddWithValue("@Name", pName);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            tmpResult = Convert.ToInt32(tmpReader["Id"]);
+                        }
+                    }
                 }
-
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                JOptionPane.showMessageDialog(null, e.getMessage(), "Error (Customer.getId)", JOptionPane.OK_CANCEL_OPTION);
-                e.printStackTrace();
-            }
-            finally
-            {
+                Debug.WriteLine("# " + DateTime.Now + "clsCustomer - Failed to execute SQL: " + ex);
                 return tmpResult;
             }
+            return tmpResult;
         }
     }
 }
