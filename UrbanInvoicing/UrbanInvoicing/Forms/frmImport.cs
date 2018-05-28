@@ -69,42 +69,108 @@ namespace UrbanInvoicing.Forms
         {
             bool tmpIsValid = true;
             DataGridViewColumn tmpCurrentColumn = this.dataGridViewInvoicePositions.Columns[e.ColumnIndex];
-            if (tmpCurrentColumn != null)
+            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0)
             {
-                if (tmpCurrentColumn.Name == "bemerkungDataGridViewTextBoxColumn")
+                object tmpCurrentValue = this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].Value;
+                string tmpCaption = "Caption", tmpMessage = "Message";
+
+                if (tmpCurrentColumn != null)
                 {
-                    if (tmpIsValid)
-                        this.dataGridViewInvoicePositions.CancelEdit();
-                }
-                else if (tmpCurrentColumn.Name == "artikelIdDataGridViewTextBoxColumn")
-                {
-                    if (tmpIsValid)
-                        this.dataGridViewInvoicePositions.CancelEdit();
-                }
-                else if (tmpCurrentColumn.Name == "typeIdDataGridViewTextBoxColumn")
-                {
-                    if (tmpIsValid)
-                        this.dataGridViewInvoicePositions.CancelEdit();
-                }
-                else if (tmpCurrentColumn.Name == "bruttoDataGridViewTextBoxColumn")
-                {
-                    if (tmpIsValid)
-                        this.dataGridViewInvoicePositions.CancelEdit();
-                }
-                else if (tmpCurrentColumn.Name == "mwStDataGridViewTextBoxColumn")
-                {
-                    if (tmpIsValid)
-                        this.dataGridViewInvoicePositions.CancelEdit();
-                }
-                else if (tmpCurrentColumn.Name == "rabattDataGridViewTextBoxColumn")
-                {
-                    if (tmpIsValid)
-                        this.dataGridViewInvoicePositions.CancelEdit();
-                }
-                else if (tmpCurrentColumn.Name == "nettoDataGridViewTextBoxColumn")
-                {
-                    if (tmpIsValid)
-                        this.dataGridViewInvoicePositions.CancelEdit();
+
+                    if (tmpCurrentColumn.Name == "bemerkungDataGridViewTextBoxColumn")
+                    {
+                        //if (tmpIsValid)
+                        //    this.dataGridViewInvoicePositions.CancelEdit();
+                    }
+                    else if (tmpCurrentColumn.Name == "artikelIdDataGridViewTextBoxColumn")
+                    {
+                        //if (tmpIsValid)
+                        //    this.dataGridViewInvoicePositions.CancelEdit();
+                    }
+                    else if (tmpCurrentColumn.Name == "typeIdDataGridViewTextBoxColumn")
+                    {
+                        //if (tmpIsValid)
+                        //    this.dataGridViewInvoicePositions.CancelEdit();
+                    }
+                    else if (tmpCurrentColumn.Name == "bruttoDataGridViewTextBoxColumn")
+                    {
+                        if (tmpCurrentValue != null)
+                        {
+                            double tmpBrutto = 0.0;
+                            tmpBrutto = Convert.ToDouble(tmpCurrentValue);
+                            {
+                                if (!(tmpBrutto >= 0.0))
+                                {
+                                    tmpIsValid = false;
+                                    tmpCaption = "Error im Brutto Wert.";
+                                    tmpMessage = "Der Bruttowert ist nicht richtig." + Environment.NewLine + "Er muss von der z.B. 16.3 sein";
+                                }
+                            }
+                        }
+                        else
+                            tmpIsValid = false;
+                    }
+                    else if (tmpCurrentColumn.Name == "mwStDataGridViewTextBoxColumn")
+                    {
+                        if (tmpCurrentValue != null)
+                        {
+                            double tmpBrutto = 0.0;
+                            tmpBrutto = Convert.ToDouble(tmpCurrentValue);
+                            {
+                                if (!(tmpBrutto >= 0.0))
+                                {
+                                    tmpIsValid = false;
+                                    tmpCaption = "Error im Mehrwertsteuersatz.";
+                                    tmpMessage = "Der Wert im Mehrwertsteuersatz ist nicht richtig." + Environment.NewLine + "Er muss von der z.B. 16.3 sein";
+                                }
+                            }
+                        }
+                        else
+                            tmpIsValid = false;
+                    }
+                    else if (tmpCurrentColumn.Name == "rabattDataGridViewTextBoxColumn")
+                    {
+                        if (tmpCurrentValue != null)
+                        {
+                            double tmpMwst = 0.0;
+                            tmpMwst = Convert.ToDouble(tmpCurrentValue);
+                            {
+                                if (!(tmpMwst >= 0.0))
+                                {
+                                    tmpIsValid = false;
+                                    tmpCaption = "Error im Rabatt Wert.";
+                                    tmpMessage = "Der Wert in Rabatt ist nicht richtig." + Environment.NewLine + "Er muss von der z.B. 16.3 sein";
+                                }
+                            }
+                        }
+                        else
+                            tmpIsValid = false;
+                    }
+                    else if (tmpCurrentColumn.Name == "nettoDataGridViewTextBoxColumn")
+                    {
+                        if (tmpCurrentValue != null)
+                        {
+                            double tmoNetto = 0.0;
+                            tmoNetto = Convert.ToDouble(tmpCurrentValue);
+                            {
+                                if (!(tmoNetto >= 0.0))
+                                {
+                                    tmpIsValid = false;
+                                    tmpCaption = "Error im Netto Wert.";
+                                    tmpMessage = "Der Wert im Netto ist nicht richtig." + Environment.NewLine + "Er muss von der z.B. 16.3 sein";
+                                }
+                            }
+                        }
+                        else
+                            tmpIsValid = false;
+                    }
+
+                    if (!tmpIsValid)
+                    {
+                        MessageBox.Show(tmpMessage, tmpCaption, MessageBoxButtons.OK);
+                    }
                 }
             }
         }
