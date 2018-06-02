@@ -34,7 +34,8 @@ namespace UrbanInvoicing.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=SQLSRV01;port=3307;Database=urbanInvoicing;uid=urbanInvoicing;pwd=urbanInvoicing")]
+        [global::System.Configuration.DefaultSettingValueAttribute("User Id=urbanInvoicing;Password=urbanInvoicing;Database=urbanInvoicing;Port=3307;" +
+            "Server=SQLSRV01")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));
