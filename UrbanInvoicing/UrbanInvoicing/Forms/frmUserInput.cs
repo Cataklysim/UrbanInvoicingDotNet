@@ -32,10 +32,22 @@ namespace UrbanInvoicing.Forms
         private void button2_Click(object sender, EventArgs e)
         {
             var tmpArticle = new clsArticle();
-
+            try
+            {
             tmpArticle.name = _Name;
             tmpArticle.vatRate = _MwSt;
-            
+
+            tmpArticle.Save();
+
+            MessageBox.Show("Speichern erfolgreich","Erfolg",MessageBoxButtons.OK);
+
+            this.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                
+            }
         }
     }
 }
