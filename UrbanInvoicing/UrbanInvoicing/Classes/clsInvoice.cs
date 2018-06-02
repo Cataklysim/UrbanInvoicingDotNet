@@ -26,6 +26,7 @@ namespace UrbanInvoicing.Classes
         public double sumNetto { get; set; }
 
         public double sumMwst { get; set; }
+        public string invoiceNumber { get; set; }
 
         public List<clsInvoicePosition> invoicePositions = new List<clsInvoicePosition>();
 
@@ -48,13 +49,15 @@ namespace UrbanInvoicing.Classes
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbInvoice (customer_id, belegdatum, printed, summeBrutto, summeNetto, summeMwst, systemst" +
-                "atus_id) VALUES (@CustomerId, @Belegdatum, @Printed, @Brutto, @Netto, @MWST, @Systemstatus)");
+                "atus_id, invoiceNumber, createdAt, editedAt) VALUES (@CustomerId, @Belegdatum, @Printed, @Brutto, @Netto, @MWST, @Systemstatus, @invoiceNumber,now(),now())");
                     tmpCommand.Parameters.AddWithValue("@CustomerId", this.customerId);
                     tmpCommand.Parameters.AddWithValue("@Belegdatum", DateTime.Now);
                     tmpCommand.Parameters.AddWithValue("@Brutto", this.sumBrutto);
                     tmpCommand.Parameters.AddWithValue("@Netto", this.sumNetto);
                     tmpCommand.Parameters.AddWithValue("@MWST", this.sumMwst);
                     tmpCommand.Parameters.AddWithValue("@Systemstatus", 1);
+                    tmpCommand.Parameters.AddWithValue("@invoiceNumber", this.invoiceNumber);
+                    tmpCommand.Parameters.AddWithValue("@Printed", this.printed);
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     if (tmpCommand.ExecuteNonQuery() == 1)
@@ -62,11 +65,35 @@ namespace UrbanInvoicing.Classes
                     else
                         result = false;
                 }
-                foreach (clsInvoicePosition pos in this.invoicePositions)
+                if (result)
                 {
-                    pos.SetInvoiceId(this.id);
-                    if (!pos.Save())
-                        result = false;
+                    using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
+                    {
+                        MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM tbInvoice WHERE customer_Id = @CustomerId AND printed = @printed AND summeBrutto = @Brutto AND summeNetto = @Netto and summeMwst = @MWST AND invoiceNumber = @invoiceNumber");
+                        tmpCommand.Parameters.AddWithValue("@CustomerId", this.customerId);
+                        tmpCommand.Parameters.AddWithValue("@Date", this.date);
+                        tmpCommand.Parameters.AddWithValue("@printed", this.printed);
+                        tmpCommand.Parameters.AddWithValue("@Brutto", this.sumBrutto);
+                        tmpCommand.Parameters.AddWithValue("@Netto", this.sumNetto);
+                        tmpCommand.Parameters.AddWithValue("@MWST", this.sumMwst);
+                        tmpCommand.Parameters.AddWithValue("@invoiceNumber", this.invoiceNumber);
+                        tmpCommand.Connection = tmpConnection;
+                        tmpCommand.Connection.Open();
+                        using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                        {
+                            while (tmpReader.Read())
+                            {
+                                this.id = Convert.ToInt32(tmpReader["id"]);
+                            }
+                        }
+                    }
+
+                    foreach (clsInvoicePosition pos in this.invoicePositions)
+                    {
+                        pos.SetInvoiceId(this.id);
+                        if (!pos.Save())
+                            result = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -87,13 +114,14 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("SELECT ID FROM tbInvoice WHERE customerId = @CustomerId AND date = @Date AND printed = @printed AND sumBrutto = @Brutto AND sumNetto = @Netto and sumMwst = @MWST");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT ID FROM tbInvoice WHERE customerId = @CustomerId AND date = @Date AND printed = @printed AND sumBrutto = @Brutto AND sumNetto = @Netto and sumMwst = @MWST AND invoiceNumber = @invoiceNumber");
                     tmpCommand.Parameters.AddWithValue("@CustomerId", pInvoice.customerId);
                     tmpCommand.Parameters.AddWithValue("@Date", pInvoice.date);
                     tmpCommand.Parameters.AddWithValue("@printed", pInvoice.printed);
                     tmpCommand.Parameters.AddWithValue("@Brutto", pInvoice.sumBrutto);
                     tmpCommand.Parameters.AddWithValue("@Netto", pInvoice.sumNetto);
                     tmpCommand.Parameters.AddWithValue("@MWST", pInvoice.sumMwst);
+                    tmpCommand.Parameters.AddWithValue("@invoiceNumber", pInvoice.invoiceNumber);
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))

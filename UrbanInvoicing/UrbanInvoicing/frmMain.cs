@@ -21,7 +21,10 @@ namespace UrbanInvoicing
             this.Text = Application.ProductName + " [" + Application.ProductVersion + "]";
             // Könnte man für ein paar coole Features benutzen
             if (Properties.Settings.Default.DevBuild)
-                this.Text += " DevBuild!";
+            {
+                this.Text += " DevBuild!    "+Properties.Settings.Default.ConnectionString.ToString();
+                
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

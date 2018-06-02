@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -26,10 +27,48 @@ namespace UrbanInvoicing.Forms
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            clsInvoice tmpNewInvoice = new clsInvoice()
+            try
             {
+                clsInvoice tmpNewInvoice = new clsInvoice()
+                {
+                    customerId = (int)this.comboBoxCustomers.SelectedValue,
+                    date = this.dateTimePicker.Value,
+                    Id = 1,
+                    sumBrutto = Convert.ToDouble(this.labelSumGross.Text),
+                    sumNetto = Convert.ToDouble(this.labelSumNet.Text),
+                    sumMwst = Convert.ToDouble(this.labelVatSum.Text),
+                    invoiceNumber = this.textBoxInvoiceNumber.Text,
+                };
 
-            };
+                tmpNewInvoice.invoicePositions = new List<clsInvoicePosition>();
+                this.dataGridViewInvoicePositions.EndEdit();
+                foreach (clsInvoicePosition tmpItem in this.bindingSourcePositions.List)
+                {
+                    tmpNewInvoice.invoicePositions.Add(tmpItem);
+                }
+
+                if (tmpNewInvoice.Save())
+                {
+                    MessageBox.Show("Rechnung gespeichert!", "Gespeichert", MessageBoxButtons.OK);
+                    this.Reset();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Speichern Fehlgeschlagen", "Fehler", MessageBoxButtons.OK);
+                Debug.WriteLine("Error while save in frmImport: " + ex.Message + " \r\n" + ex.StackTrace);
+            }
+        }
+
+        private void Reset()
+        {
+            this.comboBoxCustomers.SelectedIndex = 0;
+            this.bindingSourcePositions.Clear();
+            this.labelSumGross.Text = "0";
+            this.labelSumNet.Text = "0";
+            this.labelVatSum.Text = "0";
+            this.dateTimePicker.Value = DateTime.Now;
+            this.textBoxInvoiceNumber.Text = "";
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)
@@ -68,7 +107,9 @@ namespace UrbanInvoicing.Forms
         }
 
         private void dataGridViewInvoicePositions_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        { }
+        {
+            this.calcSums();
+        }
 
         private void frmImport_Load(object sender, EventArgs e)
         {
@@ -77,6 +118,13 @@ namespace UrbanInvoicing.Forms
             this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
             this.dateTimePicker.Value = DateTime.Now;
             this.LoadRepositories();
+        }
+
+        public void RefreshDataSources()
+        {
+            this.bindingSourceCustomers.DataSource = clsCustomer.GetCustomerFromDB();
+            this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
+            this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
         }
 
         public void LoadRepositories()
@@ -100,9 +148,13 @@ namespace UrbanInvoicing.Forms
                 Name = "comboBoxType",
             };
             int tmpArtikelIndex = this.dataGridViewInvoicePositions.Columns["artikelIdDataGridViewTextBoxColumn"].DisplayIndex;
+            tmpComboBoxArticle.DataPropertyName = this.dataGridViewInvoicePositions.Columns["artikelIdDataGridViewTextBoxColumn"].DataPropertyName;
             int tmpTypIndex = this.dataGridViewInvoicePositions.Columns["typeIdDataGridViewTextBoxColumn"].DisplayIndex;
+            tmpComboBoxType.DataPropertyName = this.dataGridViewInvoicePositions.Columns["typeIdDataGridViewTextBoxColumn"].DataPropertyName;
             tmpComboBoxArticle.DisplayIndex = tmpArtikelIndex;
+            tmpComboBoxArticle.AutoComplete = true;
             tmpComboBoxType.DisplayIndex = tmpTypIndex;
+            tmpComboBoxType.AutoComplete = true;
             this.dataGridViewInvoicePositions.Columns.Add(tmpComboBoxArticle);
             this.dataGridViewInvoicePositions.Columns.Add(tmpComboBoxType);
         }
@@ -111,7 +163,7 @@ namespace UrbanInvoicing.Forms
         {
             if (this.dataGridViewInvoicePositions.RowCount > 0)
             {
-                for (int i = 0; this.dataGridViewInvoicePositions.ColumnCount >= i; i++)
+                for (int i = 0; this.dataGridViewInvoicePositions.ColumnCount > i; i++)
                 {
                     if (this.dataGridViewInvoicePositions.Columns[i].Name == "bruttoDataGridViewTextBoxColumn" ||
                         this.dataGridViewInvoicePositions.Columns[i].Name == "nettoDataGridViewTextBoxColumn" ||
@@ -140,14 +192,17 @@ namespace UrbanInvoicing.Forms
                         }
                     }
 
-                    if (this.dataGridViewInvoicePositions.Columns[i].Name == "mwStDataGridViewTextBoxColumn")
+                    if (this.dataGridViewInvoicePositions.Columns[i].Name == "mwStDataGridViewTextBoxColumn" && (this.labelSumGross.Text != "0" || this.labelSumNet.Text != "0"))
                     {
                         double tmpMwSt = 0;
-                        for (int j = 0; j < this.dataGridViewInvoicePositions.RowCount; i++)
+                        for (int j = 0; j < this.dataGridViewInvoicePositions.RowCount - 1; j++)
                         {
-                            tmpMwSt += Math.Round(Convert.ToDouble(this.dataGridViewInvoicePositions["", j].Value) * Convert.ToDouble(this.dataGridViewInvoicePositions[i, j].Value), 2);
+                            if (this.dataGridViewInvoicePositions[i, j].Value != null && this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", j].Value != null)
+                            {
+                                if (this.labelSumGross.Text != "0")
+                                    tmpMwSt += Math.Round(Convert.ToDouble(this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", j].Value) * (Convert.ToDouble(this.labelSumGross.Text) / 100), 2);
+                            }
                         }
-
                         this.labelVatSum.Text = tmpMwSt.ToString();
                     }
                 }
@@ -157,7 +212,7 @@ namespace UrbanInvoicing.Forms
         public void calcRow(int pRow)
         {
             double[] tmpValues = getBruttoNettoMwStFromDatagridRow(pRow);
-            
+
             //MwSt Calc
             if (tmpValues[0] > 0 && tmpValues[1] > 0 && tmpValues[2] == 0)
             {
@@ -167,7 +222,7 @@ namespace UrbanInvoicing.Forms
             if (tmpValues[0] > 0 && tmpValues[1] == 0)
             {
                 if (tmpValues[2] > 0)
-                    this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round((tmpValues[0] / (1 + (tmpValues[2] / 100))), 2);
+                    this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round((tmpValues[0] - ((tmpValues[0] / 100) * tmpValues[2])), 2);
                 else
                     this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[0], 2);
             }
@@ -175,7 +230,7 @@ namespace UrbanInvoicing.Forms
             if (tmpValues[0] == 0 && tmpValues[1] > 0)
             {
                 if (tmpValues[2] > 0)
-                    this.dataGridViewInvoicePositions["bruttoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[1] * (1 + (tmpValues[2] / 100)),2);
+                    this.dataGridViewInvoicePositions["bruttoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[1] * (1 + (tmpValues[2] / 100)), 2);
                 else
                     this.dataGridViewInvoicePositions["bruttoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[0], 2);
             }
@@ -220,7 +275,7 @@ namespace UrbanInvoicing.Forms
 
         private void dataGridViewInvoicePositions_CurrentCellChanged(object sender, EventArgs e)
         {
-            _CellValueChangedEventCounter = 0;
+
         }
 
         private void dataGridViewInvoicePositions_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -241,13 +296,35 @@ namespace UrbanInvoicing.Forms
                         //if (tmpIsValid)
                         //    this.dataGridViewInvoicePositions.CancelEdit();
                     }
-                    else if (tmpCurrentColumn.Name == "artikelIdDataGridViewTextBoxColumn")
+                    else if (tmpCurrentColumn.Name == "comboBoxArticle")
                     {
+                        if (this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells[tmpCurrentColumn.Name].Value != null)
+                        {
+                            IBindingList tmpList = this.bindingSourceArtikel;
+
+                            //  get property descriptions
+                            //PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(new clsInvoice());
+                            ////  get specific descriptor
+                            //PropertyDescriptor property = properties.Find("id", false);
+
+                            //var tmpIndex = tmpList.Find(property, (int)this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells[tmpCurrentColumn.Name].Value);
+                            //if (tmpIndex != null)
+                            //{
+                            //    clsArticle tmpArticle = tmpIndex.ToString();
+                            //    if (tmpArticle != null)
+                            //        if (this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["mwStDataGridViewTextBoxColumn"].Value != null && this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["mwStDataGridViewTextBoxColumn"].Value.ToString() == "0")
+                            //            this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["mwStDataGridViewTextBoxColumn"].Value = tmpArticle.vatRate;
+                            //}
+                        }
                         //if (tmpIsValid)
                         //    this.dataGridViewInvoicePositions.CancelEdit();
                     }
-                    else if (tmpCurrentColumn.Name == "typeIdDataGridViewTextBoxColumn")
+                    else if (tmpCurrentColumn.Name == "comboBoxType")
                     {
+                        if ((sender is DataGridCell))
+                        {
+
+                        }
                         //if (tmpIsValid)
                         //    this.dataGridViewInvoicePositions.CancelEdit();
                     }
@@ -334,6 +411,52 @@ namespace UrbanInvoicing.Forms
                     }
                 }
             }
+        }
+
+        private void dataGridViewInvoicePositions_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            bool tmpIsValid = true;
+            DataGridViewColumn tmpCurrentColumn = this.dataGridViewInvoicePositions.Columns[e.ColumnIndex];
+
+            if (e.RowIndex >= 0)
+            {
+                object tmpCurrentValue = this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].Value;
+                string tmpCaption = "Caption", tmpMessage = "Message";
+
+                if (tmpCurrentColumn != null)
+                {
+                    if (tmpCurrentColumn.Name == "comboBoxArticle")
+                    {
+                    }
+                    else if (tmpCurrentColumn.Name == "comboBoxType")
+                    {
+                    }
+                }
+            }
+        }
+
+        private void dataGridViewInvoicePositions_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            //Dont do shit
+
+            if (this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxArticle"].Value == null)
+                this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxArticle"].Value = 1;
+            if (this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxType"].Value == null)
+                this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxType"].Value = 1;
+        }
+
+        private void buttonCreateArticle_Click(object sender, EventArgs e)
+        {
+            frmUserInput tmpUserInput = new frmUserInput(true);
+            tmpUserInput.Show();
+            this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
+        }
+
+        private void buttonCreateType_Click(object sender, EventArgs e)
+        {
+            frmUserInput tmpUserInput = new frmUserInput(false);
+            tmpUserInput.Show();
+            this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
         }
     }
 }

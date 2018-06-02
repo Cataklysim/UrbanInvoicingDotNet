@@ -30,14 +30,14 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("Select name FROM tbType WHERE systemstatus_id = 1");
+                    MySqlCommand tmpCommand = new MySqlCommand("Select name, id FROM tbType WHERE systemstatus_id = 1");
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
                     {
                         while (tmpReader.Read())
                         {
-                            tmpResult.Add(new clsType() { name = tmpReader["name"].ToString() });
+                            tmpResult.Add(new clsType() { name = tmpReader["name"].ToString(), id = Convert.ToInt32(tmpReader["id"].ToString())});
                         }
                     }
                 }

@@ -25,6 +25,7 @@ namespace UrbanInvoicing.Forms
 
         public frmUserInput(bool pCreateArticle)
         {
+            InitializeComponent();
             _ArticleCreation = pCreateArticle;
             this.label3.Text = pCreateArticle?"Artikel anlegen: ":"Typ anlegen: ";
             if (!pCreateArticle)
@@ -32,7 +33,6 @@ namespace UrbanInvoicing.Forms
                 this.labelVat.Hide();
                 this.textBoxVat.Hide();
             }
-            InitializeComponent();
         }
 
         private void button2_Click(object sender, EventArgs e)

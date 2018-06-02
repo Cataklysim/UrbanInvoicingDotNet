@@ -70,8 +70,8 @@ namespace UrbanInvoicing.Classes
 
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbInvoicePosition(invoice_id, bemerkung, brutto, netto, mwSt, rabatt, artikel_id, type_id" +
-                        ", systemstatus_id) VALUES (@InvoiceId, @Bemerkung, @Brutto, @Netto, @MWST, @Rabatt, @Artikel_Id, @Type_Id)");
+                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbInvoicePosition(invoice_id, bemerkung, brutto, netto, mwst, rabatt, artikel_id, type_id" +
+                        ", systemstatus_id, createdAt, editedAt) VALUES (@InvoiceId, @Bemerkung, @Brutto, @Netto, @MWST, @Rabatt, @Artikel_Id, @Type_Id, 1, NOW(), NOW())");
                     tmpCommand.Parameters.AddWithValue("@InvoiceID", this.InvoiceId);
                     tmpCommand.Parameters.AddWithValue("@Bemerkung", this.Bemerkung);
                     tmpCommand.Parameters.AddWithValue("@Brutto", this.Brutto);
