@@ -14,7 +14,7 @@ namespace UrbanInvoicing.Classes
     {
         public int id { get; set; }
         public int multiplier { get; set; }
-        public String name { get; set; }
+        public string name { get; set; }
         public bool isSquarmeterRelevant { get; set; }
         public bool isRoomRelevant { get; set; }
 
@@ -23,9 +23,9 @@ namespace UrbanInvoicing.Classes
 
         }
 
-        public static List<String> GetTypesFromDB()
+        public static List<clsType> GetTypesFromDB()
         {
-            List<String> tmpResult = new List<String>();
+            List<clsType> tmpResult = new List<clsType>();
             try
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
@@ -37,7 +37,7 @@ namespace UrbanInvoicing.Classes
                     {
                         while (tmpReader.Read())
                         {
-                            tmpResult.Add(tmpReader["name"].ToString());
+                            tmpResult.Add(new clsType() { name = tmpReader["name"].ToString() });
                         }
                     }
                 }

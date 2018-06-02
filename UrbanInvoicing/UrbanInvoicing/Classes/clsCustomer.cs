@@ -33,14 +33,7 @@ namespace UrbanInvoicing.Classes
             List<clsCustomer> tmpResult = new List<clsCustomer>();
             try
             {
-                MySqlConnectionStringBuilder tmpTest = new MySqlConnectionStringBuilder();
-                tmpTest.UserID = "urbanInvoicing";
-                tmpTest.Password = "urbanInvoicing";
-                tmpTest.Database = "urbanInvoicing";
-                tmpTest.Port = 3307;
-                tmpTest.Server = @"192.168.100.65\SQLSRV01";
-                tmpTest.ConnectionTimeout = 10000;
-                using (MySqlConnection tmpConnection = new MySqlConnection(tmpTest.ConnectionString))
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM tbCustomer WHERE systemstatus_id = 1 AND isCompany = 1");
                     tmpCommand.Connection = tmpConnection;

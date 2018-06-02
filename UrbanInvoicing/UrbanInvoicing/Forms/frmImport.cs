@@ -83,19 +83,6 @@ namespace UrbanInvoicing.Forms
         {
             List<clsArticle> tmpArticles = new List<clsArticle>();
             List<clsType> tmpTypes = new List<clsType>();
-            if (Properties.Settings.Default.DevBuild)
-            {
-                //tmpArticles.Add(new clsArticle() { name = "Test", id = 1 });
-                tmpArticles.AddRange(clsArticle.GetArticlesFromDB());
-                tmpTypes.Add(new clsType() { name = "Test", id = 1 });
-            }
-            else
-            {
-
-            }
-
-            this.bindingSourceArtikel.DataSource = tmpArticles;
-            this.bindingSourceTypen.DataSource = tmpTypes;
             DataGridViewComboBoxColumn tmpComboBoxArticle = new DataGridViewComboBoxColumn()
             {
                 DataSource = this.bindingSourceArtikel,
