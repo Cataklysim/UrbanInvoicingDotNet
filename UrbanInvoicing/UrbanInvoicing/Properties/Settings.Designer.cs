@@ -34,8 +34,7 @@ namespace UrbanInvoicing.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("jdbc:mariadb://SQLSRV01:3307/urbanInvoicing?user=urbanInvoicing&password=urbanInv" +
-            "oicing")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server=SQLSRV01;port=3307;Database=urbanInvoicing;uid=urbanInvoicing;pwd=urbanInvoicing")]
         public string ConnectionString {
             get {
                 return ((string)(this["ConnectionString"]));

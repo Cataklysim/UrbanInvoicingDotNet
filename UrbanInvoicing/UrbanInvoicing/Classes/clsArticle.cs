@@ -27,21 +27,21 @@ namespace UrbanInvoicing.Classes
 
         }
 
-        public static List<String> GetArticlesFromDB()
+        public static List<clsArticle> GetArticlesFromDB()
         {
-            List<String> tmpResult = new List<String>();
+            List<clsArticle> tmpResult = new List<clsArticle>();
             try
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("SELECT name FROM tbArtikel WHERE systemstatus_id = 1");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT id, name, mwstSatz FROM tbArtikel WHERE systemstatus_id = 1");
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
                     {
                         while (tmpReader.Read())
                         {
-                            tmpResult.Add(tmpReader["name"].ToString());
+                            tmpResult.Add(new clsArticle() { name = tmpReader["name"].ToString(), vatRate = Convert.ToDouble(tmpReader["mwstSatz"].ToString()), id = Convert.ToInt32(tmpReader["id"].ToString())});
                         }
                     }
                 }
