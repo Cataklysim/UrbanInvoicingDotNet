@@ -15,17 +15,23 @@ namespace UrbanInvoicing.Forms
     {
         public static string _Name = "";
         public static double _MwSt = 0.0;
+        public static bool _ArticleCreation;
 
 
         public frmUserInput()
         {
             InitializeComponent();
         }
-        public frmUserInput(string pName,double pVat)
-        {
-            _Name = pName;
-            _MwSt = pVat;
 
+        public frmUserInput(bool pCreateArticle)
+        {
+            _ArticleCreation = pCreateArticle;
+            this.label3.Text = pCreateArticle?"Artikel anlegen: ":"Typ anlegen: ";
+            if (!pCreateArticle)
+            {
+                this.labelVat.Hide();
+                this.textBoxVat.Hide();
+            }
             InitializeComponent();
         }
 
@@ -34,20 +40,24 @@ namespace UrbanInvoicing.Forms
             var tmpArticle = new clsArticle();
             try
             {
-            tmpArticle.name = _Name;
-            tmpArticle.vatRate = _MwSt;
+                tmpArticle.name = textBoxName.Text;
+                tmpArticle.vatRate = Convert.ToDouble(textBoxVat.Text);
 
-            tmpArticle.Save();
+                tmpArticle.Save();
 
-            MessageBox.Show("Speichern erfolgreich","Erfolg",MessageBoxButtons.OK);
+                MessageBox.Show("Speichern erfolgreich", "Erfolg", MessageBoxButtons.OK);
 
-            this.Close();
+                this.Close();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
-                
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }
