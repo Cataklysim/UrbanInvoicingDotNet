@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UrbanInvoicing.Classes;
 
 namespace UrbanInvoicing.Forms
 {
@@ -15,6 +16,81 @@ namespace UrbanInvoicing.Forms
         public frmDataManagement()
         {
             InitializeComponent();
+        }
+
+        private void frmDataManagement_Load(object sender, EventArgs e)
+        {
+            this.bindingSourceCustomer.DataSource = clsCustomer.GetCustomerFromDB();
+            this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
+            this.bindingSourceType.DataSource = clsType.GetTypesFromDB();
+        }
+
+        private void LoadSelectedTab()
+        {
+            if (this.tabControl1.SelectedTab == this.tabPageInvoice)
+            {
+                this.bindingSourceInvoice.DataSource = clsInvoice.GetDbList();
+            }
+        }
+
+        private void dataGridViewInvoice_SelectionChanged(object sender, EventArgs e)
+        {
+            if (this.dataGridViewInvoice.SelectedRows.Count == 1)
+                this.bindingSourceInvoicePosition.DataSource = clsInvoicePosition.LoadByInvoiceId((int)this.dataGridViewInvoice.SelectedRows[0].Cells["id"].Value);
+        }
+
+        public void LoadRepositories()
+        {
+            List<clsArticle> tmpArticles = new List<clsArticle>();
+            List<clsType> tmpTypes = new List<clsType>();
+            DataGridViewComboBoxColumn tmpComboBoxArticle = new DataGridViewComboBoxColumn()
+            {
+                DataSource = this.bindingSourceArtikel,
+                DisplayMember = "name",
+                ValueMember = "id",
+                HeaderText = "Artikel",
+                Name = "comboBoxArticle",
+            };
+            DataGridViewComboBoxColumn tmpComboBoxType = new DataGridViewComboBoxColumn()
+            {
+                DataSource = this.bindingSourceType,
+                DisplayMember = "name",
+                ValueMember = "id",
+                HeaderText = "Typ",
+                Name = "comboBoxType",
+            };
+            DataGridViewComboBoxColumn tmpComboBoxCustomer = new DataGridViewComboBoxColumn()
+            {
+                DataSource = this.bindingSourceCustomer,
+                DisplayMember = "name",
+                ValueMember = "id",
+                HeaderText = "Typ",
+                Name = "comboBoxCustomer",
+            };
+            int tmpArtikelIndex = this.dataGridViewInvoice.Columns["artikelIdDataGridViewTextBoxColumn"].DisplayIndex;
+            tmpComboBoxArticle.DataPropertyName = this.dataGridViewInvoice.Columns["artikelIdDataGridViewTextBoxColumn"].DataPropertyName;
+
+            int tmpTypIndex = this.dataGridViewInvoice.Columns["typeIdDataGridViewTextBoxColumn"].DisplayIndex;
+            tmpComboBoxType.DataPropertyName = this.dataGridViewInvoice.Columns["typeIdDataGridViewTextBoxColumn"].DataPropertyName;
+
+            int tmpCustomerIndex = this.dataGridViewInvoice.Columns["customerIdDataGridViewTextBoxColumn"].DisplayIndex;
+            tmpComboBoxCustomer.DataPropertyName = this.dataGridViewInvoice.Columns["customerIdDataGridViewTextBoxColumn"].DataPropertyName;
+
+            tmpComboBoxArticle.DisplayIndex = tmpArtikelIndex;
+            tmpComboBoxArticle.AutoComplete = true;
+
+            tmpComboBoxType.DisplayIndex = tmpTypIndex;
+            tmpComboBoxType.AutoComplete = true;
+
+            tmpComboBoxCustomer.DisplayIndex = tmpCustomerIndex;
+            tmpComboBoxCustomer.AutoComplete = true;
+
+            this.dataGridViewInvoice.Columns.Add(tmpComboBoxArticle);
+            this.dataGridViewInvoice.Columns.Add(tmpComboBoxType);
+            this.dataGridViewInvoice.Columns.Add(tmpComboBoxCustomer);
+
+            this.dataGridViewPositions.Columns.Add(tmpComboBoxArticle);
+            this.dataGridViewPositions.Columns.Add(tmpComboBoxType);
         }
     }
 }

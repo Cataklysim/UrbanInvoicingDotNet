@@ -129,6 +129,7 @@
     <None Include="packages.config" />
     <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsArticle.datasource" />
     <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsCustomer.datasource" />
+    <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsInvoice.datasource" />
     <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsInvoicePosition.datasource" />
     <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsType.datasource" />
     <None Include="Properties\Settings.settings">
