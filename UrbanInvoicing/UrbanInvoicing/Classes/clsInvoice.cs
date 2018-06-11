@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace UrbanInvoicing.Classes
 {
@@ -148,6 +149,47 @@ namespace UrbanInvoicing.Classes
                 else
                     MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsInvoice - GetId", "Datenbank Fehler", MessageBoxButtons.OK);
                 return 0;
+            }
+            return tmpResult;
+        }
+
+        public static List<clsInvoice> GetDbList()
+        {
+            List<clsInvoice> tmpResult = new List<clsInvoice>();
+            try
+            {
+                using (MySqlConnection tmpCon = new MySqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    MySqlCommand tmpCom = new MySqlCommand("SELECT * FROM TBINVOICE WHERE Systemstaus_Id <> 11");
+                    tmpCon.Open();
+                    tmpCom.Connection = tmpCon;
+                    using (MySqlDataReader tmpReader = tmpCom.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        while (tmpReader.Read())
+                        {
+                            clsInvoice tmpEntry = new clsInvoice()
+                            {
+                                Id = Convert.ToInt32(tmpReader["Id"]),
+                                customerId = Convert.ToInt32(tmpReader["customerId"]),
+                                date = Convert.ToDateTime(tmpReader["date"]),
+                                invoiceNumber = tmpReader["invoiceNumber"].ToString(),
+                                printed = Convert.ToBoolean(tmpReader["printed"]),
+                                sumBrutto = Convert.ToDouble(tmpReader["sumBrutto"]),
+                                sumNetto = Convert.ToDouble(tmpReader["sumNetto"]),
+                                sumMwst = Convert.ToDouble(tmpReader["sumMwst"]),
+                            };
+                            tmpResult.Add(tmpEntry);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsInvoice - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsInvoice - GetDbList", "Datenbank Fehler", MessageBoxButtons.OK);
+                return null;
             }
             return tmpResult;
         }

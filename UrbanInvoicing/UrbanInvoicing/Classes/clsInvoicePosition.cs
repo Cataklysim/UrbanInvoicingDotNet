@@ -99,6 +99,44 @@ namespace UrbanInvoicing.Classes
             return result;
         }
 
+        public static List<clsInvoicePosition> LoadByInvoiceId(int pInvoiceId)
+        {
+            List<clsInvoicePosition> tmpResult = new List<clsInvoicePosition>();
+            try
+            {
+
+                using (MySqlConnection tmpCon = new MySqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    MySqlCommand tmpCom = new MySqlCommand("SELECT * FROM tbInvoicePosition WHERE invoice_id = @Id");
+                    tmpCom.Parameters.AddWithValue("@Id", pInvoiceId);
+                    tmpCon.Open();
+                    tmpCom.Connection = tmpCon;
+                    using (MySqlDataReader tmpReader = tmpCom.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    {
+                        clsInvoicePosition tmpEntry = new clsInvoicePosition()
+                        {
+                            InvoiceId = Convert.ToInt32(tmpReader["invoice_id"]),
+                            Bemerkung = tmpReader["bemerkung"].ToString(),
+                            Netto = Convert.ToDouble(tmpReader["netto"]),
+                            MwSt = Convert.ToDouble(tmpReader["mwst"]),
+                            Rabatt = Convert.ToDouble(tmpReader["rabatt"]),
+                            ArtikelId = Convert.ToInt32(tmpReader["artikel_id"]),
+                            TypeId = Convert.ToInt32(tmpReader["type_id"]),
+                        };
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsInvoicePosition - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsInvoicePosition - LoadByInvoiceId", "Datenbank Fehler", MessageBoxButtons.OK);
+                return null;
+            }
+            return tmpResult;
+        }
+
         public override void Load()
         {
             throw new NotImplementedException();

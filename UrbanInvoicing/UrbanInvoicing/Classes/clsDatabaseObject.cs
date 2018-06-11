@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace UrbanInvoicing.Classes
 {
@@ -51,7 +52,7 @@ namespace UrbanInvoicing.Classes
             return tmpResult;
         }
 
-        public static System.Collections.IList GetValueList(string pSqlCommand, string pFieldName) 
+        public static System.Collections.IList GetValueList(string pSqlCommand, string pFieldName)
         {
             List<object> tmpResult = new List<object>();
             try
