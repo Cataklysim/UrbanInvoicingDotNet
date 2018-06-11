@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UrbanInvoicing.Classes;
 
+
+/*ToDo: Wenn nach dem Kauf teile der Rechnung zurückgegeben werden müssen 
+wir das Implementieren, dass die Rechnung rückwirkend geändert werden kann. */
 namespace UrbanInvoicing.Forms
 {
     public partial class frmImport : Form
