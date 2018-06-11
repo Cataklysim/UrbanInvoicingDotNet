@@ -27,7 +27,7 @@ namespace UrbanInvoicing.Forms
         {
             InitializeComponent();
             _ArticleCreation = pCreateArticle;
-            this.label3.Text = pCreateArticle?"Artikel anlegen: ":"Typ anlegen: ";
+            this.label3.Text = pCreateArticle ? "Artikel anlegen: " : "Typ anlegen: ";
             if (!pCreateArticle)
             {
                 this.labelVat.Hide();
@@ -37,21 +37,40 @@ namespace UrbanInvoicing.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var tmpArticle = new clsArticle();
-            try
+            if (_ArticleCreation)
             {
-                tmpArticle.name = textBoxName.Text;
-                tmpArticle.vatRate = Convert.ToDouble(textBoxVat.Text);
+                var tmpArticle = new clsArticle();
+                try
+                {
+                    tmpArticle.name = textBoxName.Text;
+                    tmpArticle.vatRate = Convert.ToDouble(textBoxVat.Text);
 
-                tmpArticle.Save();
+                    if (tmpArticle.Save())
+                        MessageBox.Show("Speichern erfolgreich", "Erfolg", MessageBoxButtons.OK);
 
-                MessageBox.Show("Speichern erfolgreich", "Erfolg", MessageBoxButtons.OK);
-
-                this.Close();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                var tmpType = new clsType();
+                try
+                {
+                    tmpType.name = textBoxName.Text;
+
+                    if (tmpType.Save())
+                        MessageBox.Show("Speichern erfolgreich", "Erfolg", MessageBoxButtons.OK);
+
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
+                }
             }
         }
 

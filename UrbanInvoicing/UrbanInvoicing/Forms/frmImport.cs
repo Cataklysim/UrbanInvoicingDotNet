@@ -103,11 +103,13 @@ namespace UrbanInvoicing.Forms
 
         private void dataGridViewInvoicePositions_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
-            // Change sum in labels 
+            this.calcSums();
         }
 
         private void dataGridViewInvoicePositions_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
+            if (this.dataGridViewInvoicePositions.Columns[e.ColumnIndex].Name == "comboBoxArticle")
+                this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", e.RowIndex].Value = clsArticle.GetMwst(this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].FormattedValue.ToString());
             this.calcSums();
         }
 
@@ -200,7 +202,7 @@ namespace UrbanInvoicing.Forms
                             if (this.dataGridViewInvoicePositions[i, j].Value != null && this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", j].Value != null)
                             {
                                 if (this.labelSumGross.Text != "0")
-                                    tmpMwSt += Math.Round(Convert.ToDouble(this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", j].Value) * (Convert.ToDouble(this.labelSumGross.Text) / 100), 2);
+                                    tmpMwSt += Math.Round(Convert.ToDouble(this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", j].Value)/100 * Convert.ToDouble(this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn",j].Value), 2);
                             }
                         }
                         this.labelVatSum.Text = tmpMwSt.ToString();
@@ -222,7 +224,8 @@ namespace UrbanInvoicing.Forms
             if (tmpValues[0] > 0 && tmpValues[1] == 0)
             {
                 if (tmpValues[2] > 0)
-                    this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round((tmpValues[0] - ((tmpValues[0] / 100) * tmpValues[2])), 2);
+                    //this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round((tmpValues[0] - ((tmpValues[0] / 100) * tmpValues[2])), 2);
+                    this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[0] - ((tmpValues[0] * tmpValues[2]) / (100+tmpValues[2])), 2);
                 else
                     this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[0], 2);
             }
@@ -449,14 +452,20 @@ namespace UrbanInvoicing.Forms
         {
             frmUserInput tmpUserInput = new frmUserInput(true);
             tmpUserInput.Show();
+            //ToDo: Läd nicht neu  Oder jetzt doch? 
             this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
+            
+            RefreshDataSources();
         }
 
         private void buttonCreateType_Click(object sender, EventArgs e)
         {
             frmUserInput tmpUserInput = new frmUserInput(false);
             tmpUserInput.Show();
+            //ToDo: Läd nicht neu  oder jetzt doch? :D 
             this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
+            Reset();
+            RefreshDataSources();
         }
     }
 }

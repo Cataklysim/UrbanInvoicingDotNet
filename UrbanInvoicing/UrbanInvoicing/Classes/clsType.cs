@@ -5,7 +5,6 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using MySql.Data.MySqlClient;
 using System.Windows.Forms;
 
 namespace UrbanInvoicing.Classes
@@ -37,7 +36,7 @@ namespace UrbanInvoicing.Classes
                     {
                         while (tmpReader.Read())
                         {
-                            tmpResult.Add(new clsType() { name = tmpReader["name"].ToString(), id = Convert.ToInt32(tmpReader["id"].ToString())});
+                            tmpResult.Add(new clsType() { name = tmpReader["name"].ToString(), id = Convert.ToInt32(tmpReader["id"].ToString()) });
                         }
                     }
                 }
@@ -85,6 +84,36 @@ namespace UrbanInvoicing.Classes
             {
             }
             return tmpResult;
+        }
+
+        public bool Save()
+        {
+            bool result = false;
+            try
+            {
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
+                {
+                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbType (name, systemstatus_id) VALUES (@Name, @Systemstatus)");
+                    tmpCommand.Parameters.AddWithValue("@Name", this.name);
+                    tmpCommand.Parameters.AddWithValue("@Systemstatus", 1);
+                    tmpCommand.Connection = tmpConnection;
+                    tmpCommand.Connection.Open();
+                    if (tmpCommand.ExecuteNonQuery() == 1)
+                        result = true;
+                    else
+                        result = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                if (Properties.Settings.Default.DevBuild)
+                    Debug.WriteLine("# " + DateTime.Now + "clsType - Failed to execute SQL: " + ex);
+                else
+                    MessageBox.Show("Fehler während der Datenbankabfrage.\r\nFehler bei: clsType - Save", "Datenbank Fehler", MessageBoxButtons.OK);
+                result = false;
+            }
+
+            return result; 
         }
     }
 }
