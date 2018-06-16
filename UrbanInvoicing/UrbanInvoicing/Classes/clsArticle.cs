@@ -131,7 +131,7 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbArtikel (name, mwstSatz, systemstatus_id) VALUES (@Name, @MWST, @Systemstatus");
+                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbArtikel (name, mwstSatz, systemstatus_id) VALUES (@Name, @MWST, @Systemstatus)");
                     tmpCommand.Parameters.AddWithValue("@Name", this.name);
                     tmpCommand.Parameters.AddWithValue("@MWST", this.vatRate);
                     tmpCommand.Parameters.AddWithValue("@Systemstatus", 1);

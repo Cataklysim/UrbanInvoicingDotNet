@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UrbanInvoicing.Classes;
 
+
+/*ToDo: Das wird sie Überfordern. Wir müssen es als eine Ansicht für Eingangsrechnung und
+ * eine für Ausgangsrechnungen, sowie die Extra maske für die Adressübersicht machen*/
 namespace UrbanInvoicing.Forms
 {
     public partial class frmDataManagement : Form

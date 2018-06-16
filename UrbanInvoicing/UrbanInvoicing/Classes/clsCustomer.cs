@@ -22,7 +22,17 @@ namespace UrbanInvoicing.Classes
         public String telefone { get; set; }
         public String telefax { get; set; }
         public String email { get; set; }
-        public String note { get; set; }
+        public String comment { get; set; }
+        public String invoiceName { get; set; }
+        public String invoiceLastName { get; set; }
+        public String invoicePlz { get; set; }
+        public String invoiceStreet { get; set; }
+        public String invoiceCity { get; set; }
+        public String invoiceLand { get; set; }
+        public String invoiceTelefone { get; set; }
+        public String invoiceTelefax { get; set; }
+        public String invoiceEmail { get; set; }
+        public String invoiceComment { get; set; }
         private bool isCompany { get; set; }
 
         public clsCustomer()

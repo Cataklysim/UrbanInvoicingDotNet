@@ -43,15 +43,6 @@
             this.labelSumNet = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.dataGridViewInvoicePositions = new System.Windows.Forms.DataGridView();
-            this.artikelIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rabattDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
@@ -63,6 +54,15 @@
             this.buttonCreateType = new System.Windows.Forms.Button();
             this.bindingSourceArtikel = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceTypen = new System.Windows.Forms.BindingSource(this.components);
+            this.artikelIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rabattDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInvoicePositions)).BeginInit();
@@ -74,12 +74,12 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 6;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 90F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 255F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 235F));
             this.tableLayoutPanel1.Controls.Add(this.labelCustomer, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxCustomers, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.labelPositions, 1, 5);
@@ -102,11 +102,12 @@
             this.tableLayoutPanel1.Controls.Add(this.buttonCreateType, 5, 5);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 13;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 13F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -116,8 +117,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1283, 589);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1924, 906);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // labelCustomer
@@ -125,9 +126,10 @@
             this.labelCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelCustomer.AutoSize = true;
             this.labelCustomer.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCustomer.Location = new System.Drawing.Point(135, 73);
+            this.labelCustomer.Location = new System.Drawing.Point(209, 113);
+            this.labelCustomer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCustomer.Name = "labelCustomer";
-            this.labelCustomer.Size = new System.Drawing.Size(70, 20);
+            this.labelCustomer.Size = new System.Drawing.Size(108, 31);
             this.labelCustomer.TabIndex = 0;
             this.labelCustomer.Text = "Lieferant:";
             // 
@@ -137,9 +139,10 @@
             this.comboBoxCustomers.DisplayMember = "name";
             this.comboBoxCustomers.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCustomers.FormattingEnabled = true;
-            this.comboBoxCustomers.Location = new System.Drawing.Point(211, 76);
+            this.comboBoxCustomers.Location = new System.Drawing.Point(325, 118);
+            this.comboBoxCustomers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxCustomers.Name = "comboBoxCustomers";
-            this.comboBoxCustomers.Size = new System.Drawing.Size(282, 28);
+            this.comboBoxCustomers.Size = new System.Drawing.Size(421, 39);
             this.comboBoxCustomers.TabIndex = 1;
             this.comboBoxCustomers.ValueMember = "id";
             // 
@@ -152,9 +155,10 @@
             this.labelPositions.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPositions.AutoSize = true;
             this.labelPositions.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPositions.Location = new System.Drawing.Point(125, 109);
+            this.labelPositions.Location = new System.Drawing.Point(192, 169);
+            this.labelPositions.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelPositions.Name = "labelPositions";
-            this.labelPositions.Size = new System.Drawing.Size(80, 20);
+            this.labelPositions.Size = new System.Drawing.Size(125, 31);
             this.labelPositions.TabIndex = 3;
             this.labelPositions.Text = "Positionen:";
             // 
@@ -163,9 +167,10 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(807, 408);
+            this.label1.Location = new System.Drawing.Point(1339, 626);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
+            this.label1.Size = new System.Drawing.Size(164, 31);
             this.label1.TabIndex = 7;
             this.label1.Text = "Summe Brutto";
             // 
@@ -174,9 +179,10 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(867, 428);
+            this.label2.Location = new System.Drawing.Point(1431, 657);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(47, 20);
+            this.label2.Size = new System.Drawing.Size(72, 31);
             this.label2.TabIndex = 8;
             this.label2.Text = "MwSt";
             // 
@@ -184,9 +190,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(920, 448);
+            this.label3.Location = new System.Drawing.Point(1511, 688);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 20);
+            this.label3.Size = new System.Drawing.Size(174, 31);
             this.label3.TabIndex = 9;
             this.label3.Text = "________________";
             // 
@@ -195,9 +202,10 @@
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(811, 468);
+            this.label4.Location = new System.Drawing.Point(1345, 719);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 20);
+            this.label4.Size = new System.Drawing.Size(158, 31);
             this.label4.TabIndex = 10;
             this.label4.Text = "Summe Netto";
             // 
@@ -206,9 +214,10 @@
             this.labelSumGross.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSumGross.AutoSize = true;
             this.labelSumGross.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSumGross.Location = new System.Drawing.Point(1008, 408);
+            this.labelSumGross.Location = new System.Drawing.Point(1659, 626);
+            this.labelSumGross.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSumGross.Name = "labelSumGross";
-            this.labelSumGross.Size = new System.Drawing.Size(17, 20);
+            this.labelSumGross.Size = new System.Drawing.Size(26, 31);
             this.labelSumGross.TabIndex = 11;
             this.labelSumGross.Text = "0";
             // 
@@ -217,9 +226,10 @@
             this.labelVatSum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelVatSum.AutoSize = true;
             this.labelVatSum.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVatSum.Location = new System.Drawing.Point(1008, 428);
+            this.labelVatSum.Location = new System.Drawing.Point(1659, 657);
+            this.labelVatSum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelVatSum.Name = "labelVatSum";
-            this.labelVatSum.Size = new System.Drawing.Size(17, 20);
+            this.labelVatSum.Size = new System.Drawing.Size(26, 31);
             this.labelVatSum.TabIndex = 12;
             this.labelVatSum.Text = "0";
             // 
@@ -228,18 +238,20 @@
             this.labelSumNet.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelSumNet.AutoSize = true;
             this.labelSumNet.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSumNet.Location = new System.Drawing.Point(1008, 468);
+            this.labelSumNet.Location = new System.Drawing.Point(1659, 719);
+            this.labelSumNet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelSumNet.Name = "labelSumNet";
-            this.labelSumNet.Size = new System.Drawing.Size(17, 20);
+            this.labelSumNet.Size = new System.Drawing.Size(26, 31);
             this.labelSumNet.TabIndex = 13;
             this.labelSumNet.Text = "0";
             // 
             // buttonSave
             // 
             this.buttonSave.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSave.Location = new System.Drawing.Point(920, 76);
+            this.buttonSave.Location = new System.Drawing.Point(1511, 118);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(105, 30);
+            this.buttonSave.Size = new System.Drawing.Size(158, 46);
             this.buttonSave.TabIndex = 4;
             this.buttonSave.Text = "Speichern";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -252,18 +264,19 @@
             this.dataGridViewInvoicePositions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.artikelIdDataGridViewTextBoxColumn,
             this.typeIdDataGridViewTextBoxColumn,
+            this.mwStDataGridViewTextBoxColumn,
             this.bruttoDataGridViewTextBoxColumn,
             this.nettoDataGridViewTextBoxColumn,
-            this.mwStDataGridViewTextBoxColumn,
             this.rabattDataGridViewTextBoxColumn,
             this.bemerkungDataGridViewTextBoxColumn,
             this.idDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn});
             this.dataGridViewInvoicePositions.DataSource = this.bindingSourcePositions;
             this.dataGridViewInvoicePositions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewInvoicePositions.Location = new System.Drawing.Point(211, 112);
+            this.dataGridViewInvoicePositions.Location = new System.Drawing.Point(325, 174);
+            this.dataGridViewInvoicePositions.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridViewInvoicePositions.Name = "dataGridViewInvoicePositions";
-            this.dataGridViewInvoicePositions.Size = new System.Drawing.Size(703, 293);
+            this.dataGridViewInvoicePositions.Size = new System.Drawing.Size(1178, 447);
             this.dataGridViewInvoicePositions.StandardTab = true;
             this.dataGridViewInvoicePositions.TabIndex = 3;
             this.dataGridViewInvoicePositions.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_CellEndEdit);
@@ -273,6 +286,109 @@
             this.dataGridViewInvoicePositions.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewInvoicePositions_DataError);
             this.dataGridViewInvoicePositions.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserAddedRow);
             this.dataGridViewInvoicePositions.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserDeletedRow);
+            // 
+            // bindingSourcePositions
+            // 
+            this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClose.Location = new System.Drawing.Point(325, 755);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(308, 46);
+            this.buttonClose.TabIndex = 6;
+            this.buttonClose.Text = "Zurück zum Hauptmenü";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRemove.Location = new System.Drawing.Point(1511, 174);
+            this.buttonRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(158, 46);
+            this.buttonRemove.TabIndex = 5;
+            this.buttonRemove.Text = "Entfernen";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.dateTimePicker.Location = new System.Drawing.Point(325, 70);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePicker.MinDate = new System.DateTime(1999, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(421, 37);
+            this.dateTimePicker.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.label5.Location = new System.Drawing.Point(119, 65);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(198, 31);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Rechnungsdatum:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.label6.Location = new System.Drawing.Point(94, 20);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(223, 31);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Rechnungsnummer: ";
+            // 
+            // textBoxInvoiceNumber
+            // 
+            this.textBoxInvoiceNumber.Location = new System.Drawing.Point(325, 25);
+            this.textBoxInvoiceNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxInvoiceNumber.MaxLength = 50;
+            this.textBoxInvoiceNumber.Name = "textBoxInvoiceNumber";
+            this.textBoxInvoiceNumber.Size = new System.Drawing.Size(421, 26);
+            this.textBoxInvoiceNumber.TabIndex = 19;
+            // 
+            // buttonCreateArticle
+            // 
+            this.buttonCreateArticle.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonCreateArticle.Location = new System.Drawing.Point(1693, 118);
+            this.buttonCreateArticle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonCreateArticle.Name = "buttonCreateArticle";
+            this.buttonCreateArticle.Size = new System.Drawing.Size(227, 46);
+            this.buttonCreateArticle.TabIndex = 20;
+            this.buttonCreateArticle.Text = "Artikel erstellen";
+            this.buttonCreateArticle.UseVisualStyleBackColor = true;
+            this.buttonCreateArticle.Click += new System.EventHandler(this.buttonCreateArticle_Click);
+            // 
+            // buttonCreateType
+            // 
+            this.buttonCreateType.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonCreateType.Location = new System.Drawing.Point(1693, 174);
+            this.buttonCreateType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonCreateType.Name = "buttonCreateType";
+            this.buttonCreateType.Size = new System.Drawing.Size(227, 46);
+            this.buttonCreateType.TabIndex = 21;
+            this.buttonCreateType.Text = "Typ erstellen";
+            this.buttonCreateType.UseVisualStyleBackColor = true;
+            this.buttonCreateType.Click += new System.EventHandler(this.buttonCreateType_Click);
+            // 
+            // bindingSourceArtikel
+            // 
+            this.bindingSourceArtikel.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
+            // 
+            // bindingSourceTypen
+            // 
+            this.bindingSourceTypen.DataSource = typeof(UrbanInvoicing.Classes.clsType);
             // 
             // artikelIdDataGridViewTextBoxColumn
             // 
@@ -288,6 +404,12 @@
             this.typeIdDataGridViewTextBoxColumn.Name = "typeIdDataGridViewTextBoxColumn";
             this.typeIdDataGridViewTextBoxColumn.Visible = false;
             // 
+            // mwStDataGridViewTextBoxColumn
+            // 
+            this.mwStDataGridViewTextBoxColumn.DataPropertyName = "MwSt";
+            this.mwStDataGridViewTextBoxColumn.HeaderText = "MwSt";
+            this.mwStDataGridViewTextBoxColumn.Name = "mwStDataGridViewTextBoxColumn";
+            // 
             // bruttoDataGridViewTextBoxColumn
             // 
             this.bruttoDataGridViewTextBoxColumn.DataPropertyName = "Brutto";
@@ -299,12 +421,6 @@
             this.nettoDataGridViewTextBoxColumn.DataPropertyName = "Netto";
             this.nettoDataGridViewTextBoxColumn.HeaderText = "Netto";
             this.nettoDataGridViewTextBoxColumn.Name = "nettoDataGridViewTextBoxColumn";
-            // 
-            // mwStDataGridViewTextBoxColumn
-            // 
-            this.mwStDataGridViewTextBoxColumn.DataPropertyName = "MwSt";
-            this.mwStDataGridViewTextBoxColumn.HeaderText = "MwSt";
-            this.mwStDataGridViewTextBoxColumn.Name = "mwStDataGridViewTextBoxColumn";
             // 
             // rabattDataGridViewTextBoxColumn
             // 
@@ -333,107 +449,13 @@
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.Visible = false;
             // 
-            // bindingSourcePositions
-            // 
-            this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.Location = new System.Drawing.Point(211, 491);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(205, 30);
-            this.buttonClose.TabIndex = 6;
-            this.buttonClose.Text = "Zurück zum Hauptmenü";
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // buttonRemove
-            // 
-            this.buttonRemove.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRemove.Location = new System.Drawing.Point(920, 112);
-            this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(105, 30);
-            this.buttonRemove.TabIndex = 5;
-            this.buttonRemove.Text = "Entfernen";
-            this.buttonRemove.UseVisualStyleBackColor = true;
-            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
-            // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.dateTimePicker.Location = new System.Drawing.Point(211, 45);
-            this.dateTimePicker.MinDate = new System.DateTime(1999, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(282, 27);
-            this.dateTimePicker.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.label5.Location = new System.Drawing.Point(79, 42);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(126, 20);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Rechnungsdatum:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.label6.Location = new System.Drawing.Point(63, 13);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(142, 20);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Rechnungsnummer: ";
-            // 
-            // textBoxInvoiceNumber
-            // 
-            this.textBoxInvoiceNumber.Location = new System.Drawing.Point(211, 16);
-            this.textBoxInvoiceNumber.MaxLength = 50;
-            this.textBoxInvoiceNumber.Name = "textBoxInvoiceNumber";
-            this.textBoxInvoiceNumber.Size = new System.Drawing.Size(282, 20);
-            this.textBoxInvoiceNumber.TabIndex = 19;
-            // 
-            // buttonCreateArticle
-            // 
-            this.buttonCreateArticle.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.buttonCreateArticle.Location = new System.Drawing.Point(1031, 76);
-            this.buttonCreateArticle.Name = "buttonCreateArticle";
-            this.buttonCreateArticle.Size = new System.Drawing.Size(157, 30);
-            this.buttonCreateArticle.TabIndex = 20;
-            this.buttonCreateArticle.Text = "Artikel erstellen";
-            this.buttonCreateArticle.UseVisualStyleBackColor = true;
-            this.buttonCreateArticle.Click += new System.EventHandler(this.buttonCreateArticle_Click);
-            // 
-            // buttonCreateType
-            // 
-            this.buttonCreateType.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.buttonCreateType.Location = new System.Drawing.Point(1031, 112);
-            this.buttonCreateType.Name = "buttonCreateType";
-            this.buttonCreateType.Size = new System.Drawing.Size(157, 30);
-            this.buttonCreateType.TabIndex = 21;
-            this.buttonCreateType.Text = "Typ erstellen";
-            this.buttonCreateType.UseVisualStyleBackColor = true;
-            this.buttonCreateType.Click += new System.EventHandler(this.buttonCreateType_Click);
-            // 
-            // bindingSourceArtikel
-            // 
-            this.bindingSourceArtikel.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
-            // 
-            // bindingSourceTypen
-            // 
-            this.bindingSourceTypen.DataSource = typeof(UrbanInvoicing.Classes.clsType);
-            // 
             // frmImport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 589);
+            this.ClientSize = new System.Drawing.Size(1924, 906);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmImport";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
@@ -475,18 +497,18 @@
         private System.Windows.Forms.BindingSource bindingSourceTypen;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
-        private System.Windows.Forms.DataGridViewTextBoxColumn artikelIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn typeIdDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bruttoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nettoDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn mwStDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rabattDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bemerkungDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBoxInvoiceNumber;
         private System.Windows.Forms.Button buttonCreateArticle;
         private System.Windows.Forms.Button buttonCreateType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn artikelIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn typeIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn mwStDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bruttoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nettoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rabattDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn bemerkungDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
     }
 }
