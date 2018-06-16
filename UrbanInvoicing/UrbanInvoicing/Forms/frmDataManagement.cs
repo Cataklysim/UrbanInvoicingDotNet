@@ -23,14 +23,7 @@ namespace UrbanInvoicing.Forms
             this.bindingSourceCustomer.DataSource = clsCustomer.GetCustomerFromDB();
             this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
             this.bindingSourceType.DataSource = clsType.GetTypesFromDB();
-        }
-
-        private void LoadSelectedTab()
-        {
-            if (this.tabControl1.SelectedTab == this.tabPageInvoice)
-            {
                 this.bindingSourceInvoice.DataSource = clsInvoice.GetDbList();
-            }
         }
 
         private void dataGridViewInvoice_SelectionChanged(object sender, EventArgs e)
