@@ -31,8 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dataGridViewOutboundInvoice = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewOutboundInvoicePosition = new System.Windows.Forms.DataGridView();
+            this.article = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sumBruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,10 +45,7 @@
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourceOutboundInvoices = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewOutboundInvoicePosition = new System.Windows.Forms.DataGridView();
             this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.article = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,8 +63,8 @@
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutboundInvoice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOutboundInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutboundInvoicePosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOutboundInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePositions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).BeginInit();
@@ -91,6 +91,8 @@
             // 
             // dataGridViewOutboundInvoice
             // 
+            this.dataGridViewOutboundInvoice.AllowUserToAddRows = false;
+            this.dataGridViewOutboundInvoice.AllowUserToDeleteRows = false;
             this.dataGridViewOutboundInvoice.AutoGenerateColumns = false;
             this.dataGridViewOutboundInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOutboundInvoice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -107,81 +109,26 @@
             this.dataGridViewOutboundInvoice.DataSource = this.bindingSourceOutboundInvoices;
             this.dataGridViewOutboundInvoice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewOutboundInvoice.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewOutboundInvoice.MultiSelect = false;
             this.dataGridViewOutboundInvoice.Name = "dataGridViewOutboundInvoice";
+            this.dataGridViewOutboundInvoice.ReadOnly = true;
             this.dataGridViewOutboundInvoice.RowTemplate.Height = 28;
+            this.dataGridViewOutboundInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewOutboundInvoice.Size = new System.Drawing.Size(1593, 531);
             this.dataGridViewOutboundInvoice.TabIndex = 0;
             this.dataGridViewOutboundInvoice.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewOutboundInvoice_CellFormatting);
             this.dataGridViewOutboundInvoice.SelectionChanged += new System.EventHandler(this.dataGridViewOutboundInvoice_SelectionChanged);
             // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
             // customer
             // 
             this.customer.HeaderText = "Kunde";
             this.customer.Name = "customer";
-            // 
-            // customerIdDataGridViewTextBoxColumn
-            // 
-            this.customerIdDataGridViewTextBoxColumn.DataPropertyName = "customerId";
-            this.customerIdDataGridViewTextBoxColumn.HeaderText = "customerId";
-            this.customerIdDataGridViewTextBoxColumn.Name = "customerIdDataGridViewTextBoxColumn";
-            this.customerIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // sumBruttoDataGridViewTextBoxColumn
-            // 
-            this.sumBruttoDataGridViewTextBoxColumn.DataPropertyName = "sumBrutto";
-            this.sumBruttoDataGridViewTextBoxColumn.HeaderText = "sumBrutto";
-            this.sumBruttoDataGridViewTextBoxColumn.Name = "sumBruttoDataGridViewTextBoxColumn";
-            // 
-            // sumNettoDataGridViewTextBoxColumn
-            // 
-            this.sumNettoDataGridViewTextBoxColumn.DataPropertyName = "sumNetto";
-            this.sumNettoDataGridViewTextBoxColumn.HeaderText = "sumNetto";
-            this.sumNettoDataGridViewTextBoxColumn.Name = "sumNettoDataGridViewTextBoxColumn";
-            // 
-            // sumMwstDataGridViewTextBoxColumn
-            // 
-            this.sumMwstDataGridViewTextBoxColumn.DataPropertyName = "sumMwst";
-            this.sumMwstDataGridViewTextBoxColumn.HeaderText = "sumMwst";
-            this.sumMwstDataGridViewTextBoxColumn.Name = "sumMwstDataGridViewTextBoxColumn";
-            // 
-            // invoiceNumberDataGridViewTextBoxColumn
-            // 
-            this.invoiceNumberDataGridViewTextBoxColumn.DataPropertyName = "invoiceNumber";
-            this.invoiceNumberDataGridViewTextBoxColumn.HeaderText = "invoiceNumber";
-            this.invoiceNumberDataGridViewTextBoxColumn.Name = "invoiceNumberDataGridViewTextBoxColumn";
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // bindingSourceOutboundInvoices
-            // 
-            this.bindingSourceOutboundInvoices.DataSource = typeof(UrbanInvoicing.Classes.clsInvoice);
+            this.customer.ReadOnly = true;
             // 
             // dataGridViewOutboundInvoicePosition
             // 
+            this.dataGridViewOutboundInvoicePosition.AllowUserToAddRows = false;
+            this.dataGridViewOutboundInvoicePosition.AllowUserToDeleteRows = false;
             this.dataGridViewOutboundInvoicePosition.AutoGenerateColumns = false;
             this.dataGridViewOutboundInvoicePosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOutboundInvoicePosition.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -199,57 +146,138 @@
             this.dataGridViewOutboundInvoicePosition.DataSource = this.bindingSourcePositions;
             this.dataGridViewOutboundInvoicePosition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewOutboundInvoicePosition.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewOutboundInvoicePosition.MultiSelect = false;
             this.dataGridViewOutboundInvoicePosition.Name = "dataGridViewOutboundInvoicePosition";
+            this.dataGridViewOutboundInvoicePosition.ReadOnly = true;
             this.dataGridViewOutboundInvoicePosition.RowTemplate.Height = 28;
+            this.dataGridViewOutboundInvoicePosition.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewOutboundInvoicePosition.Size = new System.Drawing.Size(1593, 425);
             this.dataGridViewOutboundInvoicePosition.TabIndex = 0;
             this.dataGridViewOutboundInvoicePosition.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewOutboundInvoicePosition_CellFormatting);
+            // 
+            // article
+            // 
+            this.article.HeaderText = "Artikel";
+            this.article.Name = "article";
+            this.article.ReadOnly = true;
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Typ";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // customerIdDataGridViewTextBoxColumn
+            // 
+            this.customerIdDataGridViewTextBoxColumn.DataPropertyName = "customerId";
+            this.customerIdDataGridViewTextBoxColumn.HeaderText = "customerId";
+            this.customerIdDataGridViewTextBoxColumn.Name = "customerIdDataGridViewTextBoxColumn";
+            this.customerIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.customerIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sumBruttoDataGridViewTextBoxColumn
+            // 
+            this.sumBruttoDataGridViewTextBoxColumn.DataPropertyName = "sumBrutto";
+            this.sumBruttoDataGridViewTextBoxColumn.HeaderText = "sumBrutto";
+            this.sumBruttoDataGridViewTextBoxColumn.Name = "sumBruttoDataGridViewTextBoxColumn";
+            this.sumBruttoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sumNettoDataGridViewTextBoxColumn
+            // 
+            this.sumNettoDataGridViewTextBoxColumn.DataPropertyName = "sumNetto";
+            this.sumNettoDataGridViewTextBoxColumn.HeaderText = "sumNetto";
+            this.sumNettoDataGridViewTextBoxColumn.Name = "sumNettoDataGridViewTextBoxColumn";
+            this.sumNettoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sumMwstDataGridViewTextBoxColumn
+            // 
+            this.sumMwstDataGridViewTextBoxColumn.DataPropertyName = "sumMwst";
+            this.sumMwstDataGridViewTextBoxColumn.HeaderText = "sumMwst";
+            this.sumMwstDataGridViewTextBoxColumn.Name = "sumMwstDataGridViewTextBoxColumn";
+            this.sumMwstDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceNumberDataGridViewTextBoxColumn
+            // 
+            this.invoiceNumberDataGridViewTextBoxColumn.DataPropertyName = "invoiceNumber";
+            this.invoiceNumberDataGridViewTextBoxColumn.HeaderText = "invoiceNumber";
+            this.invoiceNumberDataGridViewTextBoxColumn.Name = "invoiceNumberDataGridViewTextBoxColumn";
+            this.invoiceNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bindingSourceOutboundInvoices
+            // 
+            this.bindingSourceOutboundInvoices.DataSource = typeof(UrbanInvoicing.Classes.clsInvoice);
             // 
             // bemerkungDataGridViewTextBoxColumn
             // 
             this.bemerkungDataGridViewTextBoxColumn.DataPropertyName = "Bemerkung";
             this.bemerkungDataGridViewTextBoxColumn.HeaderText = "Bemerkung";
             this.bemerkungDataGridViewTextBoxColumn.Name = "bemerkungDataGridViewTextBoxColumn";
-            // 
-            // article
-            // 
-            this.article.HeaderText = "Artikel";
-            this.article.Name = "article";
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Typ";
-            this.Type.Name = "Type";
+            this.bemerkungDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // bruttoDataGridViewTextBoxColumn
             // 
             this.bruttoDataGridViewTextBoxColumn.DataPropertyName = "Brutto";
             this.bruttoDataGridViewTextBoxColumn.HeaderText = "Brutto";
             this.bruttoDataGridViewTextBoxColumn.Name = "bruttoDataGridViewTextBoxColumn";
+            this.bruttoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // nettoDataGridViewTextBoxColumn
             // 
             this.nettoDataGridViewTextBoxColumn.DataPropertyName = "Netto";
             this.nettoDataGridViewTextBoxColumn.HeaderText = "Netto";
             this.nettoDataGridViewTextBoxColumn.Name = "nettoDataGridViewTextBoxColumn";
+            this.nettoDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // mwStDataGridViewTextBoxColumn
             // 
             this.mwStDataGridViewTextBoxColumn.DataPropertyName = "MwSt";
             this.mwStDataGridViewTextBoxColumn.HeaderText = "MwSt";
             this.mwStDataGridViewTextBoxColumn.Name = "mwStDataGridViewTextBoxColumn";
+            this.mwStDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // rabattDataGridViewTextBoxColumn
             // 
             this.rabattDataGridViewTextBoxColumn.DataPropertyName = "Rabatt";
             this.rabattDataGridViewTextBoxColumn.HeaderText = "Rabatt";
             this.rabattDataGridViewTextBoxColumn.Name = "rabattDataGridViewTextBoxColumn";
+            this.rabattDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // artikelIdDataGridViewTextBoxColumn
             // 
             this.artikelIdDataGridViewTextBoxColumn.DataPropertyName = "ArtikelId";
             this.artikelIdDataGridViewTextBoxColumn.HeaderText = "ArtikelId";
             this.artikelIdDataGridViewTextBoxColumn.Name = "artikelIdDataGridViewTextBoxColumn";
+            this.artikelIdDataGridViewTextBoxColumn.ReadOnly = true;
             this.artikelIdDataGridViewTextBoxColumn.Visible = false;
             // 
             // typeIdDataGridViewTextBoxColumn
@@ -257,6 +285,7 @@
             this.typeIdDataGridViewTextBoxColumn.DataPropertyName = "TypeId";
             this.typeIdDataGridViewTextBoxColumn.HeaderText = "TypeId";
             this.typeIdDataGridViewTextBoxColumn.Name = "typeIdDataGridViewTextBoxColumn";
+            this.typeIdDataGridViewTextBoxColumn.ReadOnly = true;
             this.typeIdDataGridViewTextBoxColumn.Visible = false;
             // 
             // idDataGridViewTextBoxColumn2
@@ -264,6 +293,7 @@
             this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
             this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
+            this.idDataGridViewTextBoxColumn2.ReadOnly = true;
             this.idDataGridViewTextBoxColumn2.Visible = false;
             // 
             // nameDataGridViewTextBoxColumn1
@@ -271,6 +301,7 @@
             this.nameDataGridViewTextBoxColumn1.DataPropertyName = "name";
             this.nameDataGridViewTextBoxColumn1.HeaderText = "name";
             this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // bindingSourcePositions
             // 
@@ -300,8 +331,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutboundInvoice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOutboundInvoices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutboundInvoicePosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOutboundInvoices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePositions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).EndInit();

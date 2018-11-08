@@ -31,14 +31,11 @@
             this.components = new System.ComponentModel.Container();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dataGridViewInboundInvoice = new System.Windows.Forms.DataGridView();
-            this.dataGridViewInboundInvoicePosition = new System.Windows.Forms.DataGridView();
-            this.bindingSourceInboundInvoices = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceTypes = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewInboundInvoicePosition = new System.Windows.Forms.DataGridView();
+            this.article = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sumBruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,9 +44,8 @@
             this.invoiceNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceInboundInvoices = new System.Windows.Forms.BindingSource(this.components);
             this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.article = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +54,10 @@
             this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceTypes = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -91,6 +91,8 @@
             // 
             // dataGridViewInboundInvoice
             // 
+            this.dataGridViewInboundInvoice.AllowUserToAddRows = false;
+            this.dataGridViewInboundInvoice.AllowUserToDeleteRows = false;
             this.dataGridViewInboundInvoice.AutoGenerateColumns = false;
             this.dataGridViewInboundInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewInboundInvoice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -107,15 +109,26 @@
             this.dataGridViewInboundInvoice.DataSource = this.bindingSourceInboundInvoices;
             this.dataGridViewInboundInvoice.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewInboundInvoice.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewInboundInvoice.MultiSelect = false;
             this.dataGridViewInboundInvoice.Name = "dataGridViewInboundInvoice";
+            this.dataGridViewInboundInvoice.ReadOnly = true;
             this.dataGridViewInboundInvoice.RowTemplate.Height = 28;
+            this.dataGridViewInboundInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewInboundInvoice.Size = new System.Drawing.Size(1593, 531);
             this.dataGridViewInboundInvoice.TabIndex = 0;
             this.dataGridViewInboundInvoice.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewInboundInvoice_CellFormatting);
             this.dataGridViewInboundInvoice.SelectionChanged += new System.EventHandler(this.dataGridViewInboundInvoice_SelectionChanged);
             // 
+            // customer
+            // 
+            this.customer.HeaderText = "Kunde";
+            this.customer.Name = "customer";
+            this.customer.ReadOnly = true;
+            // 
             // dataGridViewInboundInvoicePosition
             // 
+            this.dataGridViewInboundInvoicePosition.AllowUserToAddRows = false;
+            this.dataGridViewInboundInvoicePosition.AllowUserToDeleteRows = false;
             this.dataGridViewInboundInvoicePosition.AutoGenerateColumns = false;
             this.dataGridViewInboundInvoicePosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewInboundInvoicePosition.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -133,15 +146,162 @@
             this.dataGridViewInboundInvoicePosition.DataSource = this.bindingSourcePositions;
             this.dataGridViewInboundInvoicePosition.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewInboundInvoicePosition.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewInboundInvoicePosition.MultiSelect = false;
             this.dataGridViewInboundInvoicePosition.Name = "dataGridViewInboundInvoicePosition";
+            this.dataGridViewInboundInvoicePosition.ReadOnly = true;
             this.dataGridViewInboundInvoicePosition.RowTemplate.Height = 28;
+            this.dataGridViewInboundInvoicePosition.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewInboundInvoicePosition.Size = new System.Drawing.Size(1593, 425);
             this.dataGridViewInboundInvoicePosition.TabIndex = 0;
             this.dataGridViewInboundInvoicePosition.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewInboundInvoicePosition_CellFormatting);
             // 
+            // article
+            // 
+            this.article.HeaderText = "Artikel";
+            this.article.Name = "article";
+            this.article.ReadOnly = true;
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Typ";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // customerIdDataGridViewTextBoxColumn
+            // 
+            this.customerIdDataGridViewTextBoxColumn.DataPropertyName = "customerId";
+            this.customerIdDataGridViewTextBoxColumn.HeaderText = "customerId";
+            this.customerIdDataGridViewTextBoxColumn.Name = "customerIdDataGridViewTextBoxColumn";
+            this.customerIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.customerIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            this.dateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sumBruttoDataGridViewTextBoxColumn
+            // 
+            this.sumBruttoDataGridViewTextBoxColumn.DataPropertyName = "sumBrutto";
+            this.sumBruttoDataGridViewTextBoxColumn.HeaderText = "sumBrutto";
+            this.sumBruttoDataGridViewTextBoxColumn.Name = "sumBruttoDataGridViewTextBoxColumn";
+            this.sumBruttoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sumNettoDataGridViewTextBoxColumn
+            // 
+            this.sumNettoDataGridViewTextBoxColumn.DataPropertyName = "sumNetto";
+            this.sumNettoDataGridViewTextBoxColumn.HeaderText = "sumNetto";
+            this.sumNettoDataGridViewTextBoxColumn.Name = "sumNettoDataGridViewTextBoxColumn";
+            this.sumNettoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sumMwstDataGridViewTextBoxColumn
+            // 
+            this.sumMwstDataGridViewTextBoxColumn.DataPropertyName = "sumMwst";
+            this.sumMwstDataGridViewTextBoxColumn.HeaderText = "sumMwst";
+            this.sumMwstDataGridViewTextBoxColumn.Name = "sumMwstDataGridViewTextBoxColumn";
+            this.sumMwstDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // invoiceNumberDataGridViewTextBoxColumn
+            // 
+            this.invoiceNumberDataGridViewTextBoxColumn.DataPropertyName = "invoiceNumber";
+            this.invoiceNumberDataGridViewTextBoxColumn.HeaderText = "invoiceNumber";
+            this.invoiceNumberDataGridViewTextBoxColumn.Name = "invoiceNumberDataGridViewTextBoxColumn";
+            this.invoiceNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
             // bindingSourceInboundInvoices
             // 
             this.bindingSourceInboundInvoices.DataSource = typeof(UrbanInvoicing.Classes.clsInvoice);
+            // 
+            // bemerkungDataGridViewTextBoxColumn
+            // 
+            this.bemerkungDataGridViewTextBoxColumn.DataPropertyName = "Bemerkung";
+            this.bemerkungDataGridViewTextBoxColumn.HeaderText = "Bemerkung";
+            this.bemerkungDataGridViewTextBoxColumn.Name = "bemerkungDataGridViewTextBoxColumn";
+            this.bemerkungDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // bruttoDataGridViewTextBoxColumn
+            // 
+            this.bruttoDataGridViewTextBoxColumn.DataPropertyName = "Brutto";
+            this.bruttoDataGridViewTextBoxColumn.HeaderText = "Brutto";
+            this.bruttoDataGridViewTextBoxColumn.Name = "bruttoDataGridViewTextBoxColumn";
+            this.bruttoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nettoDataGridViewTextBoxColumn
+            // 
+            this.nettoDataGridViewTextBoxColumn.DataPropertyName = "Netto";
+            this.nettoDataGridViewTextBoxColumn.HeaderText = "Netto";
+            this.nettoDataGridViewTextBoxColumn.Name = "nettoDataGridViewTextBoxColumn";
+            this.nettoDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // mwStDataGridViewTextBoxColumn
+            // 
+            this.mwStDataGridViewTextBoxColumn.DataPropertyName = "MwSt";
+            this.mwStDataGridViewTextBoxColumn.HeaderText = "MwSt";
+            this.mwStDataGridViewTextBoxColumn.Name = "mwStDataGridViewTextBoxColumn";
+            this.mwStDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // rabattDataGridViewTextBoxColumn
+            // 
+            this.rabattDataGridViewTextBoxColumn.DataPropertyName = "Rabatt";
+            this.rabattDataGridViewTextBoxColumn.HeaderText = "Rabatt";
+            this.rabattDataGridViewTextBoxColumn.Name = "rabattDataGridViewTextBoxColumn";
+            this.rabattDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // artikelIdDataGridViewTextBoxColumn
+            // 
+            this.artikelIdDataGridViewTextBoxColumn.DataPropertyName = "ArtikelId";
+            this.artikelIdDataGridViewTextBoxColumn.HeaderText = "ArtikelId";
+            this.artikelIdDataGridViewTextBoxColumn.Name = "artikelIdDataGridViewTextBoxColumn";
+            this.artikelIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.artikelIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // typeIdDataGridViewTextBoxColumn
+            // 
+            this.typeIdDataGridViewTextBoxColumn.DataPropertyName = "TypeId";
+            this.typeIdDataGridViewTextBoxColumn.HeaderText = "TypeId";
+            this.typeIdDataGridViewTextBoxColumn.Name = "typeIdDataGridViewTextBoxColumn";
+            this.typeIdDataGridViewTextBoxColumn.ReadOnly = true;
+            this.typeIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // idDataGridViewTextBoxColumn2
+            // 
+            this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
+            this.idDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn2.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // bindingSourcePositions
             // 
@@ -158,135 +318,6 @@
             // bindingSourceArticles
             // 
             this.bindingSourceArticles.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // customer
-            // 
-            this.customer.HeaderText = "Kunde";
-            this.customer.Name = "customer";
-            // 
-            // customerIdDataGridViewTextBoxColumn
-            // 
-            this.customerIdDataGridViewTextBoxColumn.DataPropertyName = "customerId";
-            this.customerIdDataGridViewTextBoxColumn.HeaderText = "customerId";
-            this.customerIdDataGridViewTextBoxColumn.Name = "customerIdDataGridViewTextBoxColumn";
-            this.customerIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // sumBruttoDataGridViewTextBoxColumn
-            // 
-            this.sumBruttoDataGridViewTextBoxColumn.DataPropertyName = "sumBrutto";
-            this.sumBruttoDataGridViewTextBoxColumn.HeaderText = "sumBrutto";
-            this.sumBruttoDataGridViewTextBoxColumn.Name = "sumBruttoDataGridViewTextBoxColumn";
-            // 
-            // sumNettoDataGridViewTextBoxColumn
-            // 
-            this.sumNettoDataGridViewTextBoxColumn.DataPropertyName = "sumNetto";
-            this.sumNettoDataGridViewTextBoxColumn.HeaderText = "sumNetto";
-            this.sumNettoDataGridViewTextBoxColumn.Name = "sumNettoDataGridViewTextBoxColumn";
-            // 
-            // sumMwstDataGridViewTextBoxColumn
-            // 
-            this.sumMwstDataGridViewTextBoxColumn.DataPropertyName = "sumMwst";
-            this.sumMwstDataGridViewTextBoxColumn.HeaderText = "sumMwst";
-            this.sumMwstDataGridViewTextBoxColumn.Name = "sumMwstDataGridViewTextBoxColumn";
-            // 
-            // invoiceNumberDataGridViewTextBoxColumn
-            // 
-            this.invoiceNumberDataGridViewTextBoxColumn.DataPropertyName = "invoiceNumber";
-            this.invoiceNumberDataGridViewTextBoxColumn.HeaderText = "invoiceNumber";
-            this.invoiceNumberDataGridViewTextBoxColumn.Name = "invoiceNumberDataGridViewTextBoxColumn";
-            // 
-            // idDataGridViewTextBoxColumn1
-            // 
-            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
-            this.idDataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            // 
-            // bemerkungDataGridViewTextBoxColumn
-            // 
-            this.bemerkungDataGridViewTextBoxColumn.DataPropertyName = "Bemerkung";
-            this.bemerkungDataGridViewTextBoxColumn.HeaderText = "Bemerkung";
-            this.bemerkungDataGridViewTextBoxColumn.Name = "bemerkungDataGridViewTextBoxColumn";
-            // 
-            // article
-            // 
-            this.article.HeaderText = "Artikel";
-            this.article.Name = "article";
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Typ";
-            this.Type.Name = "Type";
-            // 
-            // bruttoDataGridViewTextBoxColumn
-            // 
-            this.bruttoDataGridViewTextBoxColumn.DataPropertyName = "Brutto";
-            this.bruttoDataGridViewTextBoxColumn.HeaderText = "Brutto";
-            this.bruttoDataGridViewTextBoxColumn.Name = "bruttoDataGridViewTextBoxColumn";
-            // 
-            // nettoDataGridViewTextBoxColumn
-            // 
-            this.nettoDataGridViewTextBoxColumn.DataPropertyName = "Netto";
-            this.nettoDataGridViewTextBoxColumn.HeaderText = "Netto";
-            this.nettoDataGridViewTextBoxColumn.Name = "nettoDataGridViewTextBoxColumn";
-            // 
-            // mwStDataGridViewTextBoxColumn
-            // 
-            this.mwStDataGridViewTextBoxColumn.DataPropertyName = "MwSt";
-            this.mwStDataGridViewTextBoxColumn.HeaderText = "MwSt";
-            this.mwStDataGridViewTextBoxColumn.Name = "mwStDataGridViewTextBoxColumn";
-            // 
-            // rabattDataGridViewTextBoxColumn
-            // 
-            this.rabattDataGridViewTextBoxColumn.DataPropertyName = "Rabatt";
-            this.rabattDataGridViewTextBoxColumn.HeaderText = "Rabatt";
-            this.rabattDataGridViewTextBoxColumn.Name = "rabattDataGridViewTextBoxColumn";
-            // 
-            // artikelIdDataGridViewTextBoxColumn
-            // 
-            this.artikelIdDataGridViewTextBoxColumn.DataPropertyName = "ArtikelId";
-            this.artikelIdDataGridViewTextBoxColumn.HeaderText = "ArtikelId";
-            this.artikelIdDataGridViewTextBoxColumn.Name = "artikelIdDataGridViewTextBoxColumn";
-            this.artikelIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // typeIdDataGridViewTextBoxColumn
-            // 
-            this.typeIdDataGridViewTextBoxColumn.DataPropertyName = "TypeId";
-            this.typeIdDataGridViewTextBoxColumn.HeaderText = "TypeId";
-            this.typeIdDataGridViewTextBoxColumn.Name = "typeIdDataGridViewTextBoxColumn";
-            this.typeIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // idDataGridViewTextBoxColumn2
-            // 
-            this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
-            this.idDataGridViewTextBoxColumn2.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
             // 
             // ctlDataManagementInbound
             // 

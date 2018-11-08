@@ -48,9 +48,11 @@ namespace UrbanInvoicing.Forms
                 {
                     case "inbound":
                         this._LocalInboundControl.Parent = this;
+                        this.Text = "Eingehende Rechnungen";
                         break;
                     case "outbound":
                         this._LocalOutboundControl.Parent = this;
+                        this.Text = "Ausgehende Rechnungen";
                         break;
                     default:
                         this.Dispose();
