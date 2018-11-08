@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UrbanInvoicing.Classes;
+using UrbanInvoicing.Control;
 
 
 /*ToDo: Das wird sie Überfordern. Wir müssen es als eine Ansicht für Eingangsrechnung und
@@ -16,77 +17,46 @@ namespace UrbanInvoicing.Forms
 {
     public partial class frmDataManagement : Form
     {
-        public frmDataManagement()
+        private string LoadTag { get; set; }
+
+        public frmDataManagement(string pTag)
         {
             InitializeComponent();
+            this.LoadTag = pTag;
+            try
+            {
+                this._LocalInboundControl = new ctlDataManagementInbound();
+                this._LocalOutboundControl = new ctlDataManagementOutbound();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Achtung", "Fehler beim Laden der Daten:\r\n" + ex.Message);
+                this.Dispose();
+            }
         }
+
+        private ctlDataManagementInbound _LocalInboundControl { get; set; }
+        private ctlDataManagementOutbound _LocalOutboundControl { get; set; }
 
         private void frmDataManagement_Load(object sender, EventArgs e)
         {
-            this.bindingSourceCustomer.DataSource = clsCustomer.GetCustomerFromDB();
-            this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
-            this.bindingSourceType.DataSource = clsType.GetTypesFromDB();
-                this.bindingSourceInvoice.DataSource = clsInvoice.GetDbList();
-        }
-
-        private void dataGridViewInvoice_SelectionChanged(object sender, EventArgs e)
-        {
-            if (this.dataGridViewInvoice.SelectedRows.Count == 1)
-                this.bindingSourceInvoicePosition.DataSource = clsInvoicePosition.LoadByInvoiceId((int)this.dataGridViewInvoice.SelectedRows[0].Cells["id"].Value);
-        }
-
-        public void LoadRepositories()
-        {
-            List<clsArticle> tmpArticles = new List<clsArticle>();
-            List<clsType> tmpTypes = new List<clsType>();
-            DataGridViewComboBoxColumn tmpComboBoxArticle = new DataGridViewComboBoxColumn()
+            if (this._LocalInboundControl != null && this._LocalOutboundControl != null)
             {
-                DataSource = this.bindingSourceArtikel,
-                DisplayMember = "name",
-                ValueMember = "id",
-                HeaderText = "Artikel",
-                Name = "comboBoxArticle",
-            };
-            DataGridViewComboBoxColumn tmpComboBoxType = new DataGridViewComboBoxColumn()
-            {
-                DataSource = this.bindingSourceType,
-                DisplayMember = "name",
-                ValueMember = "id",
-                HeaderText = "Typ",
-                Name = "comboBoxType",
-            };
-            DataGridViewComboBoxColumn tmpComboBoxCustomer = new DataGridViewComboBoxColumn()
-            {
-                DataSource = this.bindingSourceCustomer,
-                DisplayMember = "name",
-                ValueMember = "id",
-                HeaderText = "Typ",
-                Name = "comboBoxCustomer",
-            };
-            int tmpArtikelIndex = this.dataGridViewInvoice.Columns["artikelIdDataGridViewTextBoxColumn"].DisplayIndex;
-            tmpComboBoxArticle.DataPropertyName = this.dataGridViewInvoice.Columns["artikelIdDataGridViewTextBoxColumn"].DataPropertyName;
-
-            int tmpTypIndex = this.dataGridViewInvoice.Columns["typeIdDataGridViewTextBoxColumn"].DisplayIndex;
-            tmpComboBoxType.DataPropertyName = this.dataGridViewInvoice.Columns["typeIdDataGridViewTextBoxColumn"].DataPropertyName;
-
-            int tmpCustomerIndex = this.dataGridViewInvoice.Columns["customerIdDataGridViewTextBoxColumn"].DisplayIndex;
-            tmpComboBoxCustomer.DataPropertyName = this.dataGridViewInvoice.Columns["customerIdDataGridViewTextBoxColumn"].DataPropertyName;
-
-            tmpComboBoxArticle.DisplayIndex = tmpArtikelIndex;
-            tmpComboBoxArticle.AutoComplete = true;
-
-            tmpComboBoxType.DisplayIndex = tmpTypIndex;
-            tmpComboBoxType.AutoComplete = true;
-
-            tmpComboBoxCustomer.DisplayIndex = tmpCustomerIndex;
-            tmpComboBoxCustomer.AutoComplete = true;
-
-            this.dataGridViewInvoice.Columns.Add(tmpComboBoxArticle);
-            this.dataGridViewInvoice.Columns.Add(tmpComboBoxType);
-            this.dataGridViewInvoice.Columns.Add(tmpComboBoxCustomer);
-
-            this.dataGridViewPositions.Columns.Add(tmpComboBoxArticle);
-            this.dataGridViewPositions.Columns.Add(tmpComboBoxType);
+                this._LocalInboundControl.Parent = null;
+                this._LocalOutboundControl.Parent = null;
+                switch (this.LoadTag)
+                {
+                    case "inbound":
+                        this._LocalInboundControl.Parent = this;
+                        break;
+                    case "outbound":
+                        this._LocalOutboundControl.Parent = this;
+                        break;
+                    default:
+                        this.Dispose();
+                        break;
+                }
+            }
         }
     }
 }

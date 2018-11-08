@@ -64,7 +64,7 @@ namespace UrbanInvoicing.Classes
                     {
                         result = true;
                         // If has last inserted id, add a parameter to hold it.
-                        if (tmpCommand.LastInsertedId != null)
+                        if (tmpCommand.LastInsertedId != null && tmpCommand.LastInsertedId > 0)
                             tmpCommand.Parameters.Add(new MySqlParameter("newId", tmpCommand.LastInsertedId));
 
                         // Return the id of the new record. Convert from Int64 to Int32 (int).
