@@ -43,6 +43,15 @@
             this.labelSumNet = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.dataGridViewInvoicePositions = new System.Windows.Forms.DataGridView();
+            this.artikelIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rabattDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
@@ -54,15 +63,6 @@
             this.buttonCreateType = new System.Windows.Forms.Button();
             this.bindingSourceArtikel = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceTypen = new System.Windows.Forms.BindingSource(this.components);
-            this.artikelIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rabattDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInvoicePositions)).BeginInit();
@@ -137,6 +137,7 @@
             // 
             this.comboBoxCustomers.DataSource = this.bindingSourceCustomers;
             this.comboBoxCustomers.DisplayMember = "name";
+            this.comboBoxCustomers.Dock = System.Windows.Forms.DockStyle.Left;
             this.comboBoxCustomers.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCustomers.FormattingEnabled = true;
             this.comboBoxCustomers.Location = new System.Drawing.Point(325, 118);
@@ -287,109 +288,6 @@
             this.dataGridViewInvoicePositions.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserAddedRow);
             this.dataGridViewInvoicePositions.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserDeletedRow);
             // 
-            // bindingSourcePositions
-            // 
-            this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
-            // 
-            // buttonClose
-            // 
-            this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonClose.Location = new System.Drawing.Point(325, 755);
-            this.buttonClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonClose.Name = "buttonClose";
-            this.buttonClose.Size = new System.Drawing.Size(308, 46);
-            this.buttonClose.TabIndex = 6;
-            this.buttonClose.Text = "Zurück zum Hauptmenü";
-            this.buttonClose.UseVisualStyleBackColor = true;
-            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
-            // 
-            // buttonRemove
-            // 
-            this.buttonRemove.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonRemove.Location = new System.Drawing.Point(1511, 174);
-            this.buttonRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(158, 46);
-            this.buttonRemove.TabIndex = 5;
-            this.buttonRemove.Text = "Entfernen";
-            this.buttonRemove.UseVisualStyleBackColor = true;
-            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
-            // 
-            // dateTimePicker
-            // 
-            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.dateTimePicker.Location = new System.Drawing.Point(325, 70);
-            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dateTimePicker.MinDate = new System.DateTime(1999, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(421, 37);
-            this.dateTimePicker.TabIndex = 0;
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.label5.Location = new System.Drawing.Point(119, 65);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(198, 31);
-            this.label5.TabIndex = 17;
-            this.label5.Text = "Rechnungsdatum:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.label6.Location = new System.Drawing.Point(94, 20);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(223, 31);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "Rechnungsnummer: ";
-            // 
-            // textBoxInvoiceNumber
-            // 
-            this.textBoxInvoiceNumber.Location = new System.Drawing.Point(325, 25);
-            this.textBoxInvoiceNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textBoxInvoiceNumber.MaxLength = 50;
-            this.textBoxInvoiceNumber.Name = "textBoxInvoiceNumber";
-            this.textBoxInvoiceNumber.Size = new System.Drawing.Size(421, 26);
-            this.textBoxInvoiceNumber.TabIndex = 19;
-            // 
-            // buttonCreateArticle
-            // 
-            this.buttonCreateArticle.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.buttonCreateArticle.Location = new System.Drawing.Point(1693, 118);
-            this.buttonCreateArticle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonCreateArticle.Name = "buttonCreateArticle";
-            this.buttonCreateArticle.Size = new System.Drawing.Size(227, 46);
-            this.buttonCreateArticle.TabIndex = 20;
-            this.buttonCreateArticle.Text = "Artikel erstellen";
-            this.buttonCreateArticle.UseVisualStyleBackColor = true;
-            this.buttonCreateArticle.Click += new System.EventHandler(this.buttonCreateArticle_Click);
-            // 
-            // buttonCreateType
-            // 
-            this.buttonCreateType.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.buttonCreateType.Location = new System.Drawing.Point(1693, 174);
-            this.buttonCreateType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.buttonCreateType.Name = "buttonCreateType";
-            this.buttonCreateType.Size = new System.Drawing.Size(227, 46);
-            this.buttonCreateType.TabIndex = 21;
-            this.buttonCreateType.Text = "Typ erstellen";
-            this.buttonCreateType.UseVisualStyleBackColor = true;
-            this.buttonCreateType.Click += new System.EventHandler(this.buttonCreateType_Click);
-            // 
-            // bindingSourceArtikel
-            // 
-            this.bindingSourceArtikel.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
-            // 
-            // bindingSourceTypen
-            // 
-            this.bindingSourceTypen.DataSource = typeof(UrbanInvoicing.Classes.clsType);
-            // 
             // artikelIdDataGridViewTextBoxColumn
             // 
             this.artikelIdDataGridViewTextBoxColumn.DataPropertyName = "ArtikelId";
@@ -448,6 +346,112 @@
             this.nameDataGridViewTextBoxColumn.HeaderText = "name";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bindingSourcePositions
+            // 
+            this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonClose.Location = new System.Drawing.Point(325, 755);
+            this.buttonClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(308, 46);
+            this.buttonClose.TabIndex = 6;
+            this.buttonClose.Text = "Zurück zum Hauptmenü";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // buttonRemove
+            // 
+            this.buttonRemove.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRemove.Location = new System.Drawing.Point(1511, 174);
+            this.buttonRemove.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonRemove.Name = "buttonRemove";
+            this.buttonRemove.Size = new System.Drawing.Size(158, 46);
+            this.buttonRemove.TabIndex = 5;
+            this.buttonRemove.Text = "Entfernen";
+            this.buttonRemove.UseVisualStyleBackColor = true;
+            this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
+            // 
+            // dateTimePicker
+            // 
+            this.dateTimePicker.CalendarFont = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.dateTimePicker.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dateTimePicker.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.dateTimePicker.Location = new System.Drawing.Point(325, 70);
+            this.dateTimePicker.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dateTimePicker.MinDate = new System.DateTime(1999, 1, 1, 0, 0, 0, 0);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.Size = new System.Drawing.Size(421, 37);
+            this.dateTimePicker.TabIndex = 0;
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.label5.Location = new System.Drawing.Point(119, 65);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(198, 31);
+            this.label5.TabIndex = 17;
+            this.label5.Text = "Rechnungsdatum:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.label6.Location = new System.Drawing.Point(94, 20);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(223, 31);
+            this.label6.TabIndex = 18;
+            this.label6.Text = "Rechnungsnummer: ";
+            // 
+            // textBoxInvoiceNumber
+            // 
+            this.textBoxInvoiceNumber.Dock = System.Windows.Forms.DockStyle.Left;
+            this.textBoxInvoiceNumber.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.textBoxInvoiceNumber.Location = new System.Drawing.Point(325, 25);
+            this.textBoxInvoiceNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxInvoiceNumber.MaxLength = 50;
+            this.textBoxInvoiceNumber.Name = "textBoxInvoiceNumber";
+            this.textBoxInvoiceNumber.Size = new System.Drawing.Size(421, 37);
+            this.textBoxInvoiceNumber.TabIndex = 19;
+            // 
+            // buttonCreateArticle
+            // 
+            this.buttonCreateArticle.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonCreateArticle.Location = new System.Drawing.Point(1693, 118);
+            this.buttonCreateArticle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonCreateArticle.Name = "buttonCreateArticle";
+            this.buttonCreateArticle.Size = new System.Drawing.Size(227, 46);
+            this.buttonCreateArticle.TabIndex = 20;
+            this.buttonCreateArticle.Text = "Artikel erstellen";
+            this.buttonCreateArticle.UseVisualStyleBackColor = true;
+            this.buttonCreateArticle.Click += new System.EventHandler(this.buttonCreateArticle_Click);
+            // 
+            // buttonCreateType
+            // 
+            this.buttonCreateType.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonCreateType.Location = new System.Drawing.Point(1693, 174);
+            this.buttonCreateType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonCreateType.Name = "buttonCreateType";
+            this.buttonCreateType.Size = new System.Drawing.Size(227, 46);
+            this.buttonCreateType.TabIndex = 21;
+            this.buttonCreateType.Text = "Typ erstellen";
+            this.buttonCreateType.UseVisualStyleBackColor = true;
+            this.buttonCreateType.Click += new System.EventHandler(this.buttonCreateType_Click);
+            // 
+            // bindingSourceArtikel
+            // 
+            this.bindingSourceArtikel.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
+            // 
+            // bindingSourceTypen
+            // 
+            this.bindingSourceTypen.DataSource = typeof(UrbanInvoicing.Classes.clsType);
             // 
             // frmImport
             // 
