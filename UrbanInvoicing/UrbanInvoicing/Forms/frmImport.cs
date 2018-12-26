@@ -41,6 +41,7 @@ namespace UrbanInvoicing.Forms
                     sumNetto = Convert.ToDouble(this.labelSumNet.Text),
                     sumMwst = Convert.ToDouble(this.labelVatSum.Text),
                     invoiceNumber = this.textBoxInvoiceNumber.Text,
+                    IsExport= false,
                 };
 
                 tmpNewInvoice.invoicePositions = new List<clsInvoicePosition>();
@@ -86,6 +87,9 @@ namespace UrbanInvoicing.Forms
 
         private void dataGridViewInvoicePositions_UserAddedRow(object sender, DataGridViewRowEventArgs e)
         {
+            // Needed? -F
+
+
             // Change sum in labels
 
             //clsInvoicePosition tmpTestInvoicePosition = new clsInvoicePosition();
@@ -205,7 +209,7 @@ namespace UrbanInvoicing.Forms
                             if (this.dataGridViewInvoicePositions[i, j].Value != null && this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", j].Value != null)
                             {
                                 if (this.labelSumGross.Text != "0")
-                                    tmpMwSt += Math.Round(Convert.ToDouble(this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", j].Value)/100 * Convert.ToDouble(this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn",j].Value), 2);
+                                    tmpMwSt += Math.Round(Convert.ToDouble(this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", j].Value) / 100 * Convert.ToDouble(this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", j].Value), 2);
                             }
                         }
                         this.labelVatSum.Text = tmpMwSt.ToString();
@@ -228,7 +232,7 @@ namespace UrbanInvoicing.Forms
             {
                 if (tmpValues[2] > 0)
                     //this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round((tmpValues[0] - ((tmpValues[0] / 100) * tmpValues[2])), 2);
-                    this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[0] - ((tmpValues[0] * tmpValues[2]) / (100+tmpValues[2])), 2);
+                    this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[0] - ((tmpValues[0] * tmpValues[2]) / (100 + tmpValues[2])), 2);
                 else
                     this.dataGridViewInvoicePositions["nettoDataGridViewTextBoxColumn", pRow].Value = Math.Round(tmpValues[0], 2);
             }
@@ -421,13 +425,11 @@ namespace UrbanInvoicing.Forms
 
         private void dataGridViewInvoicePositions_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            bool tmpIsValid = true;
             DataGridViewColumn tmpCurrentColumn = this.dataGridViewInvoicePositions.Columns[e.ColumnIndex];
 
             if (e.RowIndex >= 0)
             {
                 object tmpCurrentValue = this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].Value;
-                string tmpCaption = "Caption", tmpMessage = "Message";
 
                 if (tmpCurrentColumn != null)
                 {
@@ -457,7 +459,7 @@ namespace UrbanInvoicing.Forms
             tmpUserInput.Show();
             //ToDo: Läd nicht neu  Oder jetzt doch? 
             this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
-            
+
             RefreshDataSources();
         }
 

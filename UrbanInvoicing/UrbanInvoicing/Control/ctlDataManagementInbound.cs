@@ -27,7 +27,8 @@ namespace UrbanInvoicing.Control
 
         public void RefreshDataSources()
         {
-            this.bindingSourceInboundInvoices.DataSource = clsInvoice.GetDbList();
+            List<clsInvoice> tmpInvoices = clsInvoice.GetDbList();
+            this.bindingSourceInboundInvoices.DataSource = tmpInvoices.Where(w => w.IsExport == false).ToList();
             this.Articles = clsArticle.GetArticlesFromDB();
             this.Customer = clsCustomer.GetCustomerFromDB();
             this.Types = clsType.GetTypesFromDB();

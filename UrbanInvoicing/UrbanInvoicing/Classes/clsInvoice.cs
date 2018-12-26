@@ -28,7 +28,7 @@ namespace UrbanInvoicing.Classes
 
         public double sumMwst { get; set; }
         public string invoiceNumber { get; set; }
-
+        public bool IsExport { get; set; }
         public List<clsInvoicePosition> invoicePositions = new List<clsInvoicePosition>();
 
         public clsInvoice()
