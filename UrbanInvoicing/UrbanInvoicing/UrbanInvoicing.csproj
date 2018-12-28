@@ -61,6 +61,24 @@
     <Compile Include="Classes\clsInvoicePosition.cs" />
     <Compile Include="Classes\clsSystemstatus.cs" />
     <Compile Include="Classes\clsType.cs" />
+    <Compile Include="Control\ctlDataManagementInbound.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\ctlDataManagementInbound.Designer.cs">
+      <DependentUpon>ctlDataManagementInbound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Control\ctlDataManagementOutbound.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\ctlDataManagementOutbound.Designer.cs">
+      <DependentUpon>ctlDataManagementOutbound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmAddresses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmAddresses.Designer.cs">
+      <DependentUpon>frmAddresses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmContactDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,6 +123,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Control\ctlDataManagementInbound.resx">
+      <DependentUpon>ctlDataManagementInbound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\ctlDataManagementOutbound.resx">
+      <DependentUpon>ctlDataManagementOutbound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmAddresses.resx">
+      <DependentUpon>frmAddresses.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmContactDetail.resx">
       <DependentUpon>frmContactDetail.cs</DependentUpon>
     </EmbeddedResource>
