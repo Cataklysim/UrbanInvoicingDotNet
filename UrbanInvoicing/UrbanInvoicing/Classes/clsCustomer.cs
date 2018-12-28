@@ -23,6 +23,7 @@ namespace UrbanInvoicing.Classes
         public String telefax { get; set; }
         public String email { get; set; }
         public String comment { get; set; }
+        public bool useOtherAdress { get; set; }
         public String invoiceName { get; set; }
         public String invoiceLastName { get; set; }
         public String invoicePlz { get; set; }

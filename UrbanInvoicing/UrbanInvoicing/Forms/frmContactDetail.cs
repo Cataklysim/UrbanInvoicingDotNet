@@ -29,6 +29,7 @@ namespace UrbanInvoicing.Forms
 
         private void load()
         {
+            this.labelId.Text = _Customer.id.ToString();
             this.textBoxCity.Text = _Customer.city;
             this.textBoxComment.Text = _Customer.comment;
             this.textBoxName.Text = _Customer.name;
@@ -37,6 +38,8 @@ namespace UrbanInvoicing.Forms
             this.textBoxFax.Text = _Customer.telefax;
             this.textBoxPhone.Text = _Customer.telefone;
             this.textBoxMail.Text = _Customer.email;
+            if (_Customer.useOtherAdress != null)
+                this.checkBoxOtherInvoiceAdress.Checked = _Customer.useOtherAdress;
             this.textBoxInvoiceCity.Text = _Customer.invoiceCity;
             this.textBoxInvoiceName.Text = _Customer.invoiceName;
             this.textBoxInvoicePostcode.Text = _Customer.invoicePlz;

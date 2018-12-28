@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UrbanInvoicing.Classes;
 
 namespace UrbanInvoicing.Forms
 {
@@ -15,6 +16,15 @@ namespace UrbanInvoicing.Forms
         public frmContacts()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            List<clsCustomer> tmpCustomers = new List<clsCustomer>();
+            tmpCustomers.AddRange(clsCustomer.GetCustomerFromDB());
+
+            frmContactDetail frm = new frmContactDetail(tmpCustomers[2]);
+            frm.ShowDialog();
         }
     }
 }

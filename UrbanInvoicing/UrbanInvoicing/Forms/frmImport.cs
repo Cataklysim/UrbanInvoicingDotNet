@@ -130,6 +130,7 @@ namespace UrbanInvoicing.Forms
             this.bindingSourceCustomers.DataSource = clsCustomer.GetCustomerFromDB();
             this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
             this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
+            
         }
 
         public void LoadRepositories()

@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DevBuild" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
+      <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="ConnectionString" Type="System.String" Scope="Application">
       <Value Profile="(Default)">User Id=urbanInvoicing;Password=urbanInvoicing;Database=urbanInvoicing_test;Port=3307;Server=192.168.100.65;Connection Timeout=10000</Value>
