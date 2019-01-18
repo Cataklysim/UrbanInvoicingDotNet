@@ -304,7 +304,7 @@ namespace UrbanInvoicing.Forms
             try
             {
                 int tmpCustomerId = Convert.ToInt32(this.comboBoxCustomer.SelectedValue);
-                string tmpComment = (this.bindingSourceCustomers.DataSource as List<clsCustomer>).Where(w => w.id == tmpCustomerId).Select(s => s.comment).FirstOrDefault();
+                string tmpComment = (this.bindingSourceCustomers.DataSource as List<clsCustomer>).Where(w => w.Id == tmpCustomerId).Select(s => s.comment).FirstOrDefault();
                 this.richTextBox1.Text = tmpComment;
             }
             catch (Exception ex)

@@ -61,7 +61,7 @@ namespace UrbanInvoicing.Control
                 if (this.dataGridViewOutboundInvoice.Rows[e.RowIndex] != null && this.dataGridViewOutboundInvoice.Rows[e.RowIndex].Cells["CustomerId"] != null)
                 {
                     tmpCustomerId = Convert.ToInt32(this.dataGridViewOutboundInvoice.Rows[e.RowIndex].Cells["CustomerId"].Value);
-                    clsCustomer tmpCustomer = this.Customer.Where(w => w.id == tmpCustomerId).FirstOrDefault();
+                    clsCustomer tmpCustomer = this.Customer.Where(w => w.Id == tmpCustomerId).FirstOrDefault();
                     if (tmpCustomer != null)
                         e.Value = tmpCustomer.invoiceName + " " + tmpCustomer.invoiceLastName;
                 }

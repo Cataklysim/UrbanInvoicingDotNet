@@ -80,11 +80,11 @@
     <Compile Include="Forms\frmAddresses.Designer.cs">
       <DependentUpon>frmAddresses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmContactDetail.cs">
-      <SubType>Form</SubType>
+    <Compile Include="Control\ctlContactDetail.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Forms\frmContactDetail.Designer.cs">
-      <DependentUpon>frmContactDetail.cs</DependentUpon>
+    <Compile Include="Control\ctlContactDetail.Designer.cs">
+      <DependentUpon>ctlContactDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmContacts.cs">
       <SubType>Form</SubType>
@@ -133,8 +133,8 @@
     <EmbeddedResource Include="Forms\frmAddresses.resx">
       <DependentUpon>frmAddresses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmContactDetail.resx">
-      <DependentUpon>frmContactDetail.cs</DependentUpon>
+    <EmbeddedResource Include="Control\ctlContactDetail.resx">
+      <DependentUpon>ctlContactDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmContacts.resx">
       <DependentUpon>frmContacts.cs</DependentUpon>
