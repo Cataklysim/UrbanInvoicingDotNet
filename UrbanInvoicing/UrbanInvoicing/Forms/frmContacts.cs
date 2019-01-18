@@ -19,8 +19,12 @@ namespace UrbanInvoicing.Forms
             this.Text = "Adressbuch";
             this.Customer = clsCustomer.GetCustomerFromDB();
             this.bindingSourceCustomer.DataSource = this.Customer;
+            this._ContactDetail = new ctlContactDetail();
+            this._ContactDetail.Parent = this.groupBoxDetails;
+            this._ContactDetail.Dock = DockStyle.Fill;
         }
 
+        private ctlContactDetail _ContactDetail { get; set; }
         private List<clsCustomer> Customer { get; set; }
 
         private void dataGridViewCustomer_DoubleClick(object sender, EventArgs e)
@@ -36,8 +40,7 @@ namespace UrbanInvoicing.Forms
                 tmpCustomerId = Convert.ToInt32(this.dataGridViewCustomer.SelectedRows[0].Cells["Id"].Value);
                 if (tmpCustomerId > 0)
                 {
-                    frmContactDetail tmpDetails = new frmContactDetail(this.Customer.Where(w => w.id == tmpCustomerId).FirstOrDefault());
-                    tmpDetails.Show();
+                    this._ContactDetail = new ctlContactDetail(this.Customer.Where(w => w.Id == tmpCustomerId).FirstOrDefault());
                 }
             }
         }
@@ -56,13 +59,15 @@ namespace UrbanInvoicing.Forms
                 this.buttonOpen.Enabled = false;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonNewAddress_Click(object sender, EventArgs e)
         {
-            List<clsCustomer> tmpCustomers = new List<clsCustomer>();
-            tmpCustomers.AddRange(clsCustomer.GetCustomerFromDB());
+            this._ContactDetail = new ctlContactDetail();
+        }
 
-            frmContactDetail frm = new frmContactDetail(tmpCustomers[2]);
-            frm.ShowDialog();
+        private void buttonHome_Click(object sender, EventArgs e)
+        {
+            this._ContactDetail = null;
+            this.Dispose();
         }
     }
 }

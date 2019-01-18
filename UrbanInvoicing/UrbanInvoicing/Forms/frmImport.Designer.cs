@@ -325,6 +325,7 @@
             this.rabattDataGridViewTextBoxColumn.DataPropertyName = "Rabatt";
             this.rabattDataGridViewTextBoxColumn.HeaderText = "Rabatt";
             this.rabattDataGridViewTextBoxColumn.Name = "rabattDataGridViewTextBoxColumn";
+            this.rabattDataGridViewTextBoxColumn.Visible = false;
             // 
             // bemerkungDataGridViewTextBoxColumn
             // 
