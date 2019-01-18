@@ -30,16 +30,18 @@
         {
             this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.dataGridViewInvoicePositions = new System.Windows.Forms.DataGridView();
+            this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
             this.labelInvoiceNumber = new System.Windows.Forms.Label();
             this.textBoxInvoiceNumber = new System.Windows.Forms.TextBox();
             this.labelInvoiceDate = new System.Windows.Forms.Label();
-            this.labelRecipient = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.comboBoxCustomer = new System.Windows.Forms.ComboBox();
+            this.bindingSourceCustomers = new System.Windows.Forms.BindingSource(this.components);
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.dataGridViewInvoicePositions = new System.Windows.Forms.DataGridView();
             this.buttonPrint = new System.Windows.Forms.Button();
+            this.labelRecipient = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonRemoveRow = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -49,11 +51,11 @@
             this.labelVAT = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.labelSumNet = new System.Windows.Forms.Label();
+            this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.bindingSourceTypen = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceCustomers = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceArtikel = new System.Windows.Forms.BindingSource(this.components);
             this.artikelIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,12 +64,11 @@
             this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonBackToMenu = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInvoicePositions)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTypen)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePositions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTypen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceArtikel)).BeginInit();
             this.SuspendLayout();
             // 
@@ -80,6 +81,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 174F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 171F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 52F));
+            this.tableLayoutPanel1.Controls.Add(this.dataGridViewInvoicePositions, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.labelInvoiceNumber, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.textBoxInvoiceNumber, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelInvoiceDate, 1, 2);
@@ -87,7 +89,6 @@
             this.tableLayoutPanel1.Controls.Add(this.dateTimePicker, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.comboBoxCustomer, 2, 3);
             this.tableLayoutPanel1.Controls.Add(this.richTextBox1, 2, 4);
-            this.tableLayoutPanel1.Controls.Add(this.dataGridViewInvoicePositions, 2, 5);
             this.tableLayoutPanel1.Controls.Add(this.buttonPrint, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.labelRecipient, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.buttonSave, 4, 1);
@@ -119,6 +120,40 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1991, 1160);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // dataGridViewInvoicePositions
+            // 
+            this.dataGridViewInvoicePositions.AutoGenerateColumns = false;
+            this.dataGridViewInvoicePositions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewInvoicePositions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.artikelIdDataGridViewTextBoxColumn,
+            this.Count,
+            this.typeIdDataGridViewTextBoxColumn,
+            this.mwStDataGridViewTextBoxColumn,
+            this.bruttoDataGridViewTextBoxColumn,
+            this.nettoDataGridViewTextBoxColumn,
+            this.rabattDataGridViewTextBoxColumn,
+            this.bemerkungDataGridViewTextBoxColumn,
+            this.idDataGridViewTextBoxColumn,
+            this.nameDataGridViewTextBoxColumn});
+            this.dataGridViewInvoicePositions.DataSource = this.bindingSourcePositions;
+            this.dataGridViewInvoicePositions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridViewInvoicePositions.Location = new System.Drawing.Point(319, 274);
+            this.dataGridViewInvoicePositions.Name = "dataGridViewInvoicePositions";
+            this.dataGridViewInvoicePositions.RowTemplate.Height = 28;
+            this.dataGridViewInvoicePositions.Size = new System.Drawing.Size(1272, 610);
+            this.dataGridViewInvoicePositions.TabIndex = 8;
+            this.dataGridViewInvoicePositions.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_CellEndEdit);
+            this.dataGridViewInvoicePositions.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_CellEnter);
+            this.dataGridViewInvoicePositions.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_CellValueChanged);
+            this.dataGridViewInvoicePositions.CurrentCellChanged += new System.EventHandler(this.dataGridViewInvoicePositions_CurrentCellChanged);
+            this.dataGridViewInvoicePositions.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewInvoicePositions_DataError);
+            this.dataGridViewInvoicePositions.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserAddedRow);
+            this.dataGridViewInvoicePositions.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserDeletedRow);
+            // 
+            // bindingSourcePositions
+            // 
+            this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
+            // 
             // labelInvoiceNumber
             // 
             this.labelInvoiceNumber.AutoSize = true;
@@ -149,18 +184,6 @@
             this.labelInvoiceDate.Size = new System.Drawing.Size(198, 43);
             this.labelInvoiceDate.TabIndex = 2;
             this.labelInvoiceDate.Text = "Rechnungsdatum:";
-            // 
-            // labelRecipient
-            // 
-            this.labelRecipient.AutoSize = true;
-            this.labelRecipient.Dock = System.Windows.Forms.DockStyle.Right;
-            this.labelRecipient.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.labelRecipient.Location = new System.Drawing.Point(181, 119);
-            this.labelRecipient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.labelRecipient.Name = "labelRecipient";
-            this.labelRecipient.Size = new System.Drawing.Size(131, 47);
-            this.labelRecipient.TabIndex = 3;
-            this.labelRecipient.Text = "Empfänger:";
             // 
             // label4
             // 
@@ -198,6 +221,10 @@
             this.comboBoxCustomer.ValueMember = "id";
             this.comboBoxCustomer.SelectedValueChanged += new System.EventHandler(this.comboBoxCustomer_SelectedValueChanged);
             // 
+            // bindingSourceCustomers
+            // 
+            this.bindingSourceCustomers.DataSource = typeof(UrbanInvoicing.Classes.clsCustomer);
+            // 
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -208,35 +235,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(531, 99);
             this.richTextBox1.TabIndex = 7;
             this.richTextBox1.Text = "";
-            // 
-            // dataGridViewInvoicePositions
-            // 
-            this.dataGridViewInvoicePositions.AutoGenerateColumns = false;
-            this.dataGridViewInvoicePositions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewInvoicePositions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.artikelIdDataGridViewTextBoxColumn,
-            this.typeIdDataGridViewTextBoxColumn,
-            this.mwStDataGridViewTextBoxColumn,
-            this.bruttoDataGridViewTextBoxColumn,
-            this.nettoDataGridViewTextBoxColumn,
-            this.rabattDataGridViewTextBoxColumn,
-            this.bemerkungDataGridViewTextBoxColumn,
-            this.idDataGridViewTextBoxColumn,
-            this.nameDataGridViewTextBoxColumn});
-            this.dataGridViewInvoicePositions.DataSource = this.bindingSourcePositions;
-            this.dataGridViewInvoicePositions.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewInvoicePositions.Location = new System.Drawing.Point(319, 274);
-            this.dataGridViewInvoicePositions.Name = "dataGridViewInvoicePositions";
-            this.dataGridViewInvoicePositions.RowTemplate.Height = 28;
-            this.dataGridViewInvoicePositions.Size = new System.Drawing.Size(1272, 610);
-            this.dataGridViewInvoicePositions.TabIndex = 8;
-            this.dataGridViewInvoicePositions.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_CellEndEdit);
-            this.dataGridViewInvoicePositions.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_CellEnter);
-            this.dataGridViewInvoicePositions.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_CellValueChanged);
-            this.dataGridViewInvoicePositions.CurrentCellChanged += new System.EventHandler(this.dataGridViewInvoicePositions_CurrentCellChanged);
-            this.dataGridViewInvoicePositions.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewInvoicePositions_DataError);
-            this.dataGridViewInvoicePositions.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserAddedRow);
-            this.dataGridViewInvoicePositions.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserDeletedRow);
             // 
             // buttonPrint
             // 
@@ -249,6 +247,18 @@
             this.buttonPrint.Text = "Drucken";
             this.buttonPrint.UseVisualStyleBackColor = true;
             this.buttonPrint.Click += new System.EventHandler(this.buttonPrint_Click);
+            // 
+            // labelRecipient
+            // 
+            this.labelRecipient.AutoSize = true;
+            this.labelRecipient.Dock = System.Windows.Forms.DockStyle.Right;
+            this.labelRecipient.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.labelRecipient.Location = new System.Drawing.Point(181, 119);
+            this.labelRecipient.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelRecipient.Name = "labelRecipient";
+            this.labelRecipient.Size = new System.Drawing.Size(131, 47);
+            this.labelRecipient.TabIndex = 3;
+            this.labelRecipient.Text = "Empfänger:";
             // 
             // buttonSave
             // 
@@ -350,17 +360,20 @@
             this.labelSumNet.TabIndex = 18;
             this.labelSumNet.Text = "0";
             // 
+            // buttonBackToMenu
+            // 
+            this.buttonBackToMenu.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonBackToMenu.Location = new System.Drawing.Point(319, 1056);
+            this.buttonBackToMenu.Name = "buttonBackToMenu";
+            this.buttonBackToMenu.Size = new System.Drawing.Size(308, 46);
+            this.buttonBackToMenu.TabIndex = 19;
+            this.buttonBackToMenu.Text = "Zurück zum Hauptmenü";
+            this.buttonBackToMenu.UseVisualStyleBackColor = true;
+            this.buttonBackToMenu.Click += new System.EventHandler(this.buttonBackToMenu_Click);
+            // 
             // bindingSourceTypen
             // 
             this.bindingSourceTypen.DataSource = typeof(UrbanInvoicing.Classes.clsType);
-            // 
-            // bindingSourceCustomers
-            // 
-            this.bindingSourceCustomers.DataSource = typeof(UrbanInvoicing.Classes.clsCustomer);
-            // 
-            // bindingSourcePositions
-            // 
-            this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
             // 
             // bindingSourceArtikel
             // 
@@ -372,6 +385,12 @@
             this.artikelIdDataGridViewTextBoxColumn.HeaderText = "Artikel";
             this.artikelIdDataGridViewTextBoxColumn.Name = "artikelIdDataGridViewTextBoxColumn";
             this.artikelIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // Count
+            // 
+            this.Count.DataPropertyName = "Count";
+            this.Count.HeaderText = "Menge";
+            this.Count.Name = "Count";
             // 
             // typeIdDataGridViewTextBoxColumn
             // 
@@ -403,6 +422,7 @@
             this.rabattDataGridViewTextBoxColumn.DataPropertyName = "Rabatt";
             this.rabattDataGridViewTextBoxColumn.HeaderText = "Rabatt";
             this.rabattDataGridViewTextBoxColumn.Name = "rabattDataGridViewTextBoxColumn";
+            this.rabattDataGridViewTextBoxColumn.Visible = false;
             // 
             // bemerkungDataGridViewTextBoxColumn
             // 
@@ -424,17 +444,6 @@
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.Visible = false;
             // 
-            // buttonBackToMenu
-            // 
-            this.buttonBackToMenu.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.buttonBackToMenu.Location = new System.Drawing.Point(319, 1056);
-            this.buttonBackToMenu.Name = "buttonBackToMenu";
-            this.buttonBackToMenu.Size = new System.Drawing.Size(308, 46);
-            this.buttonBackToMenu.TabIndex = 19;
-            this.buttonBackToMenu.Text = "Zurück zum Hauptmenü";
-            this.buttonBackToMenu.UseVisualStyleBackColor = true;
-            this.buttonBackToMenu.Click += new System.EventHandler(this.buttonBackToMenu_Click);
-            // 
             // frmExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -452,9 +461,9 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInvoicePositions)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTypen)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePositions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTypen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceArtikel)).EndInit();
             this.ResumeLayout(false);
 
@@ -486,7 +495,9 @@
         private System.Windows.Forms.BindingSource bindingSourceTypen;
         private System.Windows.Forms.BindingSource bindingSourceCustomers;
         private System.Windows.Forms.BindingSource bindingSourceArtikel;
+        private System.Windows.Forms.Button buttonBackToMenu;
         private System.Windows.Forms.DataGridViewTextBoxColumn artikelIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mwStDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bruttoDataGridViewTextBoxColumn;
@@ -495,6 +506,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bemerkungDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button buttonBackToMenu;
     }
 }

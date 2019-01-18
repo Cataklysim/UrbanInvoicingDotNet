@@ -32,6 +32,8 @@ namespace UrbanInvoicing.Classes
 
         public int TypeId { get; set; }
 
+        public double Count { get; set; }
+
         private clsType InvoiceType { get; set; }
 
         private clsArticle Articel { get; set; }

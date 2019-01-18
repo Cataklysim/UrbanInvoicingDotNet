@@ -61,6 +61,7 @@
     <Compile Include="Classes\clsInvoicePosition.cs" />
     <Compile Include="Classes\clsSystemstatus.cs" />
     <Compile Include="Classes\clsType.cs" />
+    <Compile Include="Classes\extGridControl.cs" />
     <Compile Include="Control\ctlDataManagementInbound.cs">
       <SubType>UserControl</SubType>
     </Compile>

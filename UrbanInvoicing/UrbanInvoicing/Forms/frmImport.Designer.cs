@@ -43,15 +43,6 @@
             this.labelSumNet = new System.Windows.Forms.Label();
             this.buttonSave = new System.Windows.Forms.Button();
             this.dataGridViewInvoicePositions = new System.Windows.Forms.DataGridView();
-            this.artikelIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rabattDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
             this.buttonClose = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
@@ -63,6 +54,15 @@
             this.buttonCreateType = new System.Windows.Forms.Button();
             this.bindingSourceArtikel = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceTypen = new System.Windows.Forms.BindingSource(this.components);
+            this.artikelIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rabattDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInvoicePositions)).BeginInit();
@@ -288,65 +288,6 @@
             this.dataGridViewInvoicePositions.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserAddedRow);
             this.dataGridViewInvoicePositions.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserDeletedRow);
             // 
-            // artikelIdDataGridViewTextBoxColumn
-            // 
-            this.artikelIdDataGridViewTextBoxColumn.DataPropertyName = "ArtikelId";
-            this.artikelIdDataGridViewTextBoxColumn.HeaderText = "Artikel";
-            this.artikelIdDataGridViewTextBoxColumn.Name = "artikelIdDataGridViewTextBoxColumn";
-            this.artikelIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // typeIdDataGridViewTextBoxColumn
-            // 
-            this.typeIdDataGridViewTextBoxColumn.DataPropertyName = "TypeId";
-            this.typeIdDataGridViewTextBoxColumn.HeaderText = "Typ";
-            this.typeIdDataGridViewTextBoxColumn.Name = "typeIdDataGridViewTextBoxColumn";
-            this.typeIdDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // mwStDataGridViewTextBoxColumn
-            // 
-            this.mwStDataGridViewTextBoxColumn.DataPropertyName = "MwSt";
-            this.mwStDataGridViewTextBoxColumn.HeaderText = "MwSt";
-            this.mwStDataGridViewTextBoxColumn.Name = "mwStDataGridViewTextBoxColumn";
-            // 
-            // bruttoDataGridViewTextBoxColumn
-            // 
-            this.bruttoDataGridViewTextBoxColumn.DataPropertyName = "Brutto";
-            this.bruttoDataGridViewTextBoxColumn.HeaderText = "Brutto";
-            this.bruttoDataGridViewTextBoxColumn.Name = "bruttoDataGridViewTextBoxColumn";
-            // 
-            // nettoDataGridViewTextBoxColumn
-            // 
-            this.nettoDataGridViewTextBoxColumn.DataPropertyName = "Netto";
-            this.nettoDataGridViewTextBoxColumn.HeaderText = "Netto";
-            this.nettoDataGridViewTextBoxColumn.Name = "nettoDataGridViewTextBoxColumn";
-            // 
-            // rabattDataGridViewTextBoxColumn
-            // 
-            this.rabattDataGridViewTextBoxColumn.DataPropertyName = "Rabatt";
-            this.rabattDataGridViewTextBoxColumn.HeaderText = "Rabatt";
-            this.rabattDataGridViewTextBoxColumn.Name = "rabattDataGridViewTextBoxColumn";
-            // 
-            // bemerkungDataGridViewTextBoxColumn
-            // 
-            this.bemerkungDataGridViewTextBoxColumn.DataPropertyName = "Bemerkung";
-            this.bemerkungDataGridViewTextBoxColumn.HeaderText = "Bemerkung";
-            this.bemerkungDataGridViewTextBoxColumn.MaxInputLength = 300;
-            this.bemerkungDataGridViewTextBoxColumn.Name = "bemerkungDataGridViewTextBoxColumn";
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Visible = false;
-            // 
             // bindingSourcePositions
             // 
             this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
@@ -452,6 +393,66 @@
             // bindingSourceTypen
             // 
             this.bindingSourceTypen.DataSource = typeof(UrbanInvoicing.Classes.clsType);
+            // 
+            // artikelIdDataGridViewTextBoxColumn
+            // 
+            this.artikelIdDataGridViewTextBoxColumn.DataPropertyName = "ArtikelId";
+            this.artikelIdDataGridViewTextBoxColumn.HeaderText = "Artikel";
+            this.artikelIdDataGridViewTextBoxColumn.Name = "artikelIdDataGridViewTextBoxColumn";
+            this.artikelIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // typeIdDataGridViewTextBoxColumn
+            // 
+            this.typeIdDataGridViewTextBoxColumn.DataPropertyName = "TypeId";
+            this.typeIdDataGridViewTextBoxColumn.HeaderText = "Typ";
+            this.typeIdDataGridViewTextBoxColumn.Name = "typeIdDataGridViewTextBoxColumn";
+            this.typeIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // mwStDataGridViewTextBoxColumn
+            // 
+            this.mwStDataGridViewTextBoxColumn.DataPropertyName = "MwSt";
+            this.mwStDataGridViewTextBoxColumn.HeaderText = "MwSt";
+            this.mwStDataGridViewTextBoxColumn.Name = "mwStDataGridViewTextBoxColumn";
+            // 
+            // bruttoDataGridViewTextBoxColumn
+            // 
+            this.bruttoDataGridViewTextBoxColumn.DataPropertyName = "Brutto";
+            this.bruttoDataGridViewTextBoxColumn.HeaderText = "Brutto";
+            this.bruttoDataGridViewTextBoxColumn.Name = "bruttoDataGridViewTextBoxColumn";
+            // 
+            // nettoDataGridViewTextBoxColumn
+            // 
+            this.nettoDataGridViewTextBoxColumn.DataPropertyName = "Netto";
+            this.nettoDataGridViewTextBoxColumn.HeaderText = "Netto";
+            this.nettoDataGridViewTextBoxColumn.Name = "nettoDataGridViewTextBoxColumn";
+            // 
+            // rabattDataGridViewTextBoxColumn
+            // 
+            this.rabattDataGridViewTextBoxColumn.DataPropertyName = "Rabatt";
+            this.rabattDataGridViewTextBoxColumn.HeaderText = "Rabatt";
+            this.rabattDataGridViewTextBoxColumn.Name = "rabattDataGridViewTextBoxColumn";
+            this.rabattDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bemerkungDataGridViewTextBoxColumn
+            // 
+            this.bemerkungDataGridViewTextBoxColumn.DataPropertyName = "Bemerkung";
+            this.bemerkungDataGridViewTextBoxColumn.HeaderText = "Bemerkung";
+            this.bemerkungDataGridViewTextBoxColumn.MaxInputLength = 300;
+            this.bemerkungDataGridViewTextBoxColumn.Name = "bemerkungDataGridViewTextBoxColumn";
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Visible = false;
             // 
             // frmImport
             // 
