@@ -106,15 +106,18 @@ namespace UrbanInvoicing.Forms
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            DialogResult tmpResult = MessageBox.Show("Sind Sie sich sicher diesen Kunden zu löschen? ", "Löschen", MessageBoxButtons.YesNo);
-            if (tmpResult == DialogResult.Yes)
+            if (this._Customer.FirstOrDefault().Id > 0)
             {
-                List<clsCustomer> tmpList = (List<clsCustomer>)this.bindingSourceCustomer.DataSource;
-                clsCustomer tmpCustomer = tmpList.FirstOrDefault();
-                if (tmpCustomer != null)
+                DialogResult tmpResult = MessageBox.Show("Sind Sie sich sicher diesen Kunden zu löschen? ", "Löschen", MessageBoxButtons.YesNo);
+                if (tmpResult == DialogResult.Yes)
                 {
-                    tmpCustomer.DeleteOnDb();
-                    this._Customer = new List<clsCustomer>();
+                    List<clsCustomer> tmpList = (List<clsCustomer>)this.bindingSourceCustomer.DataSource;
+                    clsCustomer tmpCustomer = tmpList.FirstOrDefault();
+                    if (tmpCustomer != null)
+                    {
+                        tmpCustomer.DeleteOnDb();
+                        this._Customer = new List<clsCustomer>();
+                    }
                 }
             }
         }

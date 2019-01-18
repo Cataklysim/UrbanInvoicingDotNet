@@ -154,15 +154,15 @@ namespace UrbanInvoicing.Forms
                 switch (tmpColumnName)
                 {
                     case "mwStDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Netto = (tmpChangedPosition.Brutto / 100) * tmpChangedPosition.MwSt;
+                        tmpChangedPosition.Netto = Math.Round(tmpChangedPosition.Brutto - ((tmpChangedPosition.Brutto / 100) * tmpChangedPosition.MwSt), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["mwStDataGridViewTextBoxColumn"].Value = tmpChangedPosition.MwSt;
                         break;
                     case "bruttoDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Netto = (tmpChangedPosition.Brutto / 100) * tmpChangedPosition.MwSt;
+                        tmpChangedPosition.Netto = Math.Round(tmpChangedPosition.Brutto - ((tmpChangedPosition.Brutto / 100) * tmpChangedPosition.MwSt), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["bruttoDataGridViewTextBoxColumn"].Value = tmpChangedPosition.Brutto;
                         break;
                     case "nettoDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Brutto = tmpChangedPosition.Netto + (((tmpChangedPosition.MwSt / 10) * tmpChangedPosition.Netto) / 10);
+                        tmpChangedPosition.Brutto = Math.Round(tmpChangedPosition.Netto + (((tmpChangedPosition.MwSt / 10) * tmpChangedPosition.Netto) / 10), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["nettoDataGridViewTextBoxColumn"].Value = tmpChangedPosition.Netto;
                         break;
                 }

@@ -16,10 +16,10 @@ namespace UrbanInvoicing.Classes
 
             if (pGridView != null)
             {
-                object item = pGridView.Rows[pRowIndex];
+                object item = (pGridView.Rows[pRowIndex]).DataBoundItem;
                 if (item is T)
-                    if (item is T)
-                        entity = (T)item;
+                    entity = (T)item;
+
             }
 
             return entity;
@@ -30,7 +30,7 @@ namespace UrbanInvoicing.Classes
 
             if (pGridView != null)
             {
-                object item = pGridView.SelectedRows[0];
+                object item = pGridView.SelectedRows[0].DataBoundItem;
                 if (item is T)
                     entity = (T)item;
             }
@@ -48,7 +48,7 @@ namespace UrbanInvoicing.Classes
 
             for (int i = 0; i < pGridView.RowCount; i++)
             {
-                object item = pGridView.Rows[i];
+                object item = pGridView.Rows[i].DataBoundItem;
                 if (item is T)
                     entities.Add((T)item);
             }
