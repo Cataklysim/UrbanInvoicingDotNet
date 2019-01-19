@@ -62,5 +62,11 @@ namespace UrbanInvoicing
             frmDataManagement tmpDataManagement = new frmDataManagement("outbound");
             tmpDataManagement.ShowDialog(this);
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            Report.repo tmpReportDesinger = new Report.repo();
+            tmpReportDesinger.ShowDialog(this);
+        }
     }
 }

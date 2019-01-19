@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,7 +20,8 @@ namespace UrbanInvoicing.Report
 
         private void repo_Load(object sender, EventArgs e)
         {
-
+            this.reportViewer1.ProcessingMode = ProcessingMode.Local;
+            //this.reportViewer1.LocalReport.ReportEmbeddedResource = "UrbanInvoicing.UrbanInvoicing.Report.rptInvoiceHeader.rdlc";
             this.reportViewer1.RefreshReport();
         }
     }
