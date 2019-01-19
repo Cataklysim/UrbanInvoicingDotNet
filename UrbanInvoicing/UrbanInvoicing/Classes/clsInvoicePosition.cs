@@ -26,6 +26,8 @@ namespace UrbanInvoicing.Classes
 
         public double MwSt { get; set; }
 
+        public double MwStCalculated { get; set; }
+
         public double Rabatt { get; set; }
 
         public int ArtikelId { get; set; }
