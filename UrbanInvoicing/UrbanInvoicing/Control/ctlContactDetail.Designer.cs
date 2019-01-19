@@ -67,10 +67,8 @@
             this.textBoxInvoiceSurname = new System.Windows.Forms.TextBox();
             this.labelInvoiceSurname = new System.Windows.Forms.Label();
             this.textBoxInvoiceStreet = new System.Windows.Forms.TextBox();
-            this.bindingSourceCountryList = new System.Windows.Forms.BindingSource(this.components);
             this.checkBoxCompany = new System.Windows.Forms.CheckBox();
             this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCountryList)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -992,7 +990,6 @@
             this.Controls.Add(this.label1);
             this.Name = "ctlContactDetail";
             this.Size = new System.Drawing.Size(1611, 894);
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCountryList)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1040,7 +1037,6 @@
         private System.Windows.Forms.TextBox textBoxInvoiceSurname;
         private System.Windows.Forms.Label labelInvoiceSurname;
         private System.Windows.Forms.TextBox textBoxInvoiceStreet;
-        private System.Windows.Forms.BindingSource bindingSourceCountryList;
         private System.Windows.Forms.CheckBox checkBoxCompany;
     }
 }

@@ -34,7 +34,10 @@
             this.dataGridViewCustomer = new System.Windows.Forms.DataGridView();
             this.groupBoxDetails = new System.Windows.Forms.GroupBox();
             this.buttonNewAddress = new System.Windows.Forms.Button();
+            this.buttonHome = new System.Windows.Forms.Button();
+            this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plzDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.streetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,8 +57,6 @@
             this.invoiceTelefaxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceEmailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.invoiceCommentDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonHome = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -102,6 +103,7 @@
             this.dataGridViewCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameDataGridViewTextBoxColumn,
+            this.Id,
             this.lastNameDataGridViewTextBoxColumn,
             this.plzDataGridViewTextBoxColumn,
             this.streetDataGridViewTextBoxColumn,
@@ -124,8 +126,10 @@
             this.dataGridViewCustomer.DataSource = this.bindingSourceCustomer;
             this.dataGridViewCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewCustomer.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewCustomer.MultiSelect = false;
             this.dataGridViewCustomer.Name = "dataGridViewCustomer";
             this.dataGridViewCustomer.RowTemplate.Height = 28;
+            this.dataGridViewCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridViewCustomer.Size = new System.Drawing.Size(2004, 653);
             this.dataGridViewCustomer.TabIndex = 0;
             this.dataGridViewCustomer.SelectionChanged += new System.EventHandler(this.dataGridViewCustomer_SelectionChanged);
@@ -150,11 +154,32 @@
             this.buttonNewAddress.UseVisualStyleBackColor = true;
             this.buttonNewAddress.Click += new System.EventHandler(this.buttonNewAddress_Click);
             // 
+            // buttonHome
+            // 
+            this.buttonHome.Location = new System.Drawing.Point(1739, 544);
+            this.buttonHome.Name = "buttonHome";
+            this.buttonHome.Size = new System.Drawing.Size(253, 39);
+            this.buttonHome.TabIndex = 3;
+            this.buttonHome.Text = "Zurück zum Hauptmenü";
+            this.buttonHome.UseVisualStyleBackColor = true;
+            this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
+            // 
+            // bindingSourceCustomer
+            // 
+            this.bindingSourceCustomer.DataSource = typeof(UrbanInvoicing.Classes.clsCustomer);
+            // 
             // nameDataGridViewTextBoxColumn
             // 
             this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
             this.nameDataGridViewTextBoxColumn.HeaderText = "Vorname";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.Visible = false;
             // 
             // lastNameDataGridViewTextBoxColumn
             // 
@@ -270,20 +295,6 @@
             this.invoiceCommentDataGridViewTextBoxColumn.HeaderText = "Bemerkung auf Rechnung";
             this.invoiceCommentDataGridViewTextBoxColumn.Name = "invoiceCommentDataGridViewTextBoxColumn";
             // 
-            // bindingSourceCustomer
-            // 
-            this.bindingSourceCustomer.DataSource = typeof(UrbanInvoicing.Classes.clsCustomer);
-            // 
-            // buttonHome
-            // 
-            this.buttonHome.Location = new System.Drawing.Point(1739, 544);
-            this.buttonHome.Name = "buttonHome";
-            this.buttonHome.Size = new System.Drawing.Size(253, 39);
-            this.buttonHome.TabIndex = 3;
-            this.buttonHome.Text = "Zurück zum Hauptmenü";
-            this.buttonHome.UseVisualStyleBackColor = true;
-            this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
-            // 
             // frmContacts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -314,7 +325,9 @@
         private System.Windows.Forms.Button buttonOpen;
         private System.Windows.Forms.GroupBox groupBoxDetails;
         private System.Windows.Forms.Button buttonNewAddress;
+        private System.Windows.Forms.Button buttonHome;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn plzDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn streetDataGridViewTextBoxColumn;
@@ -334,6 +347,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn invoiceTelefaxDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoiceEmailDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn invoiceCommentDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Button buttonHome;
     }
 }

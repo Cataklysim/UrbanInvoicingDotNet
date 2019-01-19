@@ -19,22 +19,17 @@ namespace UrbanInvoicing.Forms
         {
             this._Customer = new List<clsCustomer>();
             this._Customer.Add(new clsCustomer());
+            this.bindingSourceCustomer = new BindingSource();
+            this.bindingSourceCustomer.DataSource = this._Customer;
             InitializeComponent();
-            this.LoadList();
         }
 
         public ctlContactDetail(clsCustomer pCustomer)
         {
             this._Customer = new List<clsCustomer>();
             this._Customer.Add(pCustomer);
-            this.bindingSourceCustomer.DataSource = this._Customer;
             InitializeComponent();
-            this.LoadList();
-            this.load();
-        }
-
-        private void load()
-        {
+            this.bindingSourceCustomer.DataSource = pCustomer;
         }
 
         private void checkBoxOtherInvoiceAdress_CheckedChanged(object sender, EventArgs e)
@@ -46,39 +41,6 @@ namespace UrbanInvoicing.Forms
             this.textBoxInvoicePostcode.ReadOnly = tmpVisible;
             this.textBoxInvoiceStreet.ReadOnly = tmpVisible;
             this.comboBoxInvoiceLandcode.Enabled = !tmpVisible;
-        }
-        private void LoadList()
-        {
-            this._CountryList = new List<string>();
-            this._CountryList.Add("B");
-            this._CountryList.Add("BG");
-            this._CountryList.Add("DK");
-            this._CountryList.Add("D");
-            this._CountryList.Add("EST");
-            this._CountryList.Add("FIN");
-            this._CountryList.Add("F");
-            this._CountryList.Add("GR");
-            this._CountryList.Add("IRL");
-            this._CountryList.Add("I");
-            this._CountryList.Add("HR");
-            this._CountryList.Add("LV");
-            this._CountryList.Add("LT");
-            this._CountryList.Add("L");
-            this._CountryList.Add("M");
-            this._CountryList.Add("NL");
-            this._CountryList.Add("A");
-            this._CountryList.Add("PL");
-            this._CountryList.Add("P");
-            this._CountryList.Add("RO");
-            this._CountryList.Add("S");
-            this._CountryList.Add("SK");
-            this._CountryList.Add("SLO");
-            this._CountryList.Add("E");
-            this._CountryList.Add("CZ");
-            this._CountryList.Add("H");
-            this._CountryList.Add("GB");
-            this._CountryList.Add("Z");
-            this.bindingSourceCountryList.DataSource = this._CountryList;
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
