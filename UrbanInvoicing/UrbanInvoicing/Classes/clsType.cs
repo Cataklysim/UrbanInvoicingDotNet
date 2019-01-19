@@ -29,7 +29,7 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("Select name, id FROM tbType WHERE systemstatus_id = 1");
+                    MySqlCommand tmpCommand = new MySqlCommand("Select name, id FROM tbType WHERE systemstatus_id = 1 ORDER BY name");
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
@@ -113,7 +113,7 @@ namespace UrbanInvoicing.Classes
                 result = false;
             }
 
-            return result; 
+            return result;
         }
     }
 }

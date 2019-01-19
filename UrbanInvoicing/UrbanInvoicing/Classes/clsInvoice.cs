@@ -164,7 +164,7 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpCon = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCom = new MySqlCommand("SELECT * FROM tbInvoice WHERE systemstatus_id <> 11");
+                    MySqlCommand tmpCom = new MySqlCommand("SELECT * FROM tbInvoice WHERE systemstatus_id <> 11 ORDER BY belegdatum");
                     tmpCon.Open();
                     tmpCom.Connection = tmpCon;
                     using (MySqlDataReader tmpReader = tmpCom.ExecuteReader(System.Data.CommandBehavior.CloseConnection))

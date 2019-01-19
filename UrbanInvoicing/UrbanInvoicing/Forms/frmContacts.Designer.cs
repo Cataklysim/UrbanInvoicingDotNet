@@ -77,25 +77,26 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.buttonHome);
             this.splitContainer1.Panel1.Controls.Add(this.buttonNewAddress);
             this.splitContainer1.Panel1.Controls.Add(this.groupBoxDetails);
             this.splitContainer1.Panel1.Controls.Add(this.buttonOpen);
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.buttonHome);
             this.splitContainer1.Panel2.Controls.Add(this.dataGridViewCustomer);
-            this.splitContainer1.Size = new System.Drawing.Size(1403, 690);
-            this.splitContainer1.SplitterDistance = 344;
+            this.splitContainer1.Size = new System.Drawing.Size(1435, 768);
+            this.splitContainer1.SplitterDistance = 383;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
             // buttonHome
             // 
-            this.buttonHome.Location = new System.Drawing.Point(1159, 354);
+            this.buttonHome.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonHome.Location = new System.Drawing.Point(9, 341);
             this.buttonHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonHome.Name = "buttonHome";
-            this.buttonHome.Size = new System.Drawing.Size(169, 25);
+            this.buttonHome.Size = new System.Drawing.Size(205, 30);
             this.buttonHome.TabIndex = 3;
             this.buttonHome.Text = "Zurück zum Hauptmenü";
             this.buttonHome.UseVisualStyleBackColor = true;
@@ -103,10 +104,11 @@
             // 
             // buttonNewAddress
             // 
-            this.buttonNewAddress.Location = new System.Drawing.Point(1159, 15);
+            this.buttonNewAddress.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonNewAddress.Location = new System.Drawing.Point(1168, 17);
             this.buttonNewAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonNewAddress.Name = "buttonNewAddress";
-            this.buttonNewAddress.Size = new System.Drawing.Size(169, 25);
+            this.buttonNewAddress.Size = new System.Drawing.Size(169, 37);
             this.buttonNewAddress.TabIndex = 2;
             this.buttonNewAddress.Text = "Neuer Kontakt";
             this.buttonNewAddress.UseVisualStyleBackColor = true;
@@ -114,6 +116,7 @@
             // 
             // groupBoxDetails
             // 
+            this.groupBoxDetails.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.groupBoxDetails.Location = new System.Drawing.Point(9, 8);
             this.groupBoxDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.groupBoxDetails.Name = "groupBoxDetails";
@@ -126,10 +129,11 @@
             // buttonOpen
             // 
             this.buttonOpen.Enabled = false;
-            this.buttonOpen.Location = new System.Drawing.Point(1159, 73);
+            this.buttonOpen.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonOpen.Location = new System.Drawing.Point(1168, 58);
             this.buttonOpen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(169, 25);
+            this.buttonOpen.Size = new System.Drawing.Size(169, 37);
             this.buttonOpen.TabIndex = 0;
             this.buttonOpen.Text = "Details";
             this.buttonOpen.UseVisualStyleBackColor = true;
@@ -140,6 +144,8 @@
             this.dataGridViewCustomer.AllowUserToAddRows = false;
             this.dataGridViewCustomer.AllowUserToDeleteRows = false;
             this.dataGridViewCustomer.AllowUserToOrderColumns = true;
+            this.dataGridViewCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewCustomer.AutoGenerateColumns = false;
             this.dataGridViewCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -182,15 +188,14 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewCustomer.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewCustomer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewCustomer.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridViewCustomer.Location = new System.Drawing.Point(0, 0);
+            this.dataGridViewCustomer.Location = new System.Drawing.Point(2, 2);
             this.dataGridViewCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewCustomer.MultiSelect = false;
             this.dataGridViewCustomer.Name = "dataGridViewCustomer";
             this.dataGridViewCustomer.RowTemplate.Height = 28;
             this.dataGridViewCustomer.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewCustomer.Size = new System.Drawing.Size(1403, 343);
+            this.dataGridViewCustomer.Size = new System.Drawing.Size(1431, 335);
             this.dataGridViewCustomer.TabIndex = 0;
             this.dataGridViewCustomer.SelectionChanged += new System.EventHandler(this.dataGridViewCustomer_SelectionChanged);
             this.dataGridViewCustomer.DoubleClick += new System.EventHandler(this.dataGridViewCustomer_DoubleClick);
@@ -201,6 +206,7 @@
             this.Id.HeaderText = "Id";
             this.Id.Name = "Id";
             this.Id.Visible = false;
+            this.Id.Width = 44;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -350,7 +356,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1403, 690);
+            this.ClientSize = new System.Drawing.Size(1435, 768);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmContacts";
             this.ShowIcon = false;
