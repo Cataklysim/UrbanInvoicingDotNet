@@ -115,16 +115,20 @@ namespace UrbanInvoicing.Classes
                     tmpCom.Connection = tmpCon;
                     using (MySqlDataReader tmpReader = tmpCom.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
                     {
-                        clsInvoicePosition tmpEntry = new clsInvoicePosition()
+                        while (tmpReader.Read())
                         {
-                            InvoiceId = Convert.ToInt32(tmpReader["invoice_id"]),
-                            Bemerkung = tmpReader["bemerkung"].ToString(),
-                            Netto = Convert.ToDouble(tmpReader["netto"]),
-                            MwSt = Convert.ToDouble(tmpReader["mwst"]),
-                            Rabatt = Convert.ToDouble(tmpReader["rabatt"]),
-                            ArtikelId = Convert.ToInt32(tmpReader["artikel_id"]),
-                            TypeId = Convert.ToInt32(tmpReader["type_id"]),
-                        };
+                            clsInvoicePosition tmpEntry = new clsInvoicePosition()
+                            {
+                                InvoiceId = Convert.ToInt32(tmpReader["invoice_id"]),
+                                Bemerkung = tmpReader["bemerkung"].ToString(),
+                                Netto = Convert.ToDouble(tmpReader["netto"]),
+                                MwSt = Convert.ToDouble(tmpReader["mwst"]),
+                                Rabatt = Convert.ToDouble(tmpReader["rabatt"]),
+                                ArtikelId = Convert.ToInt32(tmpReader["artikel_id"]),
+                                TypeId = Convert.ToInt32(tmpReader["type_id"]),
+                            };
+                            tmpResult.Add(tmpEntry);
+                        }
                     }
                 }
             }

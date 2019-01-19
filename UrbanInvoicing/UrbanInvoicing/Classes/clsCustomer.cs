@@ -12,7 +12,7 @@ namespace UrbanInvoicing.Classes
     public class clsCustomer : clsDatabaseObject
     {
 
-        public int Id { get; set; }
+        public int id { get; set; }
         public String name { get; set; }
         public String lastName { get; set; }
         public String plz { get; set; }
@@ -56,7 +56,7 @@ namespace UrbanInvoicing.Classes
                         {
                             clsCustomer customer = new clsCustomer();
                             if(tmpReader["id"] != DBNull.Value)
-                            customer.Id = Convert.ToInt32(tmpReader["id"]);
+                            customer.id = Convert.ToInt32(tmpReader["id"]);
                             if (tmpReader["name"] != DBNull.Value)
                                 customer.name = tmpReader["name"].ToString();
                             if (tmpReader["lastName"] != DBNull.Value)
@@ -155,11 +155,11 @@ namespace UrbanInvoicing.Classes
             using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
             {
                 MySqlCommand tmpCommand = new MySqlCommand("UPDATE tbCustomer SET systemstatus_id = 11 WHERE id = @id", tmpConnection);
-                if (this.Id == 0)
+                if (this.id == 0)
                 {
-                    this.Id = clsCustomer.GetId(this.name);
+                    this.id = clsCustomer.GetId(this.name);
                 }
-                tmpCommand.Parameters.AddWithValue("@id", this.Id);
+                tmpCommand.Parameters.AddWithValue("@id", this.id);
             }
         }
 
@@ -168,13 +168,24 @@ namespace UrbanInvoicing.Classes
             bool tmpResult = false;
             using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
             {
-                MySqlCommand tmpCommand = new MySqlCommand("SELECT COUNT(Id) FROM tbCustomer WHERE name = @name", tmpConnection);
+                MySqlCommand tmpCommand = new MySqlCommand("SELECT COUNT(Id) AS Result FROM tbCustomer WHERE name = @name", tmpConnection);
                 tmpCommand.Parameters.AddWithValue("@name", pName);
                 tmpCommand.Connection.Open();
 
-                if ((int)tmpCommand.ExecuteScalar() > 0)
-                    tmpResult = true;
-            }
+                using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                {
+                    while (tmpReader.Read())
+                    {
+                        if(tmpReader["Result"] != DBNull.Value)
+                        {
+                            int tmp = Convert.ToInt32(tmpReader["Result"]);
+                            if (tmp > 1)
+                                tmpResult = true;
+                        }
+                    }
+                }
+
+                    }
             return tmpResult;
         }
 

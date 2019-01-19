@@ -123,7 +123,7 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("SELECT ID FROM tbInvoice WHERE customerId = @CustomerId AND date = @Date AND printed = @printed AND sumBrutto = @Brutto AND sumNetto = @Netto and sumMwst = @MWST AND invoiceNumber = @invoiceNumber");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT id FROM tbInvoice WHERE customer_Id = @CustomerId AND belegdatum = @Date AND printed = @printed AND summeBrutto = @Brutto AND summeNetto = @Netto and summeMwst = @MWST AND invoiceNumber = @invoiceNumber");
                     tmpCommand.Parameters.AddWithValue("@CustomerId", pInvoice.customerId);
                     tmpCommand.Parameters.AddWithValue("@Date", pInvoice.date);
                     tmpCommand.Parameters.AddWithValue("@printed", pInvoice.printed);
@@ -160,7 +160,7 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpCon = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCom = new MySqlCommand("SELECT * FROM TBINVOICE WHERE Systemstaus_Id <> 11");
+                    MySqlCommand tmpCom = new MySqlCommand("SELECT * FROM tbInvoice WHERE systemstatus_id <> 11");
                     tmpCon.Open();
                     tmpCom.Connection = tmpCon;
                     using (MySqlDataReader tmpReader = tmpCom.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
@@ -169,14 +169,14 @@ namespace UrbanInvoicing.Classes
                         {
                             clsInvoice tmpEntry = new clsInvoice()
                             {
-                                Id = Convert.ToInt32(tmpReader["Id"]),
-                                customerId = Convert.ToInt32(tmpReader["customerId"]),
-                                date = Convert.ToDateTime(tmpReader["date"]),
+                                id = Convert.ToInt32(tmpReader["Id"]),
+                                customerId = Convert.ToInt32(tmpReader["customer_id"]),
+                                date = Convert.ToDateTime(tmpReader["belegdatum"]),
                                 invoiceNumber = tmpReader["invoiceNumber"].ToString(),
                                 printed = Convert.ToBoolean(tmpReader["printed"]),
-                                sumBrutto = Convert.ToDouble(tmpReader["sumBrutto"]),
-                                sumNetto = Convert.ToDouble(tmpReader["sumNetto"]),
-                                sumMwst = Convert.ToDouble(tmpReader["sumMwst"]),
+                                sumBrutto = Convert.ToDouble(tmpReader["summeBrutto"]),
+                                sumNetto = Convert.ToDouble(tmpReader["summeNetto"]),
+                                sumMwst = Convert.ToDouble(tmpReader["summeMwst"]),
                             };
                             tmpResult.Add(tmpEntry);
                         }

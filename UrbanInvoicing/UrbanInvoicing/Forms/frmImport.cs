@@ -193,6 +193,9 @@ namespace UrbanInvoicing.Forms
                     this.labelSumGross.Text = Math.Round(tmpSumGross, 2).ToString();
                     this.labelSumNet.Text = Math.Round(tmpSumNet, 2).ToString();
                     this.labelVatSum.Text = Math.Round(tmpSumVat, 2).ToString();
+                    this.labelSumGross.Refresh();
+                    this.labelSumNet.Refresh();
+                    this.labelVatSum.Refresh();
                 }
 
 
