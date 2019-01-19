@@ -31,6 +31,10 @@ namespace UrbanInvoicing.Classes
         public bool IsExport { get; set; }
         public List<clsInvoicePosition> invoicePositions = new List<clsInvoicePosition>();
 
+        public DateTime arrivalDate { get; set; }
+        public DateTime departureDate { get; set; }
+        public DateTime paymentDate { get; set; }
+
         public clsInvoice()
         {
 
