@@ -32,15 +32,19 @@ namespace UrbanInvoicing.Control
             this.Articles = clsArticle.GetArticlesFromDB();
             this.Customer = clsCustomer.GetCustomerFromDB();
             this.Types = clsType.GetTypesFromDB();
+            this.LoadCells();
         }
         private void dataGridViewOutboundInvoice_SelectionChanged(object sender, EventArgs e)
         {
             int tmpInvoideId = 0;
-            if (this.dataGridViewOutboundInvoice.SelectedRows[0] != null && this.dataGridViewOutboundInvoice.SelectedRows[0].Cells["Id"] != null)
+            if (this.dataGridViewOutboundInvoice.SelectedRows.Count > 0 && this.dataGridViewOutboundInvoice.SelectedRows[0] != null && this.dataGridViewOutboundInvoice.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"] != null)
             {
-                tmpInvoideId = Convert.ToInt32(this.dataGridViewOutboundInvoice.SelectedRows[0].Cells["Id"]);
+                tmpInvoideId = Convert.ToInt32(this.dataGridViewOutboundInvoice.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"]);
                 if (tmpInvoideId > 0)
+                {
                     this.ChangePositionDataSource(tmpInvoideId);
+                    this.LoadPositionCells();
+                }
             }
         }
         private void ChangePositionDataSource(int pInvoiceId)
@@ -52,44 +56,57 @@ namespace UrbanInvoicing.Control
                 this.bindingSourcePositions.DataSource = new List<clsInvoicePosition>();
 
         }
-        private void dataGridViewOutboundInvoice_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+
+
+        private void LoadPositionCells()
         {
-            DataGridViewCell tmpCurrentCell = (sender as DataGridViewCell);
-            if (tmpCurrentCell.OwningColumn.Name == "customer")
+            foreach (DataGridViewRow tmpRow in this.dataGridViewOutboundInvoicePosition.Rows)
             {
-                int tmpCustomerId = 0;
-                if (this.dataGridViewOutboundInvoice.Rows[e.RowIndex] != null && this.dataGridViewOutboundInvoice.Rows[e.RowIndex].Cells["CustomerId"] != null)
+                foreach (DataGridViewCell tmpCell in tmpRow.Cells)
                 {
-                    tmpCustomerId = Convert.ToInt32(this.dataGridViewOutboundInvoice.Rows[e.RowIndex].Cells["CustomerId"].Value);
-                    clsCustomer tmpCustomer = this.Customer.Where(w => w.Id == tmpCustomerId).FirstOrDefault();
-                    if (tmpCustomer != null)
-                        e.Value = tmpCustomer.invoiceName + " " + tmpCustomer.invoiceLastName;
+                    if (tmpCell != null && tmpCell.OwningColumn.Name == "article")
+                    {
+                        int tmpArticleId = 0;
+                        if (tmpRow.Cells["artikelIdDataGridViewTextBoxColumn"] != null)
+                        {
+                            tmpArticleId = Convert.ToInt32(tmpRow.Cells["artikelIdDataGridViewTextBoxColumn"].Value);
+                            clsArticle tmpArticle = this.Articles.Where(w => w.id == tmpArticleId).FirstOrDefault();
+                            if (tmpArticle != null)
+                                tmpCell.Value = tmpArticle.name;
+                        }
+                    }
+                    else if (tmpCell != null && tmpCell.OwningColumn.Name == "Type")
+                    {
+                        int tmpTypeId = 0;
+                        if (tmpRow.Cells["TypeIdDataGridViewTextBoxColumn"] != null)
+                        {
+                            tmpTypeId = Convert.ToInt32(tmpRow.Cells["TypeIdDataGridViewTextBoxColumn"].Value);
+                            clsType tmpType = this.Types.Where(w => w.id == tmpTypeId).FirstOrDefault();
+                            if (tmpType != null)
+                                tmpCell.Value = tmpType.name;
+                        }
+                    }
                 }
             }
         }
-        private void dataGridViewOutboundInvoicePosition_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+
+        private void LoadCells()
         {
-            DataGridViewCell tmpCurrentCell = (sender as DataGridViewCell);
-            if (tmpCurrentCell.OwningColumn.Name == "article")
+            foreach (DataGridViewRow tmpRow in this.dataGridViewOutboundInvoice.Rows)
             {
-                int tmpArticleId = 0;
-                if (this.dataGridViewOutboundInvoicePosition.Rows[e.RowIndex] != null && this.dataGridViewOutboundInvoicePosition.Rows[e.RowIndex].Cells["ArtikelId"] != null)
+                foreach (DataGridViewCell tmpCell in tmpRow.Cells)
                 {
-                    tmpArticleId = Convert.ToInt32(this.dataGridViewOutboundInvoicePosition.Rows[e.RowIndex].Cells["ArtikelId"].Value);
-                    clsArticle tmpArticle = this.Articles.Where(w => w.Id == tmpArticleId).FirstOrDefault();
-                    if (tmpArticle != null)
-                        e.Value = tmpArticle.name;
-                }
-            }
-            else if (tmpCurrentCell.OwningColumn.Name == "Type")
-            {
-                int tmpTypeId = 0;
-                if (this.dataGridViewOutboundInvoicePosition.Rows[e.RowIndex] != null && this.dataGridViewOutboundInvoicePosition.Rows[e.RowIndex].Cells["TypeId"] != null)
-                {
-                    tmpTypeId = Convert.ToInt32(this.dataGridViewOutboundInvoicePosition.Rows[e.RowIndex].Cells["TypeId"].Value);
-                    clsType tmpType = this.Types.Where(w => w.id == tmpTypeId).FirstOrDefault();
-                    if (tmpType != null)
-                        e.Value = tmpType.name;
+                    if (tmpCell != null && tmpCell.OwningColumn.Name == "customer")
+                    {
+                        int tmpCustomerId = 0;
+                        if (tmpRow.Cells["customerIdDataGridViewTextBoxColumn"] != null)
+                        {
+                            tmpCustomerId = Convert.ToInt32(tmpRow.Cells["customerIdDataGridViewTextBoxColumn"].Value);
+                            clsCustomer tmpCustomer = this.Customer.Where(w => w.id == tmpCustomerId).FirstOrDefault();
+                            if (tmpCustomer != null)
+                                tmpCell.Value = (String.IsNullOrWhiteSpace(tmpCustomer.invoiceName) ? tmpCustomer.name : tmpCustomer.invoiceName) + " " + (String.IsNullOrWhiteSpace(tmpCustomer.invoiceLastName) ? tmpCustomer.lastName : tmpCustomer.invoiceName);
+                        }
+                    }
                 }
             }
         }

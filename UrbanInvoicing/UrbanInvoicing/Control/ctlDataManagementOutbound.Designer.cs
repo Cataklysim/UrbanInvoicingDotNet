@@ -29,16 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.dataGridViewOutboundInvoice = new System.Windows.Forms.DataGridView();
-            this.bindingSourceOutboundInvoices = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewOutboundInvoicePosition = new System.Windows.Forms.DataGridView();
-            this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceTypes = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.article = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.customerIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sumBruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,9 +50,8 @@
             this.invoiceNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourceOutboundInvoices = new System.Windows.Forms.BindingSource(this.components);
             this.bemerkungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.article = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nettoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,13 +60,17 @@
             this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bindingSourcePositions = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceTypes = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutboundInvoice)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOutboundInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutboundInvoicePosition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOutboundInvoices)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePositions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTypes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).BeginInit();
@@ -75,25 +81,41 @@
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer.Name = "splitContainer";
             this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer.Panel1
             // 
+            this.splitContainer.Panel1.Controls.Add(this.label2);
             this.splitContainer.Panel1.Controls.Add(this.dataGridViewOutboundInvoice);
             // 
             // splitContainer.Panel2
             // 
+            this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.dataGridViewOutboundInvoicePosition);
-            this.splitContainer.Size = new System.Drawing.Size(1593, 960);
-            this.splitContainer.SplitterDistance = 531;
+            this.splitContainer.Size = new System.Drawing.Size(1062, 624);
+            this.splitContainer.SplitterDistance = 345;
+            this.splitContainer.SplitterWidth = 3;
             this.splitContainer.TabIndex = 0;
             // 
             // dataGridViewOutboundInvoice
             // 
             this.dataGridViewOutboundInvoice.AllowUserToAddRows = false;
             this.dataGridViewOutboundInvoice.AllowUserToDeleteRows = false;
+            this.dataGridViewOutboundInvoice.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewOutboundInvoice.AutoGenerateColumns = false;
+            this.dataGridViewOutboundInvoice.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOutboundInvoice.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewOutboundInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOutboundInvoice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -107,27 +129,42 @@
             this.idDataGridViewTextBoxColumn1,
             this.nameDataGridViewTextBoxColumn});
             this.dataGridViewOutboundInvoice.DataSource = this.bindingSourceOutboundInvoices;
-            this.dataGridViewOutboundInvoice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewOutboundInvoice.Location = new System.Drawing.Point(0, 0);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewOutboundInvoice.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridViewOutboundInvoice.Location = new System.Drawing.Point(98, 0);
+            this.dataGridViewOutboundInvoice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewOutboundInvoice.MultiSelect = false;
             this.dataGridViewOutboundInvoice.Name = "dataGridViewOutboundInvoice";
             this.dataGridViewOutboundInvoice.ReadOnly = true;
             this.dataGridViewOutboundInvoice.RowTemplate.Height = 28;
             this.dataGridViewOutboundInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOutboundInvoice.Size = new System.Drawing.Size(1593, 531);
+            this.dataGridViewOutboundInvoice.Size = new System.Drawing.Size(964, 345);
             this.dataGridViewOutboundInvoice.TabIndex = 0;
-            this.dataGridViewOutboundInvoice.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewOutboundInvoice_CellFormatting);
             this.dataGridViewOutboundInvoice.SelectionChanged += new System.EventHandler(this.dataGridViewOutboundInvoice_SelectionChanged);
-            // 
-            // bindingSourceOutboundInvoices
-            // 
-            this.bindingSourceOutboundInvoices.DataSource = typeof(UrbanInvoicing.Classes.clsInvoice);
             // 
             // dataGridViewOutboundInvoicePosition
             // 
             this.dataGridViewOutboundInvoicePosition.AllowUserToAddRows = false;
             this.dataGridViewOutboundInvoicePosition.AllowUserToDeleteRows = false;
+            this.dataGridViewOutboundInvoicePosition.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridViewOutboundInvoicePosition.AutoGenerateColumns = false;
+            this.dataGridViewOutboundInvoicePosition.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewOutboundInvoicePosition.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewOutboundInvoicePosition.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewOutboundInvoicePosition.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.bemerkungDataGridViewTextBoxColumn,
@@ -142,32 +179,61 @@
             this.idDataGridViewTextBoxColumn2,
             this.nameDataGridViewTextBoxColumn1});
             this.dataGridViewOutboundInvoicePosition.DataSource = this.bindingSourcePositions;
-            this.dataGridViewOutboundInvoicePosition.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridViewOutboundInvoicePosition.Location = new System.Drawing.Point(0, 0);
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 9.25F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewOutboundInvoicePosition.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewOutboundInvoicePosition.Location = new System.Drawing.Point(98, 0);
+            this.dataGridViewOutboundInvoicePosition.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewOutboundInvoicePosition.MultiSelect = false;
             this.dataGridViewOutboundInvoicePosition.Name = "dataGridViewOutboundInvoicePosition";
             this.dataGridViewOutboundInvoicePosition.ReadOnly = true;
             this.dataGridViewOutboundInvoicePosition.RowTemplate.Height = 28;
             this.dataGridViewOutboundInvoicePosition.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOutboundInvoicePosition.Size = new System.Drawing.Size(1593, 425);
+            this.dataGridViewOutboundInvoicePosition.Size = new System.Drawing.Size(964, 276);
             this.dataGridViewOutboundInvoicePosition.TabIndex = 0;
-            this.dataGridViewOutboundInvoicePosition.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridViewOutboundInvoicePosition_CellFormatting);
             // 
-            // bindingSourcePositions
+            // label2
             // 
-            this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.label2.Location = new System.Drawing.Point(3, 4);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Rechnungen";
             // 
-            // bindingSourceTypes
+            // label1
             // 
-            this.bindingSourceTypes.DataSource = typeof(UrbanInvoicing.Classes.clsType);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.label1.Location = new System.Drawing.Point(3, 4);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 20);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Positionen";
             // 
-            // bindingSourceCustomer
+            // customer
             // 
-            this.bindingSourceCustomer.DataSource = typeof(UrbanInvoicing.Classes.clsCustomer);
+            this.customer.HeaderText = "Kunde";
+            this.customer.Name = "customer";
+            this.customer.ReadOnly = true;
             // 
-            // bindingSourceArticles
+            // article
             // 
-            this.bindingSourceArticles.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
+            this.article.HeaderText = "Artikel";
+            this.article.Name = "article";
+            this.article.ReadOnly = true;
+            // 
+            // Type
+            // 
+            this.Type.HeaderText = "Typ";
+            this.Type.Name = "Type";
+            this.Type.ReadOnly = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -176,12 +242,6 @@
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
             this.idDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // customer
-            // 
-            this.customer.HeaderText = "Kunde";
-            this.customer.Name = "customer";
-            this.customer.ReadOnly = true;
             // 
             // customerIdDataGridViewTextBoxColumn
             // 
@@ -240,6 +300,11 @@
             this.nameDataGridViewTextBoxColumn.HeaderText = "name?";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // bindingSourceOutboundInvoices
+            // 
+            this.bindingSourceOutboundInvoices.DataSource = typeof(UrbanInvoicing.Classes.clsInvoice);
             // 
             // bemerkungDataGridViewTextBoxColumn
             // 
@@ -247,18 +312,6 @@
             this.bemerkungDataGridViewTextBoxColumn.HeaderText = "Bemerkung";
             this.bemerkungDataGridViewTextBoxColumn.Name = "bemerkungDataGridViewTextBoxColumn";
             this.bemerkungDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // article
-            // 
-            this.article.HeaderText = "Artikel";
-            this.article.Name = "article";
-            this.article.ReadOnly = true;
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Typ";
-            this.Type.Name = "Type";
-            this.Type.ReadOnly = true;
             // 
             // bruttoDataGridViewTextBoxColumn
             // 
@@ -318,21 +371,41 @@
             this.nameDataGridViewTextBoxColumn1.HeaderText = "name?";
             this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
             this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // bindingSourcePositions
+            // 
+            this.bindingSourcePositions.DataSource = typeof(UrbanInvoicing.Classes.clsInvoicePosition);
+            // 
+            // bindingSourceTypes
+            // 
+            this.bindingSourceTypes.DataSource = typeof(UrbanInvoicing.Classes.clsType);
+            // 
+            // bindingSourceCustomer
+            // 
+            this.bindingSourceCustomer.DataSource = typeof(UrbanInvoicing.Classes.clsCustomer);
+            // 
+            // bindingSourceArticles
+            // 
+            this.bindingSourceArticles.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
             // 
             // ctlDataManagementOutbound
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ctlDataManagementOutbound";
-            this.Size = new System.Drawing.Size(1593, 960);
+            this.Size = new System.Drawing.Size(1062, 624);
             this.splitContainer.Panel1.ResumeLayout(false);
+            this.splitContainer.Panel1.PerformLayout();
             this.splitContainer.Panel2.ResumeLayout(false);
+            this.splitContainer.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutboundInvoice)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOutboundInvoices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOutboundInvoicePosition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOutboundInvoices)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePositions)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceTypes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).EndInit();
@@ -351,6 +424,8 @@
         private System.Windows.Forms.BindingSource bindingSourceTypes;
         private System.Windows.Forms.BindingSource bindingSourceCustomer;
         private System.Windows.Forms.BindingSource bindingSourceArticles;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customer;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerIdDataGridViewTextBoxColumn;

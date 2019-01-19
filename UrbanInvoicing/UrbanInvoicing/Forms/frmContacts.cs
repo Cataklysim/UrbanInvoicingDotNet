@@ -40,9 +40,9 @@ namespace UrbanInvoicing.Forms
                 tmpCustomerId = Convert.ToInt32(this.dataGridViewCustomer.SelectedRows[0].Cells["Id"].Value);
                 if (tmpCustomerId > 0)
                 {
-                    clsCustomer tmpCustomer = this.Customer.Where(w => w.Id == tmpCustomerId).FirstOrDefault();
+                    clsCustomer tmpCustomer = this.Customer.Where(w => w.id == tmpCustomerId).FirstOrDefault();
                     if (tmpCustomer != null)
-                        this._ContactDetail = new ctlContactDetail(tmpCustomer);
+                        this._ContactDetail.LoadOrCreateCustomer(tmpCustomer);
                     this._ContactDetail.Refresh();
                 }
             }
@@ -64,7 +64,7 @@ namespace UrbanInvoicing.Forms
 
         private void buttonNewAddress_Click(object sender, EventArgs e)
         {
-            this._ContactDetail = new ctlContactDetail();
+            this._ContactDetail.LoadOrCreateCustomer();
         }
 
         private void buttonHome_Click(object sender, EventArgs e)

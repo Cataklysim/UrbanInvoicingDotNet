@@ -92,12 +92,6 @@
     <Compile Include="Control\ctlDataManagementOutbound.Designer.cs">
       <DependentUpon>ctlDataManagementOutbound.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmAddresses.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmAddresses.Designer.cs">
-      <DependentUpon>frmAddresses.cs</DependentUpon>
-    </Compile>
     <Compile Include="Control\ctlContactDetail.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -154,9 +148,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\ctlDataManagementOutbound.resx">
       <DependentUpon>ctlDataManagementOutbound.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmAddresses.resx">
-      <DependentUpon>frmAddresses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Control\ctlContactDetail.resx">
       <DependentUpon>ctlContactDetail.cs</DependentUpon>

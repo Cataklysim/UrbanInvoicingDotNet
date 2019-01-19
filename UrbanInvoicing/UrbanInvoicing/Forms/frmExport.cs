@@ -141,6 +141,9 @@ namespace UrbanInvoicing.Forms
                     this.labelSumGross.Text = Math.Round(tmpSumGross, 2).ToString();
                     this.labelSumNet.Text = Math.Round(tmpSumNet, 2).ToString();
                     this.labelVAT.Text = Math.Round(tmpSumVat, 2).ToString();
+                    this.labelSumGross.Refresh();
+                    this.labelSumNet.Refresh();
+                    this.labelVAT.Refresh();
                 }
             }
         }
@@ -304,7 +307,7 @@ namespace UrbanInvoicing.Forms
             try
             {
                 int tmpCustomerId = Convert.ToInt32(this.comboBoxCustomer.SelectedValue);
-                string tmpComment = (this.bindingSourceCustomers.DataSource as List<clsCustomer>).Where(w => w.Id == tmpCustomerId).Select(s => s.comment).FirstOrDefault();
+                string tmpComment = (this.bindingSourceCustomers.DataSource as List<clsCustomer>).Where(w => w.id == tmpCustomerId).Select(s => s.comment).FirstOrDefault();
                 this.richTextBox1.Text = tmpComment;
             }
             catch (Exception ex)
@@ -405,7 +408,7 @@ namespace UrbanInvoicing.Forms
             if (e.RowIndex >= 0)
             {
                 string tmpMessage = "", tmpCaption = "";
-                if (this.ValidateCell(e.RowIndex, e.ColumnIndex, out tmpMessage, out tmpCaption))
+                if (!this.ValidateCell(e.RowIndex, e.ColumnIndex, out tmpMessage, out tmpCaption))
                     MessageBox.Show(tmpMessage, tmpCaption, MessageBoxButtons.OK);
                 else
                 {

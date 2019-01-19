@@ -10,9 +10,6 @@ using System.Windows.Forms;
 using UrbanInvoicing.Classes;
 using UrbanInvoicing.Control;
 
-
-/*ToDo: Das wird sie Überfordern. Wir müssen es als eine Ansicht für Eingangsrechnung und
- * eine für Ausgangsrechnungen, sowie die Extra maske für die Adressübersicht machen*/
 namespace UrbanInvoicing.Forms
 {
     public partial class frmDataManagement : Form
@@ -44,21 +41,52 @@ namespace UrbanInvoicing.Forms
             {
                 this._LocalInboundControl.Parent = null;
                 this._LocalOutboundControl.Parent = null;
+
                 switch (this.LoadTag)
                 {
                     case "inbound":
-                        this._LocalInboundControl.Parent = this;
+                        this._LocalInboundControl.Parent = this.splitContainer1.Panel1;
                         this.Text = "Eingehende Rechnungen";
+                        this._LocalInboundControl.RefreshDataSources();
+                        this._LocalInboundControl.Dock = DockStyle.Fill;
+                        this._LocalInboundControl.Refresh();
+
                         break;
                     case "outbound":
-                        this._LocalOutboundControl.Parent = this;
+                        this._LocalOutboundControl.Parent = this.splitContainer1.Panel1;
                         this.Text = "Ausgehende Rechnungen";
+                        this._LocalOutboundControl.RefreshDataSources();
+                        this._LocalOutboundControl.Dock = DockStyle.Fill;
+                        this._LocalOutboundControl.Refresh();
                         break;
                     default:
                         this.Dispose();
                         break;
                 }
+                this.splitContainer1.Refresh();
             }
+        }
+
+        private void buttonBackToMenu_Click(object sender, EventArgs e)
+        {
+            this._LocalInboundControl = null;
+            this._LocalOutboundControl = null;
+            this.Dispose();
+        }
+
+        private void frmDataManagement_ResizeEnd(object sender, EventArgs e)
+        {
+            this.splitContainer1.Refresh();
+        }
+
+        private void frmDataManagement_MaximizedBoundsChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frmDataManagement_SizeChanged(object sender, EventArgs e)
+        {
+            this.splitContainer1.Refresh();
         }
     }
 }
