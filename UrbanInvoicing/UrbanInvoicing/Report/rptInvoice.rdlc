@@ -52,12 +52,20 @@
         <CommandText>/* Local Query */</CommandText>
       </Query>
       <Fields>
+        <Field Name="arrivalDate">
+          <DataField>arrivalDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
         <Field Name="customerId">
           <DataField>customerId</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="date">
           <DataField>date</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="departureDate">
+          <DataField>departureDate</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="id">
@@ -79,6 +87,10 @@
         <Field Name="name">
           <DataField>name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="paymentDate">
+          <DataField>paymentDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
         </Field>
         <Field Name="sumBrutto">
           <DataField>sumBrutto</DataField>
@@ -166,6 +178,10 @@
           <DataField>MwSt</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
+        <Field Name="MwStCalculated">
+          <DataField>MwStCalculated</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
         <Field Name="name">
           <DataField>name</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -206,6 +222,10 @@
         <Field Name="email">
           <DataField>email</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="id">
+          <DataField>id</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="Id">
           <DataField>Id</DataField>
@@ -357,7 +377,7 @@
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.8249cm</Height>
+                  <Height>0.07938cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -512,7 +532,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.98365cm</Height>
+                  <Height>0.69261cm</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -524,7 +544,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>= Variables!positionsId.Value = Variables!positionsId.Value+1</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -554,7 +577,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Count.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -584,7 +610,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!name.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -614,7 +643,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Bemerkung.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -644,7 +676,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Netto.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -681,7 +716,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -711,7 +749,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -741,7 +782,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>= "Zzgl. " &amp; Fields!MwSt.Value &amp; " Mwst."</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -771,7 +815,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -793,15 +840,18 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Textbox47">
+                        <Textbox Name="MwStCalculated">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
-                                  <Style />
+                                  <Value>=Fields!MwStCalculated.Value</Value>
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -809,7 +859,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Textbox47</rd:DefaultName>
+                          <rd:DefaultName>MwStCalculated</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -838,7 +888,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -868,7 +921,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -898,7 +954,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Brutto-Betrag</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -928,7 +987,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value />
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -958,7 +1020,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Brutto.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                    <FontSize>11pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -1009,14 +1074,16 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>dsInvoicePosition</DataSetName>
-            <Top>2.2674cm</Top>
-            <Left>1.94717cm</Left>
-            <Height>3.00854cm</Height>
-            <Width>18.54675cm</Width>
+            <Top>2.66428cm</Top>
+            <Left>1.94716cm</Left>
+            <Height>1.97198cm</Height>
+            <Width>18.54674cm</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <FontFamily>Times New Roman</FontFamily>
+              <FontSize>11pt</FontSize>
             </Style>
           </Tablix>
           <Textbox Name="Textbox34">
@@ -1028,6 +1095,8 @@
                   <TextRun>
                     <Value>= "Rechnung-Nr.: " &amp; Fields!invoiceNumber.Value</Value>
                     <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1036,7 +1105,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox34</rd:DefaultName>
-            <Top>1.1826cm</Top>
+            <Top>1.18205cm</Top>
             <Left>1.94719cm</Left>
             <Height>0.6cm</Height>
             <Width>5.54271cm</Width>
@@ -1060,6 +1129,8 @@
                   <TextRun>
                     <Value>="Achternhold, den " &amp; Fields!date.Value.ToString("d");</Value>
                     <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>11pt</FontSize>
                       <FontWeight>Bold</FontWeight>
                     </Style>
                   </TextRun>
@@ -1083,11 +1154,44 @@
               <PaddingBottom>2pt</PaddingBottom>
             </Style>
           </Textbox>
+          <Textbox Name="Textbox6">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>= "Belegung " &amp; Fields!name.Value &amp; " vom " &amp; Fields!arrivalDate.Value.ToString("d") &amp; " bis " Fields!departureDate.Value.ToString("d");</Value>
+                    <Style>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>11pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox6</rd:DefaultName>
+            <Top>1.95844cm</Top>
+            <Left>1.94716cm</Left>
+            <Height>0.6cm</Height>
+            <Width>7.50908cm</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>3.02778in</Height>
+        <Height>1.9757in</Height>
         <Style />
       </Body>
-      <Width>22.99392cm</Width>
+      <Width>23.2137cm</Width>
       <Page>
         <PageHeader>
           <Height>9.60922cm</Height>
@@ -1551,8 +1655,8 @@
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
             <Line Name="Line3">
-              <Top>2.29334cm</Top>
-              <Left>1.94721cm</Left>
+              <Top>2.32862cm</Top>
+              <Left>1.94723cm</Left>
               <Height>0cm</Height>
               <Width>18.54673cm</Width>
               <Style>
@@ -1585,8 +1689,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>2.43445cm</Top>
-              <Left>2.90365cm</Left>
+              <Top>2.46973cm</Top>
+              <Left>2.90367cm</Left>
               <Height>0.52063cm</Height>
               <Width>15.53514cm</Width>
               <ZIndex>1</ZIndex>
@@ -1624,8 +1728,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>2.95507cm</Top>
-              <Left>4.83511cm</Left>
+              <Top>2.99035cm</Top>
+              <Left>4.83513cm</Left>
               <Height>0.52063cm</Height>
               <Width>11.33607cm</Width>
               <ZIndex>2</ZIndex>
@@ -1663,8 +1767,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>3.4757cm</Top>
-              <Left>2.90365cm</Left>
+              <Top>3.51098cm</Top>
+              <Left>2.90367cm</Left>
               <Height>0.52063cm</Height>
               <Width>15.53514cm</Width>
               <ZIndex>3</ZIndex>
@@ -1685,7 +1789,7 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>= "Zahlbar bis zum "  &amp; " ohne Abzug".</Value>
+                      <Value>= "Zahlbar bis zum " &amp; Fields!paymentDate.Value.ToString("d") &amp; " ohne Abzug".</Value>
                       <Style>
                         <FontFamily>Times New Roman</FontFamily>
                         <FontSize>11pt</FontSize>
@@ -1696,8 +1800,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox53</rd:DefaultName>
-              <Top>1.11233cm</Top>
-              <Left>1.94721cm</Left>
+              <Top>1.14761cm</Top>
+              <Left>1.94725cm</Left>
               <Height>0.6cm</Height>
               <Width>18.54671cm</Width>
               <ZIndex>4</ZIndex>
@@ -1731,8 +1835,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox54</rd:DefaultName>
-              <Top>0.17639cm</Top>
-              <Left>18.04684cm</Left>
+              <Top>0.21167cm</Top>
+              <Left>18.04686cm</Left>
               <Height>0.6cm</Height>
               <Width>2.5cm</Width>
               <ZIndex>5</ZIndex>
@@ -1764,8 +1868,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox55</rd:DefaultName>
-              <Top>0.17639cm</Top>
-              <Left>13.78295cm</Left>
+              <Top>0.21167cm</Top>
+              <Left>13.78297cm</Left>
               <Height>0.6cm</Height>
               <Width>4.0875cm</Width>
               <ZIndex>6</ZIndex>
@@ -1779,6 +1883,18 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
+            <Line Name="Line4">
+              <Top>0.17639cm</Top>
+              <Left>18.04686cm</Left>
+              <Height>0cm</Height>
+              <Width>2.5cm</Width>
+              <ZIndex>7</ZIndex>
+              <Style>
+                <Border>
+                  <Style>Solid</Style>
+                </Border>
+              </Style>
+            </Line>
           </ReportItems>
           <Style>
             <Border>
