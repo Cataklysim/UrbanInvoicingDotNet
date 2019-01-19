@@ -40,7 +40,10 @@ namespace UrbanInvoicing.Forms
                 tmpCustomerId = Convert.ToInt32(this.dataGridViewCustomer.SelectedRows[0].Cells["Id"].Value);
                 if (tmpCustomerId > 0)
                 {
-                    this._ContactDetail = new ctlContactDetail(this.Customer.Where(w => w.Id == tmpCustomerId).FirstOrDefault());
+                    clsCustomer tmpCustomer = this.Customer.Where(w => w.Id == tmpCustomerId).FirstOrDefault();
+                    if (tmpCustomer != null)
+                        this._ContactDetail = new ctlContactDetail(tmpCustomer);
+                    this._ContactDetail.Refresh();
                 }
             }
         }
