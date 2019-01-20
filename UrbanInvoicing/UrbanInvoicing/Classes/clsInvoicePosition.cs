@@ -123,7 +123,8 @@ namespace UrbanInvoicing.Classes
                             {
                                 InvoiceId = Convert.ToInt32(tmpReader["invoice_id"]),
                                 Bemerkung = tmpReader["bemerkung"].ToString(),
-                                Netto = Convert.ToDouble(tmpReader["netto"]),
+                                Netto = Math.Round(Convert.ToDouble(tmpReader["netto"]),2),
+                                Brutto = Math.Round(Convert.ToDouble(tmpReader["brutto"]),2),
                                 MwSt = Convert.ToDouble(tmpReader["mwst"]),
                                 Rabatt = Convert.ToDouble(tmpReader["rabatt"]),
                                 ArtikelId = Convert.ToInt32(tmpReader["artikel_id"]),

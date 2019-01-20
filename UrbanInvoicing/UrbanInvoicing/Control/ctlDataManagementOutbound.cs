@@ -39,7 +39,7 @@ namespace UrbanInvoicing.Control
             int tmpInvoideId = 0;
             if (this.dataGridViewOutboundInvoice.SelectedRows.Count > 0 && this.dataGridViewOutboundInvoice.SelectedRows[0] != null && this.dataGridViewOutboundInvoice.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"] != null)
             {
-                tmpInvoideId = Convert.ToInt32(this.dataGridViewOutboundInvoice.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"]);
+                tmpInvoideId = Convert.ToInt32(this.dataGridViewOutboundInvoice.SelectedRows[0].Cells["idDataGridViewTextBoxColumn"].Value);
                 if (tmpInvoideId > 0)
                 {
                     this.ChangePositionDataSource(tmpInvoideId);

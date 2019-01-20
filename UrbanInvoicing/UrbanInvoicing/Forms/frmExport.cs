@@ -154,18 +154,22 @@ namespace UrbanInvoicing.Forms
             if (tmpChangedPosition != null)
             {
                 string tmpColumnName = this.dataGridViewInvoicePositions.Columns[pColumnIndex].Name;
+                decimal tmpDecNetto = Math.Round(Convert.ToDecimal(tmpChangedPosition.Netto), 2);
+                decimal tmpDecBrutto = Convert.ToDecimal(tmpChangedPosition.Brutto);
+                decimal tmpMwst = (Convert.ToDecimal(tmpChangedPosition.MwSt) / 100) + 1;
+
                 switch (tmpColumnName)
                 {
                     case "mwStDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Netto = Math.Round(tmpChangedPosition.Brutto - ((tmpChangedPosition.Brutto / 100) * tmpChangedPosition.MwSt), 2);
+                        tmpChangedPosition.Netto = Math.Round(Convert.ToDouble(Math.Round(tmpDecBrutto / tmpMwst, 2)), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["mwStDataGridViewTextBoxColumn"].Value = tmpChangedPosition.MwSt;
                         break;
                     case "bruttoDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Netto = Math.Round(tmpChangedPosition.Brutto - ((tmpChangedPosition.Brutto / 100) * tmpChangedPosition.MwSt), 2);
+                        tmpChangedPosition.Netto = Math.Round(Convert.ToDouble(Math.Round(tmpDecBrutto / tmpMwst, 2)), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["bruttoDataGridViewTextBoxColumn"].Value = tmpChangedPosition.Brutto;
                         break;
                     case "nettoDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Brutto = Math.Round(tmpChangedPosition.Netto + (((tmpChangedPosition.MwSt / 10) * tmpChangedPosition.Netto) / 10), 2);
+                        tmpChangedPosition.Brutto = Math.Round(Convert.ToDouble(Math.Round(tmpDecNetto * tmpMwst, 2)), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["nettoDataGridViewTextBoxColumn"].Value = tmpChangedPosition.Netto;
                         break;
                 }
@@ -250,16 +254,16 @@ namespace UrbanInvoicing.Forms
                     customerId = (int)this.comboBoxCustomer.SelectedValue,
                     date = this.dateTimePicker.Value,
                     Id = 1,
-                    sumBrutto = Convert.ToDouble(this.labelSumGross.Text),
-                    sumNetto = Convert.ToDouble(this.labelSumNet.Text),
-                    sumMwst = Convert.ToDouble(this.labelVAT.Text),
+                    sumBrutto = Math.Round(Convert.ToDouble(this.labelSumGross.Text),2),
+                    sumNetto = Math.Round(Convert.ToDouble(this.labelSumNet.Text),2),
+                    sumMwst = Math.Round(Convert.ToDouble(this.labelVAT.Text),2),
                     invoiceNumber = this.textBoxInvoiceNumber.Text,
                     IsExport = true,
                 };
 
                 tmpNewInvoice.invoicePositions = new List<clsInvoicePosition>();
                 this.dataGridViewInvoicePositions.EndEdit();
-                foreach (clsInvoicePosition tmpItem in this.bindingSourcePositions.List)
+                foreach (clsInvoicePosition tmpItem in this.dataGridViewInvoicePositions.GetAllEntities<clsInvoicePosition>())
                 {
                     tmpNewInvoice.invoicePositions.Add(tmpItem);
                 }

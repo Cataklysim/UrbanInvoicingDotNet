@@ -55,8 +55,8 @@ namespace UrbanInvoicing.Classes
                         while (tmpReader.Read())
                         {
                             clsCustomer customer = new clsCustomer();
-                            if(tmpReader["id"] != DBNull.Value)
-                            customer.id = Convert.ToInt32(tmpReader["id"]);
+                            if (tmpReader["id"] != DBNull.Value)
+                                customer.id = Convert.ToInt32(tmpReader["id"]);
                             if (tmpReader["name"] != DBNull.Value)
                                 customer.name = tmpReader["name"].ToString();
                             if (tmpReader["lastName"] != DBNull.Value)
@@ -176,7 +176,7 @@ namespace UrbanInvoicing.Classes
                 {
                     while (tmpReader.Read())
                     {
-                        if(tmpReader["Result"] != DBNull.Value)
+                        if (tmpReader["Result"] != DBNull.Value)
                         {
                             int tmp = Convert.ToInt32(tmpReader["Result"]);
                             if (tmp > 1)
@@ -185,7 +185,7 @@ namespace UrbanInvoicing.Classes
                     }
                 }
 
-                    }
+            }
             return tmpResult;
         }
 
@@ -194,37 +194,72 @@ namespace UrbanInvoicing.Classes
             bool tmpResult = false;
             using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
             {
-                MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbCustomer (name , lastName , plz , street , city , land , telefone , telefax , email , comment , useOtherAdress , invoiceName , invoiceLastName , invoicePlz , invoiceStreet , invoiceCity , invoiceLand , invoiceTelefone , invoiceTelefax , invoiceEmail , invoiceComment, systemstatus_id, isCompany) " + Environment.NewLine +
-                    "VALUES (@name , @lastName , @plz , @street , @city , @land , @telefone , @telefax , @email , @comment , @useOtherAdress , @invoiceName , @invoiceLastName , @invoicePlz , @invoiceStreet , @invoiceCity , @invoiceLand , @invoiceTelefone , @invoiceTelefax , @invoiceEmail , @invoiceComment, 1, @isCompany)", tmpConnection);
-                tmpCommand.Parameters.AddWithValue("@name", this.name);
-                tmpCommand.Parameters.AddWithValue("@lastName", this.lastName);
-                tmpCommand.Parameters.AddWithValue("@plz", this.plz);
-                tmpCommand.Parameters.AddWithValue("@street", this.street);
-                tmpCommand.Parameters.AddWithValue("@city", this.city);
-                tmpCommand.Parameters.AddWithValue("@land", this.land);
-                tmpCommand.Parameters.AddWithValue("@telefone", this.telefone);
-                tmpCommand.Parameters.AddWithValue("@telefax", this.telefax);
-                tmpCommand.Parameters.AddWithValue("@email", this.email);
-                tmpCommand.Parameters.AddWithValue("@comment", this.comment);
-                tmpCommand.Parameters.AddWithValue("@useOtherAdress", this.useOtherAdress);
-                tmpCommand.Parameters.AddWithValue("@invoiceName", this.invoiceName);
-                tmpCommand.Parameters.AddWithValue("@invoiceLastName", this.invoiceLastName);
-                tmpCommand.Parameters.AddWithValue("@invoicePlz", this.invoicePlz);
-                tmpCommand.Parameters.AddWithValue("@invoiceStreet", this.invoiceStreet);
-                tmpCommand.Parameters.AddWithValue("@invoiceCity", this.invoiceCity);
-                tmpCommand.Parameters.AddWithValue("@invoiceLand", this.invoiceLand);
-                tmpCommand.Parameters.AddWithValue("@invoiceTelefone", this.invoiceTelefone);
-                tmpCommand.Parameters.AddWithValue("@invoiceTelefax", this.invoiceTelefax);
-                tmpCommand.Parameters.AddWithValue("@invoiceEmail", this.invoiceEmail);
-                tmpCommand.Parameters.AddWithValue("@invoiceComment", this.invoiceComment);
-                tmpCommand.Parameters.AddWithValue("@isCompany", this.isCompany);
-                tmpCommand.Connection.Open();
-                if (tmpCommand.ExecuteNonQuery() > 0)
+                if (this.id > 0)
+                {
+                    MySqlCommand tmpCommand = new MySqlCommand("UPDATE tbCustomer SET name = @name ,lastName = @lastName , plz = @plz ,street = @street , city = @city , land = @land , telefone = @telefone , telefax = @telefax , email = @email , comment = @comment , useOtherAdress = @useOtherAdress , invoiceName =@invoiceName ,invoiceLastName = @invoiceLastName , invoicePlz = @invoicePlz , invoiceStreet = @invoiceStreet , invoiceCity = @invoiceCity , invoiceLand = @invoiceLand , invoiceTelefone = @invoiceTelefone , invoiceTelefax = @invoiceTelefax , invoiceEmail = @invoiceEmail , invoiceComment = @invoiceComment, systemstatus_id = 1, isCompany = @isCompany WHERE id=@id", tmpConnection);
+                    tmpCommand.Parameters.AddWithValue("@name", this.name);
+                    tmpCommand.Parameters.AddWithValue("@lastName", this.lastName);
+                    tmpCommand.Parameters.AddWithValue("@plz", this.plz);
+                    tmpCommand.Parameters.AddWithValue("@street", this.street);
+                    tmpCommand.Parameters.AddWithValue("@city", this.city);
+                    tmpCommand.Parameters.AddWithValue("@land", this.land);
+                    tmpCommand.Parameters.AddWithValue("@telefone", this.telefone);
+                    tmpCommand.Parameters.AddWithValue("@telefax", this.telefax);
+                    tmpCommand.Parameters.AddWithValue("@email", this.email);
+                    tmpCommand.Parameters.AddWithValue("@comment", this.comment);
+                    tmpCommand.Parameters.AddWithValue("@useOtherAdress", this.useOtherAdress);
+                    tmpCommand.Parameters.AddWithValue("@invoiceName", this.invoiceName);
+                    tmpCommand.Parameters.AddWithValue("@invoiceLastName", this.invoiceLastName);
+                    tmpCommand.Parameters.AddWithValue("@invoicePlz", this.invoicePlz);
+                    tmpCommand.Parameters.AddWithValue("@invoiceStreet", this.invoiceStreet);
+                    tmpCommand.Parameters.AddWithValue("@invoiceCity", this.invoiceCity);
+                    tmpCommand.Parameters.AddWithValue("@invoiceLand", this.invoiceLand);
+                    tmpCommand.Parameters.AddWithValue("@invoiceTelefone", this.invoiceTelefone);
+                    tmpCommand.Parameters.AddWithValue("@invoiceTelefax", this.invoiceTelefax);
+                    tmpCommand.Parameters.AddWithValue("@invoiceEmail", this.invoiceEmail);
+                    tmpCommand.Parameters.AddWithValue("@invoiceComment", this.invoiceComment);
+                    tmpCommand.Parameters.AddWithValue("@isCompany", this.isCompany);
+                    tmpCommand.Parameters.AddWithValue("@id", this.id);
+                    tmpCommand.Connection.Open();
+                    tmpCommand.ExecuteNonQuery();
                     tmpResult = true;
-                tmpCommand.Connection.Close();
+                    tmpCommand.Connection.Close();
+                }
+                else
+                {
+                    MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbCustomer (name , lastName , plz , street , city , land , telefone , telefax , email , comment , useOtherAdress , invoiceName , invoiceLastName , invoicePlz , invoiceStreet , invoiceCity , invoiceLand , invoiceTelefone , invoiceTelefax , invoiceEmail , invoiceComment, systemstatus_id, isCompany) " + Environment.NewLine +
+                        "VALUES (@name , @lastName , @plz , @street , @city , @land , @telefone , @telefax , @email , @comment , @useOtherAdress , @invoiceName , @invoiceLastName , @invoicePlz , @invoiceStreet , @invoiceCity , @invoiceLand , @invoiceTelefone , @invoiceTelefax , @invoiceEmail , @invoiceComment, 1, @isCompany)", tmpConnection);
+                    tmpCommand.Parameters.AddWithValue("@name", this.name);
+                    tmpCommand.Parameters.AddWithValue("@lastName", this.lastName);
+                    tmpCommand.Parameters.AddWithValue("@plz", this.plz);
+                    tmpCommand.Parameters.AddWithValue("@street", this.street);
+                    tmpCommand.Parameters.AddWithValue("@city", this.city);
+                    tmpCommand.Parameters.AddWithValue("@land", this.land);
+                    tmpCommand.Parameters.AddWithValue("@telefone", this.telefone);
+                    tmpCommand.Parameters.AddWithValue("@telefax", this.telefax);
+                    tmpCommand.Parameters.AddWithValue("@email", this.email);
+                    tmpCommand.Parameters.AddWithValue("@comment", this.comment);
+                    tmpCommand.Parameters.AddWithValue("@useOtherAdress", this.useOtherAdress);
+                    tmpCommand.Parameters.AddWithValue("@invoiceName", this.invoiceName);
+                    tmpCommand.Parameters.AddWithValue("@invoiceLastName", this.invoiceLastName);
+                    tmpCommand.Parameters.AddWithValue("@invoicePlz", this.invoicePlz);
+                    tmpCommand.Parameters.AddWithValue("@invoiceStreet", this.invoiceStreet);
+                    tmpCommand.Parameters.AddWithValue("@invoiceCity", this.invoiceCity);
+                    tmpCommand.Parameters.AddWithValue("@invoiceLand", this.invoiceLand);
+                    tmpCommand.Parameters.AddWithValue("@invoiceTelefone", this.invoiceTelefone);
+                    tmpCommand.Parameters.AddWithValue("@invoiceTelefax", this.invoiceTelefax);
+                    tmpCommand.Parameters.AddWithValue("@invoiceEmail", this.invoiceEmail);
+                    tmpCommand.Parameters.AddWithValue("@invoiceComment", this.invoiceComment);
+                    tmpCommand.Parameters.AddWithValue("@isCompany", this.isCompany);
+                    tmpCommand.Connection.Open();
+                    if (tmpCommand.ExecuteNonQuery() > 0)
+                        tmpResult = true;
+                    tmpCommand.Connection.Close();
+                }
             }
             return tmpResult;
         }
+
 
         public override void Load()
         {
