@@ -54,7 +54,7 @@ namespace UrbanInvoicing.Classes
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbInvoice (customer_id, belegdatum, summeBrutto, summeNetto, summeMwst, systemst" +
-                "atus_id, invoiceNumber) VALUES (@CustomerId, @Belegdatum, @Brutto, @Netto, @MWST, @Systemstatus, @invoiceNumber)");
+                "atus_id, invoiceNumber, IsExport) VALUES (@CustomerId, @Belegdatum, @Brutto, @Netto, @MWST, @Systemstatus, @invoiceNumber, @IsExport)");
                     tmpCommand.Parameters.AddWithValue("@CustomerId", this.customerId);
                     tmpCommand.Parameters.AddWithValue("@Belegdatum", DateTime.Now);
                     tmpCommand.Parameters.AddWithValue("@Brutto", this.sumBrutto);
@@ -62,6 +62,7 @@ namespace UrbanInvoicing.Classes
                     tmpCommand.Parameters.AddWithValue("@MWST", this.sumMwst);
                     tmpCommand.Parameters.AddWithValue("@Systemstatus", 1);
                     tmpCommand.Parameters.AddWithValue("@invoiceNumber", this.invoiceNumber);
+                    tmpCommand.Parameters.AddWithValue("@IsExport", this.IsExport);
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     if (tmpCommand.ExecuteNonQuery() == 1)
@@ -178,9 +179,10 @@ namespace UrbanInvoicing.Classes
                                 date = Convert.ToDateTime(tmpReader["belegdatum"]),
                                 invoiceNumber = tmpReader["invoiceNumber"].ToString(),
                                 printed = Convert.ToBoolean(tmpReader["printed"]),
-                                sumBrutto = Convert.ToDouble(tmpReader["summeBrutto"]),
-                                sumNetto = Convert.ToDouble(tmpReader["summeNetto"]),
-                                sumMwst = Convert.ToDouble(tmpReader["summeMwst"]),
+                                sumBrutto = Math.Round(Convert.ToDouble(tmpReader["summeBrutto"]),2),
+                                sumNetto = Math.Round(Convert.ToDouble(tmpReader["summeNetto"]),2),
+                                sumMwst = Math.Round(Convert.ToDouble(tmpReader["summeMwst"]),2),
+                                IsExport = Convert.ToBoolean(tmpReader["IsExport"]),
                             };
                             tmpResult.Add(tmpEntry);
                         }
