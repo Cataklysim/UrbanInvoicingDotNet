@@ -52,7 +52,7 @@ namespace UrbanInvoicing.Forms
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
-        {
+        { // todo BUG beim casten 
             clsCustomer tmpCustomer = ((clsCustomer)this.bindingSourceCustomer.DataSource);
             if (tmpCustomer != null)
             {
