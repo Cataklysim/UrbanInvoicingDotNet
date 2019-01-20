@@ -9,41 +9,6 @@
       </ConnectionProperties>
       <rd:DataSourceID>b64d9ee5-b163-478c-a0a9-d9a896937b22</rd:DataSourceID>
     </DataSource>
-    <DataSource Name="UrbanInvoicingClasses1">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>4d9fbc6c-451f-4191-89af-3d42881fd3c2</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="UrbanInvoicingClasses2">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>a6528a26-d473-41f8-ad79-7477478b03d4</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="UrbanInvoicingClasses3">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>fb658733-c766-49ee-a7e4-bdc0ed5430f7</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="UrbanInvoicingClasses4">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>f76eacf4-0271-4b69-939b-85b567751ac4</rd:DataSourceID>
-    </DataSource>
-    <DataSource Name="UrbanInvoicingClasses5">
-      <ConnectionProperties>
-        <DataProvider>System.Data.DataSet</DataProvider>
-        <ConnectString>/* Local Connection */</ConnectString>
-      </ConnectionProperties>
-      <rd:DataSourceID>51ae94d1-1081-4140-8877-b9042938e02c</rd:DataSourceID>
-    </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="dsInvoice">
@@ -1076,7 +1041,7 @@
             <DataSetName>dsInvoicePosition</DataSetName>
             <Top>2.66428cm</Top>
             <Left>1.94716cm</Left>
-            <Height>1.97198cm</Height>
+            <Height>1.97199cm</Height>
             <Width>18.54674cm</Width>
             <Style>
               <Border>
@@ -1913,10 +1878,23 @@
       </Page>
     </ReportSection>
   </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="pInvoiceId">
+      <DataType>Integer</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+  </ReportParameters>
   <ReportParametersLayout>
     <GridLayoutDefinition>
       <NumberOfColumns>4</NumberOfColumns>
       <NumberOfRows>2</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>pInvoiceId</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
   <EmbeddedImages>
