@@ -261,24 +261,33 @@ namespace UrbanInvoicing.Forms
                     sumMwst = Math.Round(Convert.ToDouble(this.labelVAT.Text), 2),
                     invoiceNumber = this.textBoxInvoiceNumber.Text,
                     IsExport = true,
+                    arrivalDate = this.dateTimePickerFrom.Value,
+                    departureDate = this.dateTimePickerTo.Value,
+                    paymentDate = this.dateTimePickerPaymentDate.Value,
                 };
+
+                if (tmpNewInvoice.departureDate < tmpNewInvoice.arrivalDate)
+                {
+                    MessageBox.Show("Aufenthalt von ist kleiner als Aufenthalt bis.", "Achtung", MessageBoxButtons.OK);
+                    tmpCanSave = false;
+                }
 
                 tmpNewInvoice.invoicePositions = new List<clsInvoicePosition>();
                 this.dataGridViewInvoicePositions.EndEdit();
                 foreach (clsInvoicePosition tmpItem in this.dataGridViewInvoicePositions.GetAllEntities<clsInvoicePosition>())
                 {
                     if (tmpItem.TypeId == 0 || tmpItem.ArtikelId == 0)
+                    {
                         tmpCanSave = false;
+                        MessageBox.Show("Artikel oder Typ nicht ausgewählt.", "Fehlende Informationen", MessageBoxButtons.OK);
+                        break;
+                    }
                     tmpNewInvoice.invoicePositions.Add(tmpItem);
                 }
                 if (tmpCanSave && tmpNewInvoice.Save())
                 {
                     MessageBox.Show("Rechnung gespeichert!", "Gespeichert", MessageBoxButtons.OK);
                     this.Reset();
-                }
-                else if (!tmpCanSave)
-                {
-                    MessageBox.Show("Artikel oder Typ nicht ausgewählt.", "Fehlende Informationen", MessageBoxButtons.OK);
                 }
             }
             catch (Exception ex)
