@@ -62,11 +62,16 @@ namespace UrbanInvoicing.Forms
                 this.buttonOpen.Enabled = false;
         }
 
+        public void RefreshData()
+        {
+            this.Customer = clsCustomer.GetCustomerFromDB();
+            this.bindingSourceCustomer.DataSource = this.Customer;
+        }
+
         private void buttonNewAddress_Click(object sender, EventArgs e)
         {
             this._ContactDetail.LoadOrCreateCustomer();
         }
-
         private void buttonHome_Click(object sender, EventArgs e)
         {
             this._ContactDetail = null;

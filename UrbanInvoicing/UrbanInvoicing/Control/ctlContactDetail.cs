@@ -27,7 +27,6 @@ namespace UrbanInvoicing.Forms
             {
                 this._Customer = new List<clsCustomer>();
                 this._Customer.Add(new clsCustomer());
-                this.bindingSourceCustomer = new BindingSource();
                 this.bindingSourceCustomer.DataSource = this._Customer;
             }
             else
@@ -52,14 +51,15 @@ namespace UrbanInvoicing.Forms
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
-        { // todo BUG beim casten 
-            clsCustomer tmpCustomer = ((clsCustomer)this.bindingSourceCustomer.DataSource);
+        {
+            clsCustomer tmpCustomer = ((List<clsCustomer>)this.bindingSourceCustomer.DataSource).Cast<clsCustomer>().FirstOrDefault();
             if (tmpCustomer != null)
             {
                 if (!clsCustomer.NameOnDb(tmpCustomer.name))
                 {
                     try
                     {
+                        tmpCustomer.comment = "";
                         if (!tmpCustomer.useOtherAdress)
                         {
                             tmpCustomer.invoiceName = tmpCustomer.name;
@@ -85,7 +85,6 @@ namespace UrbanInvoicing.Forms
                 else
                     MessageBox.Show("Es gibt bereits einen Kunden mit diesem Namen im Adressbuch.\r\nBitte bearbeiten Sie diesen oder nehmen Sie einen anderen Namen.", "Name bereits vorhanden", MessageBoxButtons.OK);
             }
-
         }
 
         private void buttonRemove_Click(object sender, EventArgs e)

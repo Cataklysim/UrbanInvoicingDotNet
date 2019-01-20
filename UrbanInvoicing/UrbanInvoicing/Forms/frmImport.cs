@@ -253,22 +253,26 @@ namespace UrbanInvoicing.Forms
             if (tmpChangedPosition != null)
             {
                 string tmpColumnName = this.dataGridViewInvoicePositions.Columns[pColumnIndex].Name;
+                decimal tmpDecNetto = Math.Round(Convert.ToDecimal(tmpChangedPosition.Netto), 2);
+                decimal tmpDecBrutto = Convert.ToDecimal(tmpChangedPosition.Brutto);
+                decimal tmpMwst = (Convert.ToDecimal(tmpChangedPosition.MwSt) / 100) + 1;
+
                 switch (tmpColumnName)
                 {
                     case "mwStDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Netto = Math.Round(tmpChangedPosition.Brutto - ((tmpChangedPosition.Brutto / 100) * tmpChangedPosition.MwSt), 2);
+                        tmpChangedPosition.Netto = Math.Round(Convert.ToDouble(Math.Round(tmpDecBrutto / tmpMwst, 2)), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["mwStDataGridViewTextBoxColumn"].Value = tmpChangedPosition.MwSt;
                         break;
                     case "bruttoDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Netto = Math.Round(tmpChangedPosition.Brutto - ((tmpChangedPosition.Brutto / 100) * tmpChangedPosition.MwSt), 2);
+                        tmpChangedPosition.Netto = Math.Round(Convert.ToDouble(Math.Round(tmpDecBrutto / tmpMwst, 2)), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["bruttoDataGridViewTextBoxColumn"].Value = tmpChangedPosition.Brutto;
                         break;
                     case "nettoDataGridViewTextBoxColumn":
-                        tmpChangedPosition.Brutto = Math.Round(tmpChangedPosition.Netto + (((tmpChangedPosition.MwSt / 10) * tmpChangedPosition.Netto) / 10), 2);
+                        tmpChangedPosition.Brutto = Math.Round(Convert.ToDouble(Math.Round(tmpDecNetto * tmpMwst, 2)), 2);
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["nettoDataGridViewTextBoxColumn"].Value = tmpChangedPosition.Netto;
                         break;
                 }
-                this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["MwStCalculated"].Value = Math.Round(tmpDecBrutto - tmpDecNetto,2);
+                this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["MwStCalculated"].Value = Math.Round(tmpDecBrutto - tmpDecNetto, 2);
             }
 
 
