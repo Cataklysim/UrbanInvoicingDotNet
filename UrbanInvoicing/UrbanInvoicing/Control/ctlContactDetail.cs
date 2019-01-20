@@ -72,7 +72,10 @@ namespace UrbanInvoicing.Forms
                             tmpCustomer.invoiceTelefax = tmpCustomer.telefax;
                             tmpCustomer.invoiceTelefone = tmpCustomer.telefone;
                         }
-                        tmpCustomer.Save();
+                        if (tmpCustomer.Save())
+                        {
+                            MessageBox.Show("Daten wurden erfolgreich gespeichert", "Gespeichert", MessageBoxButtons.OK);
+                        }
                     }
                     catch (Exception ex)
                     {
