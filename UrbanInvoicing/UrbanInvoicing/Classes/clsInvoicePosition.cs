@@ -75,7 +75,7 @@ namespace UrbanInvoicing.Classes
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbInvoicePosition(invoice_id, bemerkung, brutto, netto, mwst, rabatt, artikel_id, type_id" +
-                        ", systemstatus_id, createdAt, editedAt) VALUES (@InvoiceId, @Bemerkung, @Brutto, @Netto, @MWST, @Rabatt, @Artikel_Id, @Type_Id, 1, NOW(), NOW())");
+                        ", systemstatus_id, createdAt, editedAt, MwStCalculated ) VALUES (@InvoiceId, @Bemerkung, @Brutto, @Netto, @MWST, @Rabatt, @Artikel_Id, @Type_Id, 1, NOW(), NOW(), @mwstCalc)");
                     tmpCommand.Parameters.AddWithValue("@InvoiceID", this.InvoiceId);
                     tmpCommand.Parameters.AddWithValue("@Bemerkung", this.Bemerkung);
                     tmpCommand.Parameters.AddWithValue("@Brutto", this.Brutto);
@@ -84,6 +84,7 @@ namespace UrbanInvoicing.Classes
                     tmpCommand.Parameters.AddWithValue("@Rabatt", this.Rabatt);
                     tmpCommand.Parameters.AddWithValue("@Artikel_Id", this.ArtikelId);
                     tmpCommand.Parameters.AddWithValue("@Type_Id", this.TypeId);
+                    tmpCommand.Parameters.AddWithValue("@mwstCalc", this.MwStCalculated);
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     if (tmpCommand.ExecuteNonQuery() == 1)

@@ -189,7 +189,7 @@ namespace UrbanInvoicing.Classes
                     }
                 }
             }
-            catch (Exception ex)
+                catch (Exception ex)
             {
                 if (Properties.Settings.Default.DevBuild)
                     Debug.WriteLine("# " + DateTime.Now + "clsInvoice - Failed to execute SQL: " + ex);

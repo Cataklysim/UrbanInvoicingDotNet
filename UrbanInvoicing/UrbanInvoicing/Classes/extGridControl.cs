@@ -48,9 +48,12 @@ namespace UrbanInvoicing.Classes
 
             for (int i = 0; i < pGridView.RowCount; i++)
             {
-                object item = pGridView.Rows[i].DataBoundItem;
-                if (item is T)
-                    entities.Add((T)item);
+                if (pGridView.Rows[i].DataBoundItem != null)
+                {
+                    object item = pGridView.Rows[i].DataBoundItem;
+                    if (item is T)
+                        entities.Add((T)item);
+                }
             }
 
             return entities;

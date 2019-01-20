@@ -17,7 +17,6 @@ namespace UrbanInvoicing.Forms
 {
     public partial class frmImport : Form
     {
-        static int _CellValueChangedEventCounter;
         public frmImport()
         {
             InitializeComponent();
@@ -28,8 +27,13 @@ namespace UrbanInvoicing.Forms
             this.Dispose();
         }
 
+
+        public List<clsArticle> ComboBoxArticles = new List<clsArticle>();
+        public List<clsType> Types = new List<clsType>();
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
+            bool tmpCanSave = true;
             try
             {
                 clsInvoice tmpNewInvoice = new clsInvoice()
@@ -48,13 +52,19 @@ namespace UrbanInvoicing.Forms
                 this.dataGridViewInvoicePositions.EndEdit();
                 foreach (clsInvoicePosition tmpItem in this.bindingSourcePositions.List)
                 {
+                    if (tmpItem.ArtikelId == 0 || tmpItem.TypeId == 0)
+                        tmpCanSave = false;
                     tmpNewInvoice.invoicePositions.Add(tmpItem);
                 }
 
-                if (tmpNewInvoice.Save())
+                if (tmpCanSave && tmpNewInvoice.Save())
                 {
                     MessageBox.Show("Rechnung gespeichert!", "Gespeichert", MessageBoxButtons.OK);
                     this.Reset();
+                }
+                else if (!tmpCanSave)
+                {
+                    MessageBox.Show("Artikel oder Typ nicht ausgewählt.", "Fehlende Informationen", MessageBoxButtons.OK);
                 }
             }
             catch (Exception ex)
@@ -77,11 +87,18 @@ namespace UrbanInvoicing.Forms
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            if (this.dataGridViewInvoicePositions.SelectedRows.Count == 1)
+            try
             {
-                DataGridViewRow tmpSelectedRow = this.dataGridViewInvoicePositions.CurrentRow;
-                if (tmpSelectedRow != null)
-                    this.dataGridViewInvoicePositions.Rows.Remove(tmpSelectedRow);
+                if (this.dataGridViewInvoicePositions.SelectedRows.Count == 1)
+                {
+                    DataGridViewRow tmpSelectedRow = this.dataGridViewInvoicePositions.CurrentRow;
+                    if (tmpSelectedRow != null)
+                        this.dataGridViewInvoicePositions.Rows.Remove(tmpSelectedRow);
+                }
+
+            }
+            catch (Exception)
+            {
             }
         }
 
@@ -115,9 +132,12 @@ namespace UrbanInvoicing.Forms
 
         private void dataGridViewInvoicePositions_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            if (this.dataGridViewInvoicePositions.Columns[e.ColumnIndex].Name == "comboBoxArticle")
-                this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", e.RowIndex].Value = clsArticle.GetMwst(this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].FormattedValue.ToString());
-            this.calcSums();
+            if (e.RowIndex != -1)
+            {
+                if (this.dataGridViewInvoicePositions.Columns[e.ColumnIndex].Name == "comboBoxArticle")
+                    this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", e.RowIndex].Value = clsArticle.GetMwst(this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].FormattedValue.ToString());
+                this.calcSums();
+            }
         }
 
         private void frmImport_Load(object sender, EventArgs e)
@@ -138,8 +158,6 @@ namespace UrbanInvoicing.Forms
 
         public void LoadRepositories()
         {
-            List<clsArticle> tmpArticles = new List<clsArticle>();
-            List<clsType> tmpTypes = new List<clsType>();
             DataGridViewComboBoxColumn tmpComboBoxArticle = new DataGridViewComboBoxColumn()
             {
                 DataSource = this.bindingSourceArtikel,
@@ -431,71 +449,85 @@ namespace UrbanInvoicing.Forms
 
         private void dataGridViewInvoicePositions_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-
-            if (this.dataGridViewInvoicePositions.Columns[e.ColumnIndex].Name == "comboBoxArticle")
-                this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", e.RowIndex].Value = clsArticle.GetMwst(this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].FormattedValue.ToString());
-            if (e.RowIndex >= 0)
+            try
             {
-                string tmpMessage = "", tmpCaption = "";
-                if (!this.ValidateCell(e.RowIndex, e.ColumnIndex, out tmpMessage, out tmpCaption))
-                    MessageBox.Show(tmpMessage, tmpCaption, MessageBoxButtons.OK);
-                else
+                if (this.dataGridViewInvoicePositions.Columns[e.ColumnIndex].Name == "comboBoxArticle")
+                    this.dataGridViewInvoicePositions["mwStDataGridViewTextBoxColumn", e.RowIndex].Value = clsArticle.GetMwst(this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].FormattedValue.ToString());
+                if (e.RowIndex >= 0)
                 {
-                    this.calcRow(e.RowIndex, e.ColumnIndex);
-                    this.calcSums();
+                    string tmpMessage = "", tmpCaption = "";
+                    if (!this.ValidateCell(e.RowIndex, e.ColumnIndex, out tmpMessage, out tmpCaption))
+                        MessageBox.Show(tmpMessage, tmpCaption, MessageBoxButtons.OK);
+                    else
+                    {
+                        this.calcRow(e.RowIndex, e.ColumnIndex);
+                        this.calcSums();
 
+                    }
                 }
+
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 
+        //private void dataGridViewInvoicePositions_Repository(object sender, DataGridViewCom)
+
         private void dataGridViewInvoicePositions_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewColumn tmpCurrentColumn = this.dataGridViewInvoicePositions.Columns[e.ColumnIndex];
-
-            if (e.RowIndex >= 0)
-            {
-                object tmpCurrentValue = this.dataGridViewInvoicePositions[e.ColumnIndex, e.RowIndex].Value;
-
-                if (tmpCurrentColumn != null)
-                {
-                    if (tmpCurrentColumn.Name == "comboBoxArticle")
-                    {
-                    }
-                    else if (tmpCurrentColumn.Name == "comboBoxType")
-                    {
-                    }
-                }
-            }
         }
 
         private void dataGridViewInvoicePositions_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             //Dont do shit
+            try
+            {
+                if (this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxArticle"].Value == null)
+                    this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxArticle"].Value = 1;
+                if (this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxType"].Value == null)
+                    this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxType"].Value = 1;
 
-            if (this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxArticle"].Value == null)
-                this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxArticle"].Value = 1;
-            if (this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxType"].Value == null)
-                this.dataGridViewInvoicePositions.Rows[e.RowIndex].Cells["comboBoxType"].Value = 1;
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         private void buttonCreateArticle_Click(object sender, EventArgs e)
         {
-            frmUserInput tmpUserInput = new frmUserInput(true);
-            tmpUserInput.Show();
-            //ToDo: Läd nicht neu  Oder jetzt doch? 
-            this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
+            using (frmUserInput tmpUserInput = new frmUserInput(true))
+            {
+                tmpUserInput.ShowDialog();
+                this.bindingSourceArtikel.EndEdit();
+                this.dataGridViewInvoicePositions.EndEdit();
+                
+                this.bindingSourceArtikel.DataSource = null;
+                this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
 
-            RefreshDataSources();
+                this.LoadRepositories();
+            }
         }
 
         private void buttonCreateType_Click(object sender, EventArgs e)
         {
-            frmUserInput tmpUserInput = new frmUserInput(false);
-            tmpUserInput.Show();
-            //ToDo: Läd nicht neu  oder jetzt doch? :D 
-            this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
-            Reset();
-            RefreshDataSources();
+            using (frmUserInput tmpUserInput = new frmUserInput(false))
+            {
+                tmpUserInput.ShowDialog();
+                this.bindingSourceTypen.EndEdit();
+                this.dataGridViewInvoicePositions.EndEdit();
+
+                this.bindingSourceTypen.DataSource = null;
+                this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
+            }
+        }
+
+        private void dataGridViewInvoicePositions_RowLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            this.dataGridViewInvoicePositions.EndEdit();
+            this.dataGridViewInvoicePositions.RefreshEdit();
         }
     }
 }

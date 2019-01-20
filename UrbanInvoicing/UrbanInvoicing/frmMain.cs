@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UrbanInvoicing.Forms;
 using UrbanInvoicing.Classes;
+using System.Deployment.Application;
 
 namespace UrbanInvoicing
 {
@@ -17,14 +18,6 @@ namespace UrbanInvoicing
         public frmMain()
         {
             InitializeComponent();
-            // Nichts anfassen hier!
-            this.Text = Application.ProductName + " [" + Application.ProductVersion + "]";
-            // Könnte man für ein paar coole Features benutzen
-            if (Properties.Settings.Default.DevBuild)
-            {
-                this.Text += " DevBuild!    "+Properties.Settings.Default.ConnectionString.ToString();
-                
-            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -61,6 +54,24 @@ namespace UrbanInvoicing
         {
             Report.repo tmpReportDesinger = new Report.repo();
             tmpReportDesinger.ShowDialog(this);
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            // Nichts anfassen hier!
+            if (ApplicationDeployment.IsNetworkDeployed)
+            {
+                this.Text = Application.ProductName + " [" + ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString() + "]";
+            }
+            // Könnte man für ein paar coole Features benutzen
+            if (Properties.Settings.Default.DevBuild)
+            {
+                this.Text += " DevBuild!    " + Properties.Settings.Default.ConnectionString.ToString();
+            }
+            else
+            {
+                this.button6.Visible = false;
+            }
         }
     }
 }

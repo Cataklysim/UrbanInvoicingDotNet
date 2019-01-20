@@ -37,8 +37,8 @@
             this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonHome = new System.Windows.Forms.Button();
             this.dataGridViewCustomer = new System.Windows.Forms.DataGridView();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plzDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.streetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,7 +97,7 @@
             this.buttonNewAddress.Margin = new System.Windows.Forms.Padding(2);
             this.buttonNewAddress.Name = "buttonNewAddress";
             this.buttonNewAddress.Size = new System.Drawing.Size(169, 37);
-            this.buttonNewAddress.TabIndex = 2;
+            this.buttonNewAddress.TabIndex = 1;
             this.buttonNewAddress.Text = "Neuer Kontakt";
             this.buttonNewAddress.UseVisualStyleBackColor = true;
             this.buttonNewAddress.Click += new System.EventHandler(this.buttonNewAddress_Click);
@@ -110,7 +110,7 @@
             this.groupBoxDetails.Name = "groupBoxDetails";
             this.groupBoxDetails.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxDetails.Size = new System.Drawing.Size(1135, 408);
-            this.groupBoxDetails.TabIndex = 1;
+            this.groupBoxDetails.TabIndex = 0;
             this.groupBoxDetails.TabStop = false;
             this.groupBoxDetails.Text = "Details";
             // 
@@ -122,7 +122,7 @@
             this.buttonOpen.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOpen.Name = "buttonOpen";
             this.buttonOpen.Size = new System.Drawing.Size(169, 37);
-            this.buttonOpen.TabIndex = 0;
+            this.buttonOpen.TabIndex = 2;
             this.buttonOpen.Text = "Details";
             this.buttonOpen.UseVisualStyleBackColor = true;
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
@@ -200,13 +200,6 @@
             this.dataGridViewCustomer.SelectionChanged += new System.EventHandler(this.dataGridViewCustomer_SelectionChanged);
             this.dataGridViewCustomer.DoubleClick += new System.EventHandler(this.dataGridViewCustomer_DoubleClick);
             // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Vorname";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 85;
-            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -214,6 +207,13 @@
             this.Id.Name = "Id";
             this.Id.Visible = false;
             this.Id.Width = 44;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Vorname";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 85;
             // 
             // lastNameDataGridViewTextBoxColumn
             // 

@@ -16,7 +16,7 @@ namespace UrbanInvoicing.Forms
         public static string _Name = "";
         public static double _MwSt = 0.0;
         public static bool _ArticleCreation;
-
+        public bool DataReload = false;
 
         public frmUserInput()
         {
@@ -42,13 +42,28 @@ namespace UrbanInvoicing.Forms
                 var tmpArticle = new clsArticle();
                 try
                 {
+                    bool tmpError = false;
                     tmpArticle.name = textBoxName.Text;
-                    tmpArticle.vatRate = Convert.ToDouble(textBoxVat.Text);
+                    try
+                    {
+                        tmpArticle.vatRate = Convert.ToDouble(textBoxVat.Text);
+                    }
+                    catch (Exception)
+                    {
+                        tmpError = true;
+                    }
 
-                    if (tmpArticle.Save())
+                    if (!tmpError && tmpArticle.Save())
+                    {
                         MessageBox.Show("Speichern erfolgreich", "Erfolg", MessageBoxButtons.OK);
+                        this.Close();
+                    }
+                    else if(tmpError)
+                    {
+                        MessageBox.Show("MwSt enthält einen nicht numerischen Wert.", "Formatierungsfehler", MessageBoxButtons.OK);
+                    }
 
-                    this.Close();
+
                 }
                 catch (Exception ex)
                 {
@@ -72,6 +87,7 @@ namespace UrbanInvoicing.Forms
                     MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK);
                 }
             }
+            this.DataReload = true;
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -142,7 +142,7 @@
             this.comboBoxCustomers.Location = new System.Drawing.Point(211, 76);
             this.comboBoxCustomers.Name = "comboBoxCustomers";
             this.comboBoxCustomers.Size = new System.Drawing.Size(282, 28);
-            this.comboBoxCustomers.TabIndex = 1;
+            this.comboBoxCustomers.TabIndex = 2;
             this.comboBoxCustomers.ValueMember = "id";
             // 
             // bindingSourceCustomers
@@ -274,6 +274,7 @@
             this.dataGridViewInvoicePositions.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_CellValueChanged);
             this.dataGridViewInvoicePositions.CurrentCellChanged += new System.EventHandler(this.dataGridViewInvoicePositions_CurrentCellChanged);
             this.dataGridViewInvoicePositions.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dataGridViewInvoicePositions_DataError);
+            this.dataGridViewInvoicePositions.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewInvoicePositions_RowLeave);
             this.dataGridViewInvoicePositions.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserAddedRow);
             this.dataGridViewInvoicePositions.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dataGridViewInvoicePositions_UserDeletedRow);
             // 
@@ -354,7 +355,7 @@
             this.buttonClose.Location = new System.Drawing.Point(211, 491);
             this.buttonClose.Name = "buttonClose";
             this.buttonClose.Size = new System.Drawing.Size(205, 30);
-            this.buttonClose.TabIndex = 6;
+            this.buttonClose.TabIndex = 8;
             this.buttonClose.Text = "Zurück zum Hauptmenü";
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
@@ -379,7 +380,7 @@
             this.dateTimePicker.MinDate = new System.DateTime(1999, 1, 1, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(282, 27);
-            this.dateTimePicker.TabIndex = 0;
+            this.dateTimePicker.TabIndex = 1;
             // 
             // label5
             // 
@@ -410,7 +411,7 @@
             this.textBoxInvoiceNumber.MaxLength = 50;
             this.textBoxInvoiceNumber.Name = "textBoxInvoiceNumber";
             this.textBoxInvoiceNumber.Size = new System.Drawing.Size(282, 27);
-            this.textBoxInvoiceNumber.TabIndex = 19;
+            this.textBoxInvoiceNumber.TabIndex = 0;
             // 
             // buttonCreateArticle
             // 
@@ -418,7 +419,7 @@
             this.buttonCreateArticle.Location = new System.Drawing.Point(1129, 76);
             this.buttonCreateArticle.Name = "buttonCreateArticle";
             this.buttonCreateArticle.Size = new System.Drawing.Size(151, 30);
-            this.buttonCreateArticle.TabIndex = 20;
+            this.buttonCreateArticle.TabIndex = 6;
             this.buttonCreateArticle.Text = "Artikel erstellen";
             this.buttonCreateArticle.UseVisualStyleBackColor = true;
             this.buttonCreateArticle.Click += new System.EventHandler(this.buttonCreateArticle_Click);
@@ -429,7 +430,7 @@
             this.buttonCreateType.Location = new System.Drawing.Point(1129, 112);
             this.buttonCreateType.Name = "buttonCreateType";
             this.buttonCreateType.Size = new System.Drawing.Size(151, 30);
-            this.buttonCreateType.TabIndex = 21;
+            this.buttonCreateType.TabIndex = 7;
             this.buttonCreateType.Text = "Typ erstellen";
             this.buttonCreateType.UseVisualStyleBackColor = true;
             this.buttonCreateType.Click += new System.EventHandler(this.buttonCreateType_Click);

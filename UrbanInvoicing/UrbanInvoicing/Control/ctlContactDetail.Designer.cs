@@ -31,13 +31,12 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.labelId = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.labelFirstName = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.textBoxStreet = new System.Windows.Forms.TextBox();
-            this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxPostcode = new System.Windows.Forms.TextBox();
             this.textBoxCity = new System.Windows.Forms.TextBox();
@@ -50,7 +49,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.labelInvoiceFirstname = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.checkBoxOtherInvoiceAdress = new System.Windows.Forms.CheckBox();
             this.textBoxComment = new System.Windows.Forms.TextBox();
@@ -69,6 +68,8 @@
             this.labelInvoiceSurname = new System.Windows.Forms.Label();
             this.textBoxInvoiceStreet = new System.Windows.Forms.TextBox();
             this.checkBoxCompany = new System.Windows.Forms.CheckBox();
+            this.labelNew = new System.Windows.Forms.Label();
+            this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).BeginInit();
             this.SuspendLayout();
             // 
@@ -92,15 +93,15 @@
             this.labelId.TabIndex = 1;
             this.labelId.Text = "1";
             // 
-            // label2
+            // labelFirstName
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 34);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Vorname";
+            this.labelFirstName.AutoSize = true;
+            this.labelFirstName.Location = new System.Drawing.Point(9, 34);
+            this.labelFirstName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelFirstName.Name = "labelFirstName";
+            this.labelFirstName.Size = new System.Drawing.Size(52, 13);
+            this.labelFirstName.TabIndex = 2;
+            this.labelFirstName.Text = "Vorname:";
             // 
             // label3
             // 
@@ -146,41 +147,37 @@
             // 
             this.textBoxStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "street", true));
             this.textBoxStreet.Location = new System.Drawing.Point(109, 86);
-            this.textBoxStreet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxStreet.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxStreet.Name = "textBoxStreet";
             this.textBoxStreet.Size = new System.Drawing.Size(229, 20);
-            this.textBoxStreet.TabIndex = 7;
-            // 
-            // bindingSourceCustomer
-            // 
-            this.bindingSourceCustomer.DataSource = typeof(UrbanInvoicing.Classes.clsCustomer);
+            this.textBoxStreet.TabIndex = 2;
             // 
             // textBoxName
             // 
             this.textBoxName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "name", true));
             this.textBoxName.Location = new System.Drawing.Point(109, 30);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(229, 20);
-            this.textBoxName.TabIndex = 8;
+            this.textBoxName.TabIndex = 0;
             // 
             // textBoxPostcode
             // 
             this.textBoxPostcode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "plz", true));
             this.textBoxPostcode.Location = new System.Drawing.Point(109, 116);
-            this.textBoxPostcode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPostcode.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPostcode.Name = "textBoxPostcode";
             this.textBoxPostcode.Size = new System.Drawing.Size(68, 20);
-            this.textBoxPostcode.TabIndex = 9;
+            this.textBoxPostcode.TabIndex = 3;
             // 
             // textBoxCity
             // 
             this.textBoxCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "city", true));
             this.textBoxCity.Location = new System.Drawing.Point(109, 148);
-            this.textBoxCity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxCity.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxCity.Name = "textBoxCity";
             this.textBoxCity.Size = new System.Drawing.Size(229, 20);
-            this.textBoxCity.TabIndex = 10;
+            this.textBoxCity.TabIndex = 4;
             // 
             // comboBoxLandcode
             // 
@@ -440,10 +437,10 @@
             "ZM",
             "ZW"});
             this.comboBoxLandcode.Location = new System.Drawing.Point(109, 180);
-            this.comboBoxLandcode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxLandcode.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxLandcode.Name = "comboBoxLandcode";
             this.comboBoxLandcode.Size = new System.Drawing.Size(45, 21);
-            this.comboBoxLandcode.TabIndex = 11;
+            this.comboBoxLandcode.TabIndex = 5;
             // 
             // comboBoxInvoiceLandcode
             // 
@@ -704,40 +701,40 @@
             "ZM",
             "ZW"});
             this.comboBoxInvoiceLandcode.Location = new System.Drawing.Point(553, 180);
-            this.comboBoxInvoiceLandcode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.comboBoxInvoiceLandcode.Margin = new System.Windows.Forms.Padding(2);
             this.comboBoxInvoiceLandcode.Name = "comboBoxInvoiceLandcode";
             this.comboBoxInvoiceLandcode.Size = new System.Drawing.Size(45, 21);
-            this.comboBoxInvoiceLandcode.TabIndex = 21;
+            this.comboBoxInvoiceLandcode.TabIndex = 17;
             // 
             // textBoxInvoiceCity
             // 
             this.textBoxInvoiceCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "invoiceCity", true));
             this.textBoxInvoiceCity.Location = new System.Drawing.Point(553, 148);
-            this.textBoxInvoiceCity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxInvoiceCity.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxInvoiceCity.Name = "textBoxInvoiceCity";
             this.textBoxInvoiceCity.ReadOnly = true;
             this.textBoxInvoiceCity.Size = new System.Drawing.Size(229, 20);
-            this.textBoxInvoiceCity.TabIndex = 20;
+            this.textBoxInvoiceCity.TabIndex = 16;
             // 
             // textBoxInvoicePostcode
             // 
             this.textBoxInvoicePostcode.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "invoicePlz", true));
             this.textBoxInvoicePostcode.Location = new System.Drawing.Point(553, 116);
-            this.textBoxInvoicePostcode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxInvoicePostcode.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxInvoicePostcode.Name = "textBoxInvoicePostcode";
             this.textBoxInvoicePostcode.ReadOnly = true;
             this.textBoxInvoicePostcode.Size = new System.Drawing.Size(68, 20);
-            this.textBoxInvoicePostcode.TabIndex = 19;
+            this.textBoxInvoicePostcode.TabIndex = 15;
             // 
             // textBoxInvoiceName
             // 
             this.textBoxInvoiceName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "invoiceName", true));
             this.textBoxInvoiceName.Location = new System.Drawing.Point(553, 30);
-            this.textBoxInvoiceName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxInvoiceName.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxInvoiceName.Name = "textBoxInvoiceName";
             this.textBoxInvoiceName.ReadOnly = true;
             this.textBoxInvoiceName.Size = new System.Drawing.Size(229, 20);
-            this.textBoxInvoiceName.TabIndex = 18;
+            this.textBoxInvoiceName.TabIndex = 12;
             // 
             // label7
             // 
@@ -779,15 +776,15 @@
             this.label10.TabIndex = 13;
             this.label10.Text = "Straße, Hausnr: ";
             // 
-            // label11
+            // labelInvoiceFirstname
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(453, 34);
-            this.label11.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(49, 13);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "Vorname";
+            this.labelInvoiceFirstname.AutoSize = true;
+            this.labelInvoiceFirstname.Location = new System.Drawing.Point(453, 34);
+            this.labelInvoiceFirstname.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelInvoiceFirstname.Name = "labelInvoiceFirstname";
+            this.labelInvoiceFirstname.Size = new System.Drawing.Size(52, 13);
+            this.labelInvoiceFirstname.TabIndex = 12;
+            this.labelInvoiceFirstname.Text = "Vorname:";
             // 
             // label12
             // 
@@ -805,10 +802,10 @@
             this.checkBoxOtherInvoiceAdress.AutoSize = true;
             this.checkBoxOtherInvoiceAdress.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceCustomer, "useOtherAdress", true));
             this.checkBoxOtherInvoiceAdress.Location = new System.Drawing.Point(11, 247);
-            this.checkBoxOtherInvoiceAdress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxOtherInvoiceAdress.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxOtherInvoiceAdress.Name = "checkBoxOtherInvoiceAdress";
             this.checkBoxOtherInvoiceAdress.Size = new System.Drawing.Size(155, 17);
-            this.checkBoxOtherInvoiceAdress.TabIndex = 23;
+            this.checkBoxOtherInvoiceAdress.TabIndex = 7;
             this.checkBoxOtherInvoiceAdress.Text = "Andere Rechnungsadresse";
             this.checkBoxOtherInvoiceAdress.UseVisualStyleBackColor = true;
             this.checkBoxOtherInvoiceAdress.CheckedChanged += new System.EventHandler(this.checkBoxOtherInvoiceAdress_CheckedChanged);
@@ -816,22 +813,22 @@
             // textBoxComment
             // 
             this.textBoxComment.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "comment", true));
-            this.textBoxComment.Location = new System.Drawing.Point(109, 402);
-            this.textBoxComment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxComment.Location = new System.Drawing.Point(553, 247);
+            this.textBoxComment.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxComment.Multiline = true;
             this.textBoxComment.Name = "textBoxComment";
             this.textBoxComment.Size = new System.Drawing.Size(229, 112);
-            this.textBoxComment.TabIndex = 24;
+            this.textBoxComment.TabIndex = 11;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(9, 402);
+            this.label13.Location = new System.Drawing.Point(452, 247);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(61, 13);
+            this.label13.Size = new System.Drawing.Size(100, 13);
             this.label13.TabIndex = 25;
-            this.label13.Text = "Bemerkung";
+            this.label13.Text = "Interne Bemerkung:";
             // 
             // buttonSave
             // 
@@ -839,7 +836,7 @@
             this.buttonSave.Location = new System.Drawing.Point(891, 30);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(105, 30);
-            this.buttonSave.TabIndex = 26;
+            this.buttonSave.TabIndex = 18;
             this.buttonSave.Text = "Speichern";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -850,7 +847,7 @@
             this.buttonRemove.Location = new System.Drawing.Point(891, 66);
             this.buttonRemove.Name = "buttonRemove";
             this.buttonRemove.Size = new System.Drawing.Size(105, 30);
-            this.buttonRemove.TabIndex = 27;
+            this.buttonRemove.TabIndex = 19;
             this.buttonRemove.Text = "Entfernen";
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
@@ -859,10 +856,10 @@
             // 
             this.textBoxPhone.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "telefone", true));
             this.textBoxPhone.Location = new System.Drawing.Point(109, 286);
-            this.textBoxPhone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxPhone.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(229, 20);
-            this.textBoxPhone.TabIndex = 30;
+            this.textBoxPhone.TabIndex = 8;
             // 
             // label14
             // 
@@ -878,10 +875,10 @@
             // 
             this.textBoxFax.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "telefax", true));
             this.textBoxFax.Location = new System.Drawing.Point(109, 318);
-            this.textBoxFax.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxFax.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxFax.Name = "textBoxFax";
             this.textBoxFax.Size = new System.Drawing.Size(229, 20);
-            this.textBoxFax.TabIndex = 32;
+            this.textBoxFax.TabIndex = 9;
             // 
             // label15
             // 
@@ -897,10 +894,10 @@
             // 
             this.textBoxMail.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "email", true));
             this.textBoxMail.Location = new System.Drawing.Point(109, 350);
-            this.textBoxMail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxMail.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxMail.Name = "textBoxMail";
             this.textBoxMail.Size = new System.Drawing.Size(229, 20);
-            this.textBoxMail.TabIndex = 34;
+            this.textBoxMail.TabIndex = 10;
             // 
             // label16
             // 
@@ -916,10 +913,10 @@
             // 
             this.textBoxSurname.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "lastName", true));
             this.textBoxSurname.Location = new System.Drawing.Point(109, 51);
-            this.textBoxSurname.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxSurname.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxSurname.Name = "textBoxSurname";
             this.textBoxSurname.Size = new System.Drawing.Size(229, 20);
-            this.textBoxSurname.TabIndex = 36;
+            this.textBoxSurname.TabIndex = 1;
             // 
             // labelSurname
             // 
@@ -927,19 +924,19 @@
             this.labelSurname.Location = new System.Drawing.Point(9, 55);
             this.labelSurname.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelSurname.Name = "labelSurname";
-            this.labelSurname.Size = new System.Drawing.Size(59, 13);
+            this.labelSurname.Size = new System.Drawing.Size(62, 13);
             this.labelSurname.TabIndex = 35;
-            this.labelSurname.Text = "Nachname";
+            this.labelSurname.Text = "Nachname:";
             // 
             // textBoxInvoiceSurname
             // 
             this.textBoxInvoiceSurname.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "invoiceLastName", true));
             this.textBoxInvoiceSurname.Location = new System.Drawing.Point(553, 51);
-            this.textBoxInvoiceSurname.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxInvoiceSurname.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxInvoiceSurname.Name = "textBoxInvoiceSurname";
             this.textBoxInvoiceSurname.ReadOnly = true;
             this.textBoxInvoiceSurname.Size = new System.Drawing.Size(229, 20);
-            this.textBoxInvoiceSurname.TabIndex = 38;
+            this.textBoxInvoiceSurname.TabIndex = 13;
             // 
             // labelInvoiceSurname
             // 
@@ -947,37 +944,54 @@
             this.labelInvoiceSurname.Location = new System.Drawing.Point(453, 55);
             this.labelInvoiceSurname.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelInvoiceSurname.Name = "labelInvoiceSurname";
-            this.labelInvoiceSurname.Size = new System.Drawing.Size(59, 13);
+            this.labelInvoiceSurname.Size = new System.Drawing.Size(62, 13);
             this.labelInvoiceSurname.TabIndex = 37;
-            this.labelInvoiceSurname.Text = "Nachname";
+            this.labelInvoiceSurname.Text = "Nachname:";
             // 
             // textBoxInvoiceStreet
             // 
             this.textBoxInvoiceStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bindingSourceCustomer, "invoiceStreet", true));
             this.textBoxInvoiceStreet.Location = new System.Drawing.Point(553, 86);
-            this.textBoxInvoiceStreet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxInvoiceStreet.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxInvoiceStreet.Name = "textBoxInvoiceStreet";
             this.textBoxInvoiceStreet.ReadOnly = true;
             this.textBoxInvoiceStreet.Size = new System.Drawing.Size(229, 20);
-            this.textBoxInvoiceStreet.TabIndex = 17;
+            this.textBoxInvoiceStreet.TabIndex = 14;
             // 
             // checkBoxCompany
             // 
             this.checkBoxCompany.AutoSize = true;
             this.checkBoxCompany.DataBindings.Add(new System.Windows.Forms.Binding("Checked", this.bindingSourceCustomer, "isCompany", true));
             this.checkBoxCompany.Location = new System.Drawing.Point(11, 215);
-            this.checkBoxCompany.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBoxCompany.Margin = new System.Windows.Forms.Padding(2);
             this.checkBoxCompany.Name = "checkBoxCompany";
             this.checkBoxCompany.Size = new System.Drawing.Size(51, 17);
-            this.checkBoxCompany.TabIndex = 39;
+            this.checkBoxCompany.TabIndex = 6;
             this.checkBoxCompany.Text = "Firma";
             this.checkBoxCompany.UseVisualStyleBackColor = true;
             this.checkBoxCompany.CheckedChanged += new System.EventHandler(this.checkBoxCompany_CheckedChanged);
+            // 
+            // labelNew
+            // 
+            this.labelNew.AutoSize = true;
+            this.labelNew.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelNew.ForeColor = System.Drawing.Color.Red;
+            this.labelNew.Location = new System.Drawing.Point(106, 8);
+            this.labelNew.Name = "labelNew";
+            this.labelNew.Size = new System.Drawing.Size(33, 13);
+            this.labelNew.TabIndex = 38;
+            this.labelNew.Text = "NEU";
+            this.labelNew.Visible = false;
+            // 
+            // bindingSourceCustomer
+            // 
+            this.bindingSourceCustomer.DataSource = typeof(UrbanInvoicing.Classes.clsCustomer);
             // 
             // ctlContactDetail
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelNew);
             this.Controls.Add(this.checkBoxCompany);
             this.Controls.Add(this.textBoxInvoiceSurname);
             this.Controls.Add(this.labelInvoiceSurname);
@@ -1004,7 +1018,7 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.labelInvoiceFirstname);
             this.Controls.Add(this.comboBoxLandcode);
             this.Controls.Add(this.textBoxCity);
             this.Controls.Add(this.textBoxPostcode);
@@ -1014,10 +1028,10 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.labelFirstName);
             this.Controls.Add(this.labelId);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ctlContactDetail";
             this.Size = new System.Drawing.Size(1074, 581);
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceCustomer)).EndInit();
@@ -1030,7 +1044,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelId;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
@@ -1048,7 +1062,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelInvoiceFirstname;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox checkBoxOtherInvoiceAdress;
         private System.Windows.Forms.TextBox textBoxComment;
@@ -1068,5 +1082,6 @@
         private System.Windows.Forms.Label labelInvoiceSurname;
         private System.Windows.Forms.TextBox textBoxInvoiceStreet;
         private System.Windows.Forms.CheckBox checkBoxCompany;
+        private System.Windows.Forms.Label labelNew;
     }
 }

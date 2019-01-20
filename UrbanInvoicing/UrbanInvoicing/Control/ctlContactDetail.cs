@@ -13,7 +13,7 @@ namespace UrbanInvoicing.Forms
 {
     public partial class ctlContactDetail : UserControl
     {
-        private List<clsCustomer> _Customer { get; set; }
+        private clsCustomer _Customer { get; set; }
         private List<string> _CountryList { get; set; }
         public ctlContactDetail()
         {
@@ -25,14 +25,14 @@ namespace UrbanInvoicing.Forms
         {
             if (pCustomer == null)
             {
-                this._Customer = new List<clsCustomer>();
-                this._Customer.Add(new clsCustomer());
+                this.labelNew.Visible = true;
+                this._Customer = new clsCustomer();
                 this.bindingSourceCustomer.DataSource = this._Customer;
             }
             else
             {
-                this._Customer = new List<clsCustomer>();
-                this._Customer.Add(pCustomer);
+                this.labelNew.Visible = false;
+                this._Customer = pCustomer;
                 this.bindingSourceCustomer.DataSource = pCustomer;
             }
             this.Refresh();
@@ -52,7 +52,7 @@ namespace UrbanInvoicing.Forms
 
         private void buttonSave_Click(object sender, EventArgs e)
         {
-            clsCustomer tmpCustomer = ((List<clsCustomer>)this.bindingSourceCustomer.DataSource).Cast<clsCustomer>().FirstOrDefault();
+            clsCustomer tmpCustomer = (this.bindingSourceCustomer.DataSource as clsCustomer);
             if (tmpCustomer != null)
             {
                 if (!clsCustomer.NameOnDb(tmpCustomer.name))
@@ -75,6 +75,9 @@ namespace UrbanInvoicing.Forms
                         if (tmpCustomer.Save())
                         {
                             MessageBox.Show("Daten wurden erfolgreich gespeichert", "Gespeichert", MessageBoxButtons.OK);
+
+                            if (this.labelNew.Visible)
+                                this.labelNew.Visible = false;
                         }
                     }
                     catch (Exception ex)
@@ -89,17 +92,20 @@ namespace UrbanInvoicing.Forms
 
         private void buttonRemove_Click(object sender, EventArgs e)
         {
-            if (this._Customer.FirstOrDefault().id > 0)
+            clsCustomer tmpCustomer = (this.bindingSourceCustomer.DataSource as clsCustomer);
+            if (tmpCustomer.id> 0)
             {
                 DialogResult tmpResult = MessageBox.Show("Sind Sie sich sicher diesen Kunden zu löschen? ", "Löschen", MessageBoxButtons.YesNo);
                 if (tmpResult == DialogResult.Yes)
                 {
-                    List<clsCustomer> tmpList = (List<clsCustomer>)this.bindingSourceCustomer.DataSource;
-                    clsCustomer tmpCustomer = tmpList.FirstOrDefault();
+                    
+
                     if (tmpCustomer != null)
                     {
                         tmpCustomer.DeleteOnDb();
-                        this._Customer = new List<clsCustomer>();
+                        this._Customer = new clsCustomer();
+                        this.bindingSourceCustomer.DataSource = this._Customer;
+                        MessageBox.Show("Erfolgreich gelöscht", "Erfolg", MessageBoxButtons.OK);
                     }
                 }
             }
@@ -111,6 +117,17 @@ namespace UrbanInvoicing.Forms
             this.textBoxSurname.Visible = !this.checkBoxCompany.Checked;
             this.labelInvoiceSurname.Visible = !this.checkBoxCompany.Checked;
             this.textBoxInvoiceSurname.Visible = !this.checkBoxCompany.Checked;
+
+            if(this.checkBoxCompany.Checked)
+            {
+                this.labelFirstName.Text = "Name:";
+                this.labelInvoiceFirstname.Text = "Name:";
+            }
+            else
+            {
+                this.labelFirstName.Text = "Vorname:";
+                this.labelInvoiceFirstname.Text = "Vorname:";
+            }
         }
     }
 }

@@ -250,14 +250,15 @@ namespace UrbanInvoicing.Forms
 
             try
             {
+                bool tmpCanSave = true;
                 clsInvoice tmpNewInvoice = new clsInvoice()
                 {
                     customerId = (int)this.comboBoxCustomer.SelectedValue,
                     date = this.dateTimePicker.Value,
                     Id = 1,
-                    sumBrutto = Math.Round(Convert.ToDouble(this.labelSumGross.Text),2),
-                    sumNetto = Math.Round(Convert.ToDouble(this.labelSumNet.Text),2),
-                    sumMwst = Math.Round(Convert.ToDouble(this.labelVAT.Text),2),
+                    sumBrutto = Math.Round(Convert.ToDouble(this.labelSumGross.Text), 2),
+                    sumNetto = Math.Round(Convert.ToDouble(this.labelSumNet.Text), 2),
+                    sumMwst = Math.Round(Convert.ToDouble(this.labelVAT.Text), 2),
                     invoiceNumber = this.textBoxInvoiceNumber.Text,
                     IsExport = true,
                 };
@@ -266,13 +267,18 @@ namespace UrbanInvoicing.Forms
                 this.dataGridViewInvoicePositions.EndEdit();
                 foreach (clsInvoicePosition tmpItem in this.dataGridViewInvoicePositions.GetAllEntities<clsInvoicePosition>())
                 {
+                    if (tmpItem.TypeId == 0 || tmpItem.ArtikelId == 0)
+                        tmpCanSave = false;
                     tmpNewInvoice.invoicePositions.Add(tmpItem);
                 }
-
-                if (tmpNewInvoice.Save())
+                if (tmpCanSave && tmpNewInvoice.Save())
                 {
                     MessageBox.Show("Rechnung gespeichert!", "Gespeichert", MessageBoxButtons.OK);
                     this.Reset();
+                }
+                else if (!tmpCanSave)
+                {
+                    MessageBox.Show("Artikel oder Typ nicht ausgewählt.", "Fehlende Informationen", MessageBoxButtons.OK);
                 }
             }
             catch (Exception ex)
