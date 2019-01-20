@@ -268,6 +268,7 @@ namespace UrbanInvoicing.Forms
                         this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["nettoDataGridViewTextBoxColumn"].Value = tmpChangedPosition.Netto;
                         break;
                 }
+                this.dataGridViewInvoicePositions.Rows[pRowIndex].Cells["MwStCalculated"].Value = Math.Round(tmpDecBrutto - tmpDecNetto,2);
             }
 
 

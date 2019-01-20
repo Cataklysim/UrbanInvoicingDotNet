@@ -32,13 +32,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.buttonHome = new System.Windows.Forms.Button();
             this.buttonNewAddress = new System.Windows.Forms.Button();
             this.groupBoxDetails = new System.Windows.Forms.GroupBox();
             this.buttonOpen = new System.Windows.Forms.Button();
+            this.buttonHome = new System.Windows.Forms.Button();
             this.dataGridViewCustomer = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.plzDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.streetDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,7 +71,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
@@ -90,23 +90,11 @@
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 0;
             // 
-            // buttonHome
-            // 
-            this.buttonHome.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.buttonHome.Location = new System.Drawing.Point(9, 341);
-            this.buttonHome.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.buttonHome.Name = "buttonHome";
-            this.buttonHome.Size = new System.Drawing.Size(205, 30);
-            this.buttonHome.TabIndex = 3;
-            this.buttonHome.Text = "Zurück zum Hauptmenü";
-            this.buttonHome.UseVisualStyleBackColor = true;
-            this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
-            // 
             // buttonNewAddress
             // 
             this.buttonNewAddress.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.buttonNewAddress.Location = new System.Drawing.Point(1168, 17);
-            this.buttonNewAddress.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonNewAddress.Margin = new System.Windows.Forms.Padding(2);
             this.buttonNewAddress.Name = "buttonNewAddress";
             this.buttonNewAddress.Size = new System.Drawing.Size(169, 37);
             this.buttonNewAddress.TabIndex = 2;
@@ -118,9 +106,9 @@
             // 
             this.groupBoxDetails.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.groupBoxDetails.Location = new System.Drawing.Point(9, 8);
-            this.groupBoxDetails.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxDetails.Margin = new System.Windows.Forms.Padding(2);
             this.groupBoxDetails.Name = "groupBoxDetails";
-            this.groupBoxDetails.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBoxDetails.Padding = new System.Windows.Forms.Padding(2);
             this.groupBoxDetails.Size = new System.Drawing.Size(1135, 408);
             this.groupBoxDetails.TabIndex = 1;
             this.groupBoxDetails.TabStop = false;
@@ -131,13 +119,25 @@
             this.buttonOpen.Enabled = false;
             this.buttonOpen.Font = new System.Drawing.Font("Segoe UI", 11.25F);
             this.buttonOpen.Location = new System.Drawing.Point(1168, 58);
-            this.buttonOpen.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonOpen.Margin = new System.Windows.Forms.Padding(2);
             this.buttonOpen.Name = "buttonOpen";
             this.buttonOpen.Size = new System.Drawing.Size(169, 37);
             this.buttonOpen.TabIndex = 0;
             this.buttonOpen.Text = "Details";
             this.buttonOpen.UseVisualStyleBackColor = true;
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
+            // 
+            // buttonHome
+            // 
+            this.buttonHome.Font = new System.Drawing.Font("Segoe UI", 11.25F);
+            this.buttonHome.Location = new System.Drawing.Point(9, 341);
+            this.buttonHome.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonHome.Name = "buttonHome";
+            this.buttonHome.Size = new System.Drawing.Size(205, 30);
+            this.buttonHome.TabIndex = 3;
+            this.buttonHome.Text = "Zurück zum Hauptmenü";
+            this.buttonHome.UseVisualStyleBackColor = true;
+            this.buttonHome.Click += new System.EventHandler(this.buttonHome_Click);
             // 
             // dataGridViewCustomer
             // 
@@ -190,7 +190,7 @@
             this.dataGridViewCustomer.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewCustomer.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridViewCustomer.Location = new System.Drawing.Point(2, 2);
-            this.dataGridViewCustomer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dataGridViewCustomer.Margin = new System.Windows.Forms.Padding(2);
             this.dataGridViewCustomer.MultiSelect = false;
             this.dataGridViewCustomer.Name = "dataGridViewCustomer";
             this.dataGridViewCustomer.RowTemplate.Height = 28;
@@ -200,6 +200,13 @@
             this.dataGridViewCustomer.SelectionChanged += new System.EventHandler(this.dataGridViewCustomer_SelectionChanged);
             this.dataGridViewCustomer.DoubleClick += new System.EventHandler(this.dataGridViewCustomer_DoubleClick);
             // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Vorname";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.Width = 85;
+            // 
             // Id
             // 
             this.Id.DataPropertyName = "Id";
@@ -207,13 +214,6 @@
             this.Id.Name = "Id";
             this.Id.Visible = false;
             this.Id.Width = 44;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Vorname";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.Width = 85;
             // 
             // lastNameDataGridViewTextBoxColumn
             // 
@@ -362,7 +362,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmContacts";
+            this.Text = "Adressbuch";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);

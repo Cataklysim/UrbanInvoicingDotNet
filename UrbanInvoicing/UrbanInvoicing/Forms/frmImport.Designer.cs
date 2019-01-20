@@ -44,6 +44,7 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.dataGridViewInvoicePositions = new System.Windows.Forms.DataGridView();
             this.artikelIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MwStCalculated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.typeIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mwStDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bruttoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -252,6 +253,7 @@
             this.dataGridViewInvoicePositions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridViewInvoicePositions.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.artikelIdDataGridViewTextBoxColumn,
+            this.MwStCalculated,
             this.typeIdDataGridViewTextBoxColumn,
             this.mwStDataGridViewTextBoxColumn,
             this.bruttoDataGridViewTextBoxColumn,
@@ -281,6 +283,13 @@
             this.artikelIdDataGridViewTextBoxColumn.HeaderText = "Artikel";
             this.artikelIdDataGridViewTextBoxColumn.Name = "artikelIdDataGridViewTextBoxColumn";
             this.artikelIdDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // MwStCalculated
+            // 
+            this.MwStCalculated.DataPropertyName = "MwStCalculated";
+            this.MwStCalculated.HeaderText = "MwStCalculated";
+            this.MwStCalculated.Name = "MwStCalculated";
+            this.MwStCalculated.Visible = false;
             // 
             // typeIdDataGridViewTextBoxColumn
             // 
@@ -443,7 +452,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "frmImport";
+            this.Text = "Eingangsrechnung";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmImport_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -485,6 +494,7 @@
         private System.Windows.Forms.Button buttonCreateArticle;
         private System.Windows.Forms.Button buttonCreateType;
         private System.Windows.Forms.DataGridViewTextBoxColumn artikelIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MwStCalculated;
         private System.Windows.Forms.DataGridViewTextBoxColumn typeIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mwStDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn bruttoDataGridViewTextBoxColumn;

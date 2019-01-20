@@ -50,7 +50,6 @@ namespace UrbanInvoicing.Forms
                         this._LocalInboundControl.RefreshDataSources();
                         this._LocalInboundControl.Dock = DockStyle.Fill;
                         this._LocalInboundControl.Refresh();
-
                         break;
                     case "outbound":
                         this._LocalOutboundControl.Parent = this.splitContainer1.Panel1;
