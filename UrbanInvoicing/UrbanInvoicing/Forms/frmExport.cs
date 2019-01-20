@@ -279,14 +279,14 @@ namespace UrbanInvoicing.Forms
                     if (tmpItem.TypeId == 0 || tmpItem.ArtikelId == 0)
                     {
                         tmpCanSave = false;
-                        MessageBox.Show("Artikel oder Typ nicht ausgewählt.", "Fehlende Informationen", MessageBoxButtons.OK);
+                    MessageBox.Show("Artikel oder Typ nicht ausgewählt.", "Fehlende Informationen", MessageBoxButtons.OK);
                         break;
                     }
                     tmpNewInvoice.invoicePositions.Add(tmpItem);
                 }
                 if (tmpCanSave && tmpNewInvoice.Save())
                 {
-                    MessageBox.Show("Rechnung gespeichert!", "Gespeichert", MessageBoxButtons.OK);
+                        MessageBox.Show("Rechnung gespeichert!", "Gespeichert", MessageBoxButtons.OK);
                     this.Reset();
                 }
             }
