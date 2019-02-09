@@ -17,7 +17,7 @@ namespace UrbanInvoicing.Control
         {
             InitializeComponent();
             this.Articles = clsArticle.GetArticlesFromDB();
-            this.Customer = clsCustomer.GetCustomerFromDB();
+            this.Customer = clsCustomer.GetCustomerFromDB(true);
             this.Types = clsType.GetTypesFromDB();
         }
 
@@ -30,7 +30,7 @@ namespace UrbanInvoicing.Control
             List<clsInvoice> tmpInvoices = clsInvoice.GetDbList();
             this.bindingSourceOutboundInvoices.DataSource = tmpInvoices.Where(w => w.IsExport == true).ToList();
             this.Articles = clsArticle.GetArticlesFromDB();
-            this.Customer = clsCustomer.GetCustomerFromDB();
+            this.Customer = clsCustomer.GetCustomerFromDB(true);
             this.Types = clsType.GetTypesFromDB();
             this.LoadCells();
         }

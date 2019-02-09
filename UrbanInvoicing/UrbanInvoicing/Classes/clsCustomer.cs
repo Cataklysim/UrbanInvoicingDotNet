@@ -40,14 +40,23 @@ namespace UrbanInvoicing.Classes
         public clsCustomer()
         { }
 
-        public static List<clsCustomer> GetCustomerFromDB()
+        public static List<clsCustomer> GetCustomerFromDB(bool pIsCompany = false, bool pIsCustomer = false)
         {
             List<clsCustomer> tmpResult = new List<clsCustomer>();
             try
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM tbCustomer WHERE systemstatus_id = 1 AND isCompany = 1 ORDER BY name");
+                    String tmpAditionalWhere = String.Empty;
+                    if (pIsCompany)
+                    {
+                        tmpAditionalWhere += " AND isCompany = 1 ";
+                    }
+                    if (pIsCustomer)
+                    {
+                        tmpAditionalWhere += " AND isCustomer = 1";
+                    }
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM tbCustomer WHERE systemstatus_id = 1"+tmpAditionalWhere+"ORDER BY name");
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))

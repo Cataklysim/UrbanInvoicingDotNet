@@ -142,7 +142,7 @@ namespace UrbanInvoicing.Forms
 
         private void frmImport_Load(object sender, EventArgs e)
         {
-            this.bindingSourceCustomers.DataSource = clsCustomer.GetCustomerFromDB();
+            this.bindingSourceCustomers.DataSource = clsCustomer.GetCustomerFromDB(true);
             this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
             this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
             this.dateTimePicker.Value = DateTime.Now;
@@ -151,7 +151,7 @@ namespace UrbanInvoicing.Forms
 
         public void RefreshDataSources()
         {
-            this.bindingSourceCustomers.DataSource = clsCustomer.GetCustomerFromDB();
+            this.bindingSourceCustomers.DataSource = clsCustomer.GetCustomerFromDB(true);
             this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
             this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
         }

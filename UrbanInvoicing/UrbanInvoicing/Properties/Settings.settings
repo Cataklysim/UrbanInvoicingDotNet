@@ -2,11 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="UrbanInvoicing.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="ConnectionString" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">User Id=urbanInvoicing;Password=urbanInvoicing;Database=urbanInvoicing;Port=3307;Server=192.168.100.65;Connection Timeout=10000</Value>
-    </Setting>
     <Setting Name="DevBuild" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">User Id=urbanInvoicing;Password=urbanInvoicing;Database=urbanInvoicing;Port=3307;Server=192.168.100.65;Connection Timeout=10000</Value>
     </Setting>
   </Settings>
 </SettingsFile>

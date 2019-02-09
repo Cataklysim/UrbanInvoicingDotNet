@@ -63,14 +63,14 @@
             this.label7 = new System.Windows.Forms.Label();
             this.labelSumNet = new System.Windows.Forms.Label();
             this.buttonBackToMenu = new System.Windows.Forms.Button();
-            this.bindingSourceTypen = new System.Windows.Forms.BindingSource(this.components);
-            this.bindingSourceArtikel = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dateTimePickerFrom = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerTo = new System.Windows.Forms.DateTimePicker();
             this.dateTimePickerPaymentDate = new System.Windows.Forms.DateTimePicker();
+            this.bindingSourceTypen = new System.Windows.Forms.BindingSource(this.components);
+            this.bindingSourceArtikel = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewInvoicePositions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourcePositions)).BeginInit();
@@ -480,14 +480,6 @@
             this.buttonBackToMenu.UseVisualStyleBackColor = true;
             this.buttonBackToMenu.Click += new System.EventHandler(this.buttonBackToMenu_Click);
             // 
-            // bindingSourceTypen
-            // 
-            this.bindingSourceTypen.DataSource = typeof(UrbanInvoicing.Classes.clsType);
-            // 
-            // bindingSourceArtikel
-            // 
-            this.bindingSourceArtikel.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -547,6 +539,14 @@
             this.dateTimePickerPaymentDate.Name = "dateTimePickerPaymentDate";
             this.dateTimePickerPaymentDate.Size = new System.Drawing.Size(282, 27);
             this.dateTimePickerPaymentDate.TabIndex = 25;
+            // 
+            // bindingSourceTypen
+            // 
+            this.bindingSourceTypen.DataSource = typeof(UrbanInvoicing.Classes.clsType);
+            // 
+            // bindingSourceArtikel
+            // 
+            this.bindingSourceArtikel.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
             // 
             // frmExport
             // 
