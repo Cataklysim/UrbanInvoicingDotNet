@@ -315,7 +315,7 @@ namespace UrbanInvoicing.Forms
         private void frmExport_Load(object sender, EventArgs e)
         {
             this.bindingSourceCustomers.DataSource = clsCustomer.GetCustomerFromDB();
-            this.bindingSourceArtikel.DataSource = clsArticle.GetArticlesFromDB();
+            this.bindingSourceArtikel.DataSource = clsArticle.GetRoomsFromDB();
             this.bindingSourceTypen.DataSource = clsType.GetTypesFromDB();
             this.dateTimePicker.Value = DateTime.Now;
             this.LoadRepositories();
@@ -486,6 +486,11 @@ namespace UrbanInvoicing.Forms
         private void dataGridViewInvoicePositions_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             this.calcSums();
+        }
+
+        private void bindingSourceArtikel_CurrentChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

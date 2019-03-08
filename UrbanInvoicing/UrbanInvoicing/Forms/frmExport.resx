@@ -127,12 +127,15 @@
     <value>1468, 15</value>
   </metadata>
   <metadata name="bindingSourceCustomers.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1201, 15</value>
+    <value>715, 25</value>
   </metadata>
   <metadata name="bindingSourceTypen.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>971, 15</value>
+    <value>409, 12</value>
   </metadata>
   <metadata name="bindingSourceArtikel.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1722, 15</value>
+    <value>1111, 15</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>241</value>
   </metadata>
 </root>

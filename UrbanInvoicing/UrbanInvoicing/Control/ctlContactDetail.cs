@@ -59,7 +59,9 @@ namespace UrbanInvoicing.Forms
                 {
                     try
                     {
-                        tmpCustomer.comment = "";
+                        if (tmpCustomer.comment == String.Empty)
+                            tmpCustomer.comment = "";
+
                         if (!tmpCustomer.useOtherAdress)
                         {
                             tmpCustomer.invoiceName = tmpCustomer.name;
