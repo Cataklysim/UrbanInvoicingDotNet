@@ -13,7 +13,7 @@ namespace UrbanInvoicing.Classes
     {
 
         public int id { get; set; }
-        public String name { get; set; }
+        public new String name { get; set; }
         public String lastName { get; set; }
         public String plz { get; set; }
         public String street { get; set; }

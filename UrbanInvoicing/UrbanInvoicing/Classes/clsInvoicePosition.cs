@@ -83,7 +83,7 @@ namespace UrbanInvoicing.Classes
                     tmpCommand.Parameters.AddWithValue("@MWST", this.MwSt);
                     tmpCommand.Parameters.AddWithValue("@Rabatt", this.Rabatt);
                     tmpCommand.Parameters.AddWithValue("@Artikel_Id", this.ArtikelId);
-                    tmpCommand.Parameters.AddWithValue("@Type_Id", this.TypeId);
+                    tmpCommand.Parameters.AddWithValue("@Type_Id", this.TypeId == null || this.TypeId==0 ? 32 : this.TypeId);
                     tmpCommand.Parameters.AddWithValue("@mwstCalc", this.MwStCalculated);
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
@@ -124,8 +124,8 @@ namespace UrbanInvoicing.Classes
                             {
                                 InvoiceId = Convert.ToInt32(tmpReader["invoice_id"]),
                                 Bemerkung = tmpReader["bemerkung"].ToString(),
-                                Netto = Math.Round(Convert.ToDouble(tmpReader["netto"]),2),
-                                Brutto = Math.Round(Convert.ToDouble(tmpReader["brutto"]),2),
+                                Netto = Math.Round(Convert.ToDouble(tmpReader["netto"]), 2),
+                                Brutto = Math.Round(Convert.ToDouble(tmpReader["brutto"]), 2),
                                 MwSt = Convert.ToDouble(tmpReader["mwst"]),
                                 Rabatt = Convert.ToDouble(tmpReader["rabatt"]),
                                 ArtikelId = Convert.ToInt32(tmpReader["artikel_id"]),

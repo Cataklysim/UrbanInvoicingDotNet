@@ -34,7 +34,7 @@ namespace UrbanInvoicing.Classes
             {
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
-                    MySqlCommand tmpCommand = new MySqlCommand("SELECT id, name, mwstSatz FROM tbArtikel WHERE systemstatus_id = 1 ORDER BY name");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT id, name, mwstSatz FROM tbArtikel WHERE systemstatus_id = 1 AND squareMeter IS Null ORDER BY name");
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
