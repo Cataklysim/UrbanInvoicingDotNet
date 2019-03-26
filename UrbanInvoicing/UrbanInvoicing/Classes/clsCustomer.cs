@@ -48,13 +48,15 @@ namespace UrbanInvoicing.Classes
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     String tmpAditionalWhere = String.Empty;
-                    if (pIsCompany)
+                    if (pIsCompany  && !pIsCustomer)
                     {
                         tmpAditionalWhere += "AND isCompany = 1 ";
-                    }
-                    if (pIsCustomer)
+                    } else if (!pIsCompany && pIsCustomer)
                     {
                         tmpAditionalWhere += "AND isCustomer = 1 ";
+                    } else if (pIsCompany && pIsCustomer)
+                    {
+                        tmpAditionalWhere += " AND (isCompany = 1 OR isCustomer = 1) ";
                     }
                     MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM tbCustomer WHERE systemstatus_id = 1 "+tmpAditionalWhere+"ORDER BY name");
                     tmpCommand.Connection = tmpConnection;
@@ -169,6 +171,9 @@ namespace UrbanInvoicing.Classes
                     this.id = clsCustomer.GetId(this.name);
                 }
                 tmpCommand.Parameters.AddWithValue("@id", this.id);
+                tmpCommand.Connection.Open();
+                tmpCommand.ExecuteNonQuery();
+                tmpCommand.Connection.Close();
             }
         }
 

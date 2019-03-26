@@ -16,8 +16,8 @@ namespace UrbanInvoicing.Control
         public ctlDataManagementOutbound()
         {
             InitializeComponent();
-            this.Articles = clsArticle.GetArticlesFromDB();
-            this.Customer = clsCustomer.GetCustomerFromDB(true);
+            this.Articles = clsArticle.GetRoomsFromDB();
+            this.Customer = clsCustomer.GetCustomerFromDB(true, true);
             this.Types = clsType.GetTypesFromDB();
         }
 
@@ -29,8 +29,8 @@ namespace UrbanInvoicing.Control
         {
             List<clsInvoice> tmpInvoices = clsInvoice.GetDbList();
             this.bindingSourceOutboundInvoices.DataSource = tmpInvoices.Where(w => w.IsExport == true).ToList();
-            this.Articles = clsArticle.GetArticlesFromDB();
-            this.Customer = clsCustomer.GetCustomerFromDB(true);
+            this.Articles = clsArticle.GetRoomsFromDB();
+            this.Customer = clsCustomer.GetCustomerFromDB(true, true);
             this.Types = clsType.GetTypesFromDB();
             this.LoadCells();
         }
@@ -56,8 +56,7 @@ namespace UrbanInvoicing.Control
                 this.bindingSourcePositions.DataSource = new List<clsInvoicePosition>();
 
         }
-
-
+      
         private void LoadPositionCells()
         {
             foreach (DataGridViewRow tmpRow in this.dataGridViewOutboundInvoicePosition.Rows)
