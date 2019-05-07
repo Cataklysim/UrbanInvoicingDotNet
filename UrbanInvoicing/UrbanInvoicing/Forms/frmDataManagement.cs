@@ -24,6 +24,7 @@ namespace UrbanInvoicing.Forms
             {
                 this._LocalInboundControl = new ctlDataManagementInbound();
                 this._LocalOutboundControl = new ctlDataManagementOutbound();
+                this._LocalExportMask = new ctlExportMask();
             }
             catch (Exception ex)
             {
@@ -34,13 +35,15 @@ namespace UrbanInvoicing.Forms
 
         private ctlDataManagementInbound _LocalInboundControl { get; set; }
         private ctlDataManagementOutbound _LocalOutboundControl { get; set; }
+        private ctlExportMask _LocalExportMask { get; set; }
 
         private void frmDataManagement_Load(object sender, EventArgs e)
         {
-            if (this._LocalInboundControl != null && this._LocalOutboundControl != null)
+            if (this._LocalInboundControl != null && this._LocalOutboundControl != null && this._LocalExportMask != null)
             {
                 this._LocalInboundControl.Parent = null;
                 this._LocalOutboundControl.Parent = null;
+                this._LocalExportMask = null;
 
                 switch (this.LoadTag)
                 {
@@ -58,6 +61,12 @@ namespace UrbanInvoicing.Forms
                         this._LocalOutboundControl.Dock = DockStyle.Fill;
                         this._LocalOutboundControl.Refresh();
                         break;
+                    case "export":
+                        this._LocalExportMask.Parent = this.splitContainer1.Panel1;
+                        this.Text = "Export";
+                        this._LocalExportMask.Dock = DockStyle.Fill;
+                        this._LocalExportMask.Refresh();
+                        break;
                     default:
                         this.Dispose();
                         break;
@@ -70,6 +79,7 @@ namespace UrbanInvoicing.Forms
         {
             this._LocalInboundControl = null;
             this._LocalOutboundControl = null;
+            this._LocalExportMask = null;
             this.Dispose();
         }
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UrbanInvoicing.Classes;
+using System.IO;
 
 namespace UrbanInvoicing.Control
 {
@@ -56,7 +57,7 @@ namespace UrbanInvoicing.Control
                 this.bindingSourcePositions.DataSource = new List<clsInvoicePosition>();
 
         }
-      
+
         private void LoadPositionCells()
         {
             foreach (DataGridViewRow tmpRow in this.dataGridViewOutboundInvoicePosition.Rows)
@@ -108,6 +109,10 @@ namespace UrbanInvoicing.Control
                     }
                 }
             }
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
         }
     }
 }

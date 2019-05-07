@@ -42,22 +42,25 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.splitContainer1.Name = "splitContainer1";
             this.splitContainer1.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.buttonBackToMenu);
-            this.splitContainer1.Size = new System.Drawing.Size(1283, 589);
-            this.splitContainer1.SplitterDistance = 540;
+            this.splitContainer1.Size = new System.Drawing.Size(1924, 906);
+            this.splitContainer1.SplitterDistance = 830;
+            this.splitContainer1.SplitterWidth = 6;
             this.splitContainer1.TabIndex = 0;
             // 
             // buttonBackToMenu
             // 
             this.buttonBackToMenu.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.buttonBackToMenu.Location = new System.Drawing.Point(3, 3);
+            this.buttonBackToMenu.Location = new System.Drawing.Point(4, 5);
+            this.buttonBackToMenu.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.buttonBackToMenu.Name = "buttonBackToMenu";
-            this.buttonBackToMenu.Size = new System.Drawing.Size(205, 30);
+            this.buttonBackToMenu.Size = new System.Drawing.Size(308, 46);
             this.buttonBackToMenu.TabIndex = 0;
             this.buttonBackToMenu.Text = "Zurück zum Hauptmenü";
             this.buttonBackToMenu.UseVisualStyleBackColor = true;
@@ -65,10 +68,11 @@
             // 
             // frmDataManagement
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 589);
+            this.ClientSize = new System.Drawing.Size(1924, 906);
             this.Controls.Add(this.splitContainer1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmDataManagement";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;

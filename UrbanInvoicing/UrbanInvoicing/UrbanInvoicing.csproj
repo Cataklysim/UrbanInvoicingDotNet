@@ -151,6 +151,12 @@
     <Compile Include="Control\ctlContactDetail.Designer.cs">
       <DependentUpon>ctlContactDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Control\ctlExportMask.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Control\ctlExportMask.Designer.cs">
+      <DependentUpon>ctlExportMask.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmContacts.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -204,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Control\ctlContactDetail.resx">
       <DependentUpon>ctlContactDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Control\ctlExportMask.resx">
+      <DependentUpon>ctlExportMask.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmContacts.resx">
       <DependentUpon>frmContacts.cs</DependentUpon>
@@ -260,6 +269,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Classes\CREATE_VIEW.txt" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

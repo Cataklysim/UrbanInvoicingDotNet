@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using UrbanInvoicing.Forms;
 using UrbanInvoicing.Classes;
 using System.Deployment.Application;
+using System.IO;
+using MySql.Data.MySqlClient;
 
 namespace UrbanInvoicing
 {
@@ -72,6 +74,12 @@ namespace UrbanInvoicing
             {
                 this.button6.Visible = false;
             }
+        }
+
+        private void buttonExport_Click(object sender, EventArgs e)
+        {
+            frmDataManagement tmpDataManagement = new frmDataManagement("export");
+            tmpDataManagement.ShowDialog(this);
         }
     }
 }

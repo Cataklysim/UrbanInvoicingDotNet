@@ -1,0 +1,17 @@
+CREATE VIEW `vwInvoiceExport` AS SELECT tbInvoice.invoiceNumber,tbInvoice.belegdatum, tbInvoice.arrivalDate, tbInvoice.departureDate,  tbInvoice.paymentDate, tbInvoice.IsExport,
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.name, tbCustomer.invoiceName ) AS CustomerName, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.lastName, tbCustomer.invoiceLastName ) AS CustomerLastName, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.street, tbCustomer.invoiceStreet ) AS CustomerStreet, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.plz, tbCustomer.invoicePlz ) AS CustomerPlz, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.city, tbCustomer.invoiceCity ) AS CustomerCity, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.land, tbCustomer.invoiceLand ) AS CustomerLand, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.telefone, tbCustomer.invoiceTelefone ) AS CustomerTelefone, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.telefax, tbCustomer.invoiceTelefax ) AS CustomerTelefax, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.email, tbCustomer.invoiceEmail ) AS CustomerEmail, 
+tbCustomer.isCompany, tbCustomer.isCustomer,
+tbArtikel.name AS ArtikelName, tbType.name AS TypeName, tbInvoicePosition.brutto,  tbInvoicePosition.netto,  tbInvoicePosition.mwst
+FROM tbInvoicePosition LEFT JOIN 
+tbInvoice ON tbInvoicePosition.invoice_id = tbInvoice.id
+LEFT JOIN tbType ON tbInvoicePosition.type_id = tbType.id
+LEFT JOIN tbArtikel ON tbInvoicePosition.artikel_id = tbArtikel.id
+LEFT JOIN tbCustomer ON tbInvoice.customer_id = tbCustomer.id;
