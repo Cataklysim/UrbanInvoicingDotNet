@@ -244,9 +244,6 @@
     <EmbeddedResource Include="Report\repo.resx">
       <DependentUpon>repo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report\rptInvoice.rdlc">
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\DataSources\UrbanInvoicing.Classes.clsArticle.datasource" />

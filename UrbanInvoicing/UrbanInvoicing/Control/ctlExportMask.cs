@@ -65,43 +65,45 @@ namespace UrbanInvoicing.Control
             }
         }
 
-    private void ctlExportMask_Load(object sender, EventArgs e)
-    {
-        this.dateTimePickerFrom.Value = DateTime.Today;
-        this.dateTimePickerTo.Value = DateTime.Today;
-        this.BindGrid(this.dateTimePickerFrom.Value, this.dateTimePickerTo.Value, this.checkBoxExport.Checked);
-    }
-
-    private void BindGrid(DateTime pFrom, DateTime pTo, bool pIsExport)
-    {
-        try
+        private void ctlExportMask_Load(object sender, EventArgs e)
         {
-            using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
-            {
-                MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM vwInvoiceExport WHERE tbInvoice.belegdatum >= @From AND tbInvoice.belegdatum <= @To AND IsExport = @Export", tmpConnection);
-                tmpCommand.Parameters.AddWithValue("@From", pFrom);
-                tmpCommand.Parameters.AddWithValue("@To", pTo);
-                tmpCommand.Parameters.AddWithValue("@Export", pIsExport);
-                tmpCommand.Connection.Open();
+            this.dateTimePickerFrom.Value = DateTime.Today;
+            this.dateTimePickerTo.Value = DateTime.Today;
+            this.BindGrid(this.dateTimePickerFrom.Value, this.dateTimePickerTo.Value, this.checkBoxExport.Checked);
+        }
 
-                using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+        private void BindGrid(DateTime pFrom, DateTime pTo, bool pIsExport)
+        {
+            try
+            {
+                using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM vwInvoiceExport WHERE (belegdatum BETWEEN @From AND @To) AND IsExport = @Export", tmpConnection);
+                    tmpCommand.Parameters.AddWithValue("@From", pFrom);
+                    tmpCommand.Parameters.AddWithValue("@To", pTo);
+                    tmpCommand.Parameters.AddWithValue("@Export", pIsExport);
+                    tmpCommand.Connection.Open();
+
+                    //System.Data.CommandBehavior.CloseConnection
+                    //using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))
+                    //{
                     using (MySqlDataAdapter tmpDataAdapter = new MySqlDataAdapter())
-                    {
-                        tmpDataAdapter.SelectCommand = tmpCommand;
-                        using (DataTable tmpTable = new DataTable())
                         {
-                            tmpDataAdapter.Fill(tmpTable);
-                            this.dataGridView1.DataSource = tmpTable;
+                            tmpDataAdapter.SelectCommand = tmpCommand;
+                            using (DataTable tmpTable = new DataTable())
+                            {
+                               
+                                tmpDataAdapter.Fill(tmpTable);
+                                this.dataGridView1.DataSource = tmpTable;
+                            }
                         }
-                    }
+                    //}
                 }
             }
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show("Es ist ein Fehler während dem Laden des Inhalts aufgetreten. \r\nFehler:\r\n\r\n" + ex.Message, "Fehler beim Laden der Daten", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            catch (Exception ex)
+            {
+                MessageBox.Show("Es ist ein Fehler während dem Laden des Inhalts aufgetreten. \r\nFehler:\r\n\r\n" + ex.Message, "Fehler beim Laden der Daten", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
-}
 }

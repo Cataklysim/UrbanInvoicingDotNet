@@ -43,7 +43,7 @@ namespace UrbanInvoicing.Forms
             {
                 this._LocalInboundControl.Parent = null;
                 this._LocalOutboundControl.Parent = null;
-                this._LocalExportMask = null;
+                this._LocalExportMask.Parent = null;
 
                 switch (this.LoadTag)
                 {
