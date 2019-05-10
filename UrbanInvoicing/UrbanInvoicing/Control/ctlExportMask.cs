@@ -38,7 +38,7 @@ namespace UrbanInvoicing.Control
 
                     if (savefile.ShowDialog() == DialogResult.OK)
                     {
-                        using (System.IO.StreamWriter csvFileWriter = new StreamWriter(savefile.FileName, false))
+                        using (System.IO.StreamWriter csvFileWriter = new StreamWriter(savefile.FileName, false, Encoding.Default))
                         {
                             var sb = new StringBuilder();
 
