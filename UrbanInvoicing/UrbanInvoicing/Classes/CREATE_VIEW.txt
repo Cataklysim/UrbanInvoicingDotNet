@@ -19,7 +19,8 @@ tbArtikel.name AS Zuordnung,
 tbType.name AS Typ, 
 tbInvoicePosition.brutto AS Brutto,  
 tbInvoicePosition.netto AS Netto,  
-tbInvoicePosition.mwst AS MwSt
+tbInvoicePosition.mwst AS MwSt,
+tbInvoice.IsExport
 FROM tbInvoicePosition LEFT JOIN 
 tbInvoice ON tbInvoicePosition.invoice_id = tbInvoice.id
 LEFT JOIN tbType ON tbInvoicePosition.type_id = tbType.id
