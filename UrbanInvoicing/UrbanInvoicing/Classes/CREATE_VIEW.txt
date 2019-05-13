@@ -1,15 +1,25 @@
-CREATE VIEW `vwInvoiceExport` AS SELECT tbInvoice.invoiceNumber,tbInvoice.belegdatum, tbInvoice.arrivalDate, tbInvoice.departureDate,  tbInvoice.paymentDate, tbInvoice.IsExport,
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.name, tbCustomer.invoiceName ) AS CustomerName, 
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.lastName, tbCustomer.invoiceLastName ) AS CustomerLastName, 
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.street, tbCustomer.invoiceStreet ) AS CustomerStreet, 
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.plz, tbCustomer.invoicePlz ) AS CustomerPlz, 
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.city, tbCustomer.invoiceCity ) AS CustomerCity, 
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.land, tbCustomer.invoiceLand ) AS CustomerLand, 
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.telefone, tbCustomer.invoiceTelefone ) AS CustomerTelefone, 
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.telefax, tbCustomer.invoiceTelefax ) AS CustomerTelefax, 
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.email, tbCustomer.invoiceEmail ) AS CustomerEmail, 
-tbCustomer.isCompany, tbCustomer.isCustomer,
-tbArtikel.name AS ArtikelName, tbType.name AS TypeName, tbInvoicePosition.brutto,  tbInvoicePosition.netto,  tbInvoicePosition.mwst
+ALTER VIEW `vwInvoiceExport` AS 
+SELECT tbInvoice.invoiceNumber AS Belegnummer,
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.name, tbCustomer.invoiceName ) AS Vorname, 
+tbCustomer.isCompany AS Firma,
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.lastName, tbCustomer.invoiceLastName ) AS Name, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.street, tbCustomer.invoiceStreet ) AS 'Straﬂe, Hausnummer', 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.land, tbCustomer.invoiceLand ) AS Nation, 
+tbInvoice.IsExport AS Ausgangsrechnung,
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.plz, tbCustomer.invoicePlz ) AS PLZ, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.city, tbCustomer.invoiceCity ) AS Ort, 
+tbInvoice.arrivalDate AS Anreise,
+tbInvoice.departureDate AS Abreise,
+tbInvoice.belegdatum AS Belegdatum,
+tbInvoice.paymentDate AS Zahlungsdatum,
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.telefone, tbCustomer.invoiceTelefone ) AS Telefon, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.telefax, tbCustomer.invoiceTelefax ) AS Faxnummer, 
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.email, tbCustomer.invoiceEmail ) AS 'E-Mail', 
+tbArtikel.name AS Zuordnung,
+tbType.name AS Typ, 
+tbInvoicePosition.brutto AS Brutto,  
+tbInvoicePosition.netto AS Netto,  
+tbInvoicePosition.mwst AS MwSt
 FROM tbInvoicePosition LEFT JOIN 
 tbInvoice ON tbInvoicePosition.invoice_id = tbInvoice.id
 LEFT JOIN tbType ON tbInvoicePosition.type_id = tbType.id
