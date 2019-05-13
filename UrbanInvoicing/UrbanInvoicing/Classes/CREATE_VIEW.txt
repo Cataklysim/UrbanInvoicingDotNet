@@ -1,7 +1,7 @@
 ALTER VIEW `vwInvoiceExport` AS 
 SELECT tbInvoice.invoiceNumber AS Belegnummer,
-IF(tbCustomer.useOtherAdress = 0,tbCustomer.name, tbCustomer.invoiceName ) AS Vorname, 
 tbCustomer.isCompany AS Firma,
+IF(tbCustomer.useOtherAdress = 0,tbCustomer.name, tbCustomer.invoiceName ) AS Vorname, 
 IF(tbCustomer.useOtherAdress = 0,tbCustomer.lastName, tbCustomer.invoiceLastName ) AS Name, 
 IF(tbCustomer.useOtherAdress = 0,tbCustomer.street, tbCustomer.invoiceStreet ) AS 'Straﬂe, Hausnummer', 
 IF(tbCustomer.useOtherAdress = 0,tbCustomer.land, tbCustomer.invoiceLand ) AS Nation, 
