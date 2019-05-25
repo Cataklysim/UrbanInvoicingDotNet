@@ -56,7 +56,7 @@ namespace UrbanInvoicing.Classes
                     MySqlCommand tmpCommand = new MySqlCommand("INSERT INTO tbInvoice (customer_id, belegdatum, summeBrutto, summeNetto, summeMwst, systemst" +
                 "atus_id, invoiceNumber, IsExport) VALUES (@CustomerId, @Belegdatum, @Brutto, @Netto, @MWST, @Systemstatus, @invoiceNumber, @IsExport)");
                     tmpCommand.Parameters.AddWithValue("@CustomerId", this.customerId);
-                    tmpCommand.Parameters.AddWithValue("@Belegdatum", DateTime.Now);
+                    tmpCommand.Parameters.AddWithValue("@Belegdatum", this.paymentDate);
                     tmpCommand.Parameters.AddWithValue("@Brutto", this.sumBrutto);
                     tmpCommand.Parameters.AddWithValue("@Netto", this.sumNetto);
                     tmpCommand.Parameters.AddWithValue("@MWST", this.sumMwst);

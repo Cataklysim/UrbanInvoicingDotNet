@@ -36,6 +36,13 @@ namespace UrbanInvoicing.Classes
         public String invoiceComment { get; set; }
         public bool isCompany { get; set; }
         public int systemstatus_id { get; set; }
+        public String displayName
+        {
+            get
+            {
+                return this.name + " " + this.lastName;
+            }
+        }
 
         public clsCustomer()
         { }
@@ -48,17 +55,19 @@ namespace UrbanInvoicing.Classes
                 using (MySqlConnection tmpConnection = new MySqlConnection(Properties.Settings.Default.ConnectionString))
                 {
                     String tmpAditionalWhere = String.Empty;
-                    if (pIsCompany  && !pIsCustomer)
+                    if (pIsCompany && !pIsCustomer)
                     {
                         tmpAditionalWhere += "AND isCompany = 1 ";
-                    } else if (!pIsCompany && pIsCustomer)
+                    }
+                    else if (!pIsCompany && pIsCustomer)
                     {
                         tmpAditionalWhere += "AND isCustomer = 1 ";
-                    } else if (pIsCompany && pIsCustomer)
+                    }
+                    else if (pIsCompany && pIsCustomer)
                     {
                         tmpAditionalWhere += " AND (isCompany = 1 OR isCustomer = 1) ";
                     }
-                    MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM tbCustomer WHERE systemstatus_id = 1 "+tmpAditionalWhere+"ORDER BY name");
+                    MySqlCommand tmpCommand = new MySqlCommand("SELECT * FROM tbCustomer WHERE systemstatus_id = 1 " + tmpAditionalWhere + "ORDER BY name");
                     tmpCommand.Connection = tmpConnection;
                     tmpCommand.Connection.Open();
                     using (MySqlDataReader tmpReader = tmpCommand.ExecuteReader(System.Data.CommandBehavior.CloseConnection))

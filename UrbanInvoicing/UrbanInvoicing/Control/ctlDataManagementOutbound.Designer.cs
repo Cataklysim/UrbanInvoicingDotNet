@@ -64,7 +64,6 @@
             this.bindingSourceTypes = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceCustomer = new System.Windows.Forms.BindingSource(this.components);
             this.bindingSourceArticles = new System.Windows.Forms.BindingSource(this.components);
-            this.buttonExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -82,12 +81,12 @@
             // 
             this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.splitContainer.Name = "splitContainer";
             this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
             // 
             // splitContainer.Panel1
             // 
-            this.splitContainer.Panel1.Controls.Add(this.buttonExport);
             this.splitContainer.Panel1.Controls.Add(this.label2);
             this.splitContainer.Panel1.Controls.Add(this.dataGridViewOutboundInvoice);
             // 
@@ -95,19 +94,18 @@
             // 
             this.splitContainer.Panel2.Controls.Add(this.label1);
             this.splitContainer.Panel2.Controls.Add(this.dataGridViewOutboundInvoicePosition);
-            this.splitContainer.Size = new System.Drawing.Size(1593, 960);
-            this.splitContainer.SplitterDistance = 529;
-            this.splitContainer.SplitterWidth = 5;
+            this.splitContainer.Size = new System.Drawing.Size(1062, 624);
+            this.splitContainer.SplitterDistance = 343;
+            this.splitContainer.SplitterWidth = 3;
             this.splitContainer.TabIndex = 0;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.label2.Location = new System.Drawing.Point(4, 6);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(3, 4);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(141, 31);
+            this.label2.Size = new System.Drawing.Size(90, 20);
             this.label2.TabIndex = 2;
             this.label2.Text = "Rechnungen";
             // 
@@ -149,13 +147,14 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewOutboundInvoice.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridViewOutboundInvoice.Location = new System.Drawing.Point(147, 0);
+            this.dataGridViewOutboundInvoice.Location = new System.Drawing.Point(98, 0);
+            this.dataGridViewOutboundInvoice.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewOutboundInvoice.MultiSelect = false;
             this.dataGridViewOutboundInvoice.Name = "dataGridViewOutboundInvoice";
             this.dataGridViewOutboundInvoice.ReadOnly = true;
             this.dataGridViewOutboundInvoice.RowTemplate.Height = 28;
             this.dataGridViewOutboundInvoice.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOutboundInvoice.Size = new System.Drawing.Size(1443, 511);
+            this.dataGridViewOutboundInvoice.Size = new System.Drawing.Size(962, 331);
             this.dataGridViewOutboundInvoice.TabIndex = 0;
             this.dataGridViewOutboundInvoice.SelectionChanged += new System.EventHandler(this.dataGridViewOutboundInvoice_SelectionChanged);
             // 
@@ -241,10 +240,9 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.label1.Location = new System.Drawing.Point(4, 6);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(3, 4);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 31);
+            this.label1.Size = new System.Drawing.Size(77, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "Positionen";
             // 
@@ -287,13 +285,14 @@
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewOutboundInvoicePosition.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dataGridViewOutboundInvoicePosition.Location = new System.Drawing.Point(147, 0);
+            this.dataGridViewOutboundInvoicePosition.Location = new System.Drawing.Point(98, 0);
+            this.dataGridViewOutboundInvoicePosition.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.dataGridViewOutboundInvoicePosition.MultiSelect = false;
             this.dataGridViewOutboundInvoicePosition.Name = "dataGridViewOutboundInvoicePosition";
             this.dataGridViewOutboundInvoicePosition.ReadOnly = true;
             this.dataGridViewOutboundInvoicePosition.RowTemplate.Height = 28;
             this.dataGridViewOutboundInvoicePosition.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewOutboundInvoicePosition.Size = new System.Drawing.Size(1443, 426);
+            this.dataGridViewOutboundInvoicePosition.Size = new System.Drawing.Size(962, 277);
             this.dataGridViewOutboundInvoicePosition.TabIndex = 0;
             // 
             // article
@@ -393,24 +392,14 @@
             // 
             this.bindingSourceArticles.DataSource = typeof(UrbanInvoicing.Classes.clsArticle);
             // 
-            // buttonExport
-            // 
-            this.buttonExport.Font = new System.Drawing.Font("Segoe UI", 11.25F);
-            this.buttonExport.Location = new System.Drawing.Point(10, 469);
-            this.buttonExport.Name = "buttonExport";
-            this.buttonExport.Size = new System.Drawing.Size(131, 42);
-            this.buttonExport.TabIndex = 3;
-            this.buttonExport.Text = "Export CSV";
-            this.buttonExport.UseVisualStyleBackColor = true;
-            this.buttonExport.Click += new System.EventHandler(this.buttonExport_Click);
-            // 
             // ctlDataManagementOutbound
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "ctlDataManagementOutbound";
-            this.Size = new System.Drawing.Size(1593, 960);
+            this.Size = new System.Drawing.Size(1062, 624);
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel1.PerformLayout();
             this.splitContainer.Panel2.ResumeLayout(false);
@@ -461,6 +450,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn typeIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
-        private System.Windows.Forms.Button buttonExport;
     }
 }

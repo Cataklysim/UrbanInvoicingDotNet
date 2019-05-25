@@ -135,7 +135,7 @@
             // comboBoxCustomers
             // 
             this.comboBoxCustomers.DataSource = this.bindingSourceCustomers;
-            this.comboBoxCustomers.DisplayMember = "name";
+            this.comboBoxCustomers.DisplayMember = "displayName";
             this.comboBoxCustomers.Dock = System.Windows.Forms.DockStyle.Left;
             this.comboBoxCustomers.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBoxCustomers.FormattingEnabled = true;
