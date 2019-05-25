@@ -104,7 +104,7 @@ namespace UrbanInvoicing.Control
                             tmpCustomerId = Convert.ToInt32(tmpRow.Cells["customerIdDataGridViewTextBoxColumn"].Value);
                             clsCustomer tmpCustomer = this.Customer.Where(w => w.id == tmpCustomerId).FirstOrDefault();
                             if (tmpCustomer != null)
-                                tmpCell.Value = (String.IsNullOrWhiteSpace(tmpCustomer.invoiceName) ? tmpCustomer.name : tmpCustomer.invoiceName) + " " + (String.IsNullOrWhiteSpace(tmpCustomer.invoiceLastName) ? tmpCustomer.lastName : tmpCustomer.invoiceName);
+                                tmpCell.Value = (tmpCustomer.useOtherAdress ? tmpCustomer.invoiceName +" "+ tmpCustomer.invoiceLastName: tmpCustomer.name+" "+tmpCustomer.lastName);
                         }
                     }
                 }
